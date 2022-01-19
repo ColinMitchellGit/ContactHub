@@ -6,7 +6,7 @@
 	$email = $inData["email"];
 	$password = $inData["password"];
 
-	$conn = new mysqli("localhost", "admin", "Group15Loves2Code", "COP4331Group15");
+	$conn = new mysqli("localhost", "TheBeast", "Group15LovesCOP4331", "COP4331Group15");
 	if ($conn->connect_error)
 	{
 		returnWithError( $conn->connect_error );
