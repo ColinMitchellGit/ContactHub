@@ -3,7 +3,7 @@
 
 	$userid = $inData["userID"];
 	$search = $inData["search"];
-
+	$string = "%" . $search . "%";
 	$conn = new mysqli("localhost", "TheBeast", "Group15LovesCOP4331", "COP4331Group15");
 
 	if ($conn->connect_error)
@@ -13,7 +13,7 @@
 	else
 	{
 		$stmt = $conn->prepare("SELECT FirstName,LastName,PhoneNumber,Email FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ? OR PhoneNumber LIKE ? OR Email LIKE ?) AND (UserID=?)");
-		$stmt->bind_param("ssssi", $search, $search, $search, $search, $userid);
+		$stmt->bind_param("ssssi", $string, $string, $string, $string, $userid);
 		$stmt->execute();
 
 		$result = $stmt->get_result();
