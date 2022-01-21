@@ -16,8 +16,8 @@
 	else
 	{
 		# Check if contact has the same phone number or email as the input
-		$stmt = $conn->prepare("SELECT FirstName,LastName FROM Contacts WHERE(PhoneNumber=? OR Email=?)");
-		$stmt->bind_param("ssisi", $firstName, $lastName, $phoneNumber, $email, $userID);
+		$stmt = $conn->prepare("SELECT FirstName,LastName FROM Contacts WHERE(PhoneNumber=? OR Email=?) AND (UserID=?)");
+		$stmt->bind_param("is", $phoneNumber,$email, $userID);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
