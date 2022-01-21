@@ -1,8 +1,8 @@
 <?php
 	$inData = getRequestInfo();
 
-	$login = $inData["login"];
-	$password = $inData["password"];
+	$userid = $inData["userID"];
+	$search = $inData["search"];
 
 	$conn = new mysqli("localhost", "TheBeast", "Group15LovesCOP4331", "COP4331Group15");
 
@@ -12,38 +12,19 @@
 	}
 	else
 	{
-		# We need to first query for the user's ID in order to get all their contacts
-		$stmt = $conn->prepare("SELECT ID FROM Users WHERE Login=? AND Password=?");
-		$stmt->bind_param("ss", $login, $password);
+		$stmt = $conn->prepare("SELECT FirstName,LastName,PhoneNumber,Email FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ? OR PhoneNumber LIKE ? OR Email LIKE ?) AND (UserID=?)");
+		$stmt->bind_param("ssssi", $search, $search, $search, $search, $userid);
 		$stmt->execute();
+
 		$result = $stmt->get_result();
 
-		if( $row = $result->fetch_assoc()  )
+		if ($jsonOBJ = $result->fetch_all())
 		{
-			# Once we have the user's ID, we just query for all contacts with that specific UserID
-			$stmt = $conn->prepare("SELECT * FROM Contacts WHERE UserID=?");
-			$stmt->bind_param("s", $row['ID']);
-			$stmt->execute();
-
-			$result = $stmt->get_result();
-
-			if ($jsonOBJ = $result->fetch_all())
-			{
-				sendResultInfoAsJson($jsonOBJ);
-			}
-			else
-			{
-				returnWithError("No Contacts Found");
-			}
-
+			sendResultInfoAsJson($jsonOBJ);
 		}
 		else
 		{
-			/*
-			* Not sure if this is needed since at this point the user has already logged in,
-			* but I'm leaving it here just in case
-			*/
-			returnWithError("User not found");
+			returnWithError("No Contacts Found");
 		}
 
 		$stmt->close();
