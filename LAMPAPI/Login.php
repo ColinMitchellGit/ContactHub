@@ -13,6 +13,7 @@
 	# Opening a new connection to the database using admin user
 	$conn = new mysqli("localhost", "TheBeast", "Group15LovesCOP4331", "COP4331Group15");
 
+	## Begin connection
 	if( $conn->connect_error )
 	{
 		returnWithError( $conn->connect_error );
