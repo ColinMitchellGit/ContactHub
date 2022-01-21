@@ -5,6 +5,7 @@
 	$lastName = $inData["lastName"];
 	$phoneNumber = $inData["phoneNumber"];
 	$email = $inData["email"];
+	$userID = $inData["userID"];
 
 	$conn = new mysqli("localhost", "TheBeast", "Group15LovesCOP4331", "COP4331Group15");
 
@@ -14,12 +15,27 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Contacts (FirstName, LastName, PhoneNumber, Email) VALUES(?,?,?,?)");
-		$stmt->bind_param("ssis", $firstName, $lastName, $phoneNumber, $email);
+		# Check if contact has the same phone number or email as the input
+		$stmt = $conn->prepare("SELECT FirstName,LastName FROM Contacts WHERE(PhoneNumber=? OR Email=?)");
+		$stmt->bind_param("ssisi", $firstName, $lastName, $phoneNumber, $email, $userID);
 		$stmt->execute();
-		$stmt->close();
-		$conn->close();
-		returnWithError("");
+		$result = $stmt->get_result();
+
+		# If the contact exists, we throw an error back
+		if( $row = $result->fetch_assoc()  )
+		{
+			returnWithError("Contact already exists");
+		}
+		else
+		{
+			# Insert the new contact
+			$stmt = $conn->prepare("INSERT into Contacts WHERE (FirstName,LastName,PhoneNumber,Email,UserID) VALUES(?,?,?,?,?)");
+			$stmt->bind_param("ssisi", $firstName, $lastName, $phoneNumber, $email, $userID);
+			$stmt->execute();
+			$stmt->close();
+			$conn->close();
+			returnWithError("");
+		}
 	}
 
 	function getRequestInfo()
