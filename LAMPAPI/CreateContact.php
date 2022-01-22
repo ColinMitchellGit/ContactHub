@@ -29,7 +29,7 @@
 		else
 		{
 			# Insert the new contact
-			$stmt = $conn->prepare("INSERT into Contacts WHERE (FirstName,LastName,PhoneNumber,Email,UserID) VALUES(?,?,?,?,?)");
+			$stmt = $conn->prepare("INSERT INTO `Contacts` (`FirstName`,`LastName`,`PhoneNumber`,`Email`,`UserID`) VALUES(?,?,?,?,?)");
 			$stmt->bind_param("ssisi", $firstName, $lastName, $phoneNumber, $email, $userID);
 			$stmt->execute();
 			$stmt->close();
