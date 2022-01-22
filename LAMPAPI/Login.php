@@ -1,7 +1,6 @@
 <?php
 
 	$inData = getRequestInfo();
-        # Test
 	# Getting the login info from JSON object
 	$login = $inData["login"];
 	$password = $inData["password"];
