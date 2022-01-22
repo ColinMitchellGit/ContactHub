@@ -24,7 +24,7 @@
 		# If the contact exists, we throw an error back
 		if( $row = $result->fetch_assoc()  )
 		{
-			returnWithError("Contact already exists");
+			returnWithError("Contact already exists with given phone number or email");
 		}
 		else
 		{
