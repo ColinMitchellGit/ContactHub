@@ -21,7 +21,7 @@
     {
 		# There's no need to check if the contact exists if they are on the contact
 		$stmt = $conn->prepare("UPDATE `Contacts` SET `FirstName` = ?, `LastName` = ?, `PhoneNumber` = ?, `Email` = ? 
-                                WHERE (`FirstName` = ? AND `LastName` = ? AND `PhoneNumber` = ? AND `Email` LIKE ?) AND (`UserID`=?);")
+                                WHERE (`FirstName` = ? AND `LastName` = ? AND `PhoneNumber` = ? AND `Email` LIKE ?) AND (`UserID`=?);");
 		$stmt->bind_param("ssisssisi", $oldFirstName, $oldLastName, $oldPhoneNumber, $oldEmail, 
                                        $newFirstName, $newLastName, $newPhoneNumber, $newEmail, $userid);
 		$stmt->execute();
