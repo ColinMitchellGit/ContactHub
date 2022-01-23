@@ -26,6 +26,16 @@
                                        $oldFirstName, $oldLastName, $oldPhoneNumber, $oldEmail, $userid);
 		$stmt->execute();
 
+		$result = $stmt->get_result();
+		if ($result != TRUE)
+		{
+			returnWithError("Edit failed!");
+		}
+		else
+		{
+			returnInfo("Edit successful!");
+		}
+
         $stmt->close();
         $conn->close();
     }
@@ -45,6 +55,12 @@
 	function returnWithError( $err )
 	{
 		$retValue = '{"error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
+
+	function returnInfo( $info )
+	{
+		$retValue = '{"info":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 ?>
