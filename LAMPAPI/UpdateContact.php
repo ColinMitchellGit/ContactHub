@@ -3,7 +3,7 @@
 
 	$oldFirstName = $inData["oldFirstName"];
 	$oldLastName = $inData["oldLastName"];
-	$oldPhoneNumbe = $inData["oldPhoneNumber"];
+	$oldPhoneNumber = $inData["oldPhoneNumber"];
 	$oldEmail = $inData["oldEmail"];
 	$newFirstName = $inData["newFirstName"];
 	$newLastName = $inData["newLastName"];
