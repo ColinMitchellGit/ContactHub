@@ -1,6 +1,9 @@
 <?php
 	$inData = getRequestInfo();
 
+	$searchCount = 0;
+	$searchResults = "";
+
 	$userid = $inData["userID"];
 	$string = "%" . $inData["search"] . "%";
 
@@ -18,35 +21,27 @@
 		$stmt->execute();
 		$result = $stmt->get_result();
 
-		if ($result->num_rows() > 0)
+		while($row = $result->fetch_assoc())
 		{
-			convertResults($result);
+			if( $searchCount > 0 )
+			{
+				$searchResults .= ",";
+			}
+			$searchCount++;
+			$searchResults .= '"' . $row["FirstName"] . '"';
+		}
+
+		if( $searchCount == 0 )
+		{
+			returnWithError( "No Contacts Found" );
 		}
 		else
 		{
-			returnWithError("No Contacts Found");
+			returnWithInfo( $searchResults );
 		}
 
 		$stmt->close();
 		$conn->close();
-	}
-
-	function convertResults( $result )
-	{
-		$data = array();
-
-		while ($row = $result->fetch_assoc())
-		{
-			$data[] = [
-				'FirstName' => $row['FirstName'],
-		        'LastName' => $row['LastName'],
-				'PhoneNumber' => $row['PhoneNumber'],
-				'Email' => $row['Email'],
-				'ContactID' =>  $row['ContactID']
-    		];
-		}
-
-		sendResultInfoAsJson($data);
 	}
 
 	function getRequestInfo()
@@ -62,7 +57,13 @@
 
 	function returnWithError( $err )
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
+
+	function returnWithInfo( $searchResults )
+	{
+		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 ?>
