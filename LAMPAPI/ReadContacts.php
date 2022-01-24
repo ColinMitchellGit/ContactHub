@@ -33,7 +33,8 @@
 
 	function convertResults( $result )
 	{
-		for($row = $result->fetch_assoc())
+		$data = array();
+		while ($row = $result->fetch_assoc())
 		{
 			$data[] = [
 				'FirstName' => $row['FirstName'],
