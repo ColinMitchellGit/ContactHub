@@ -20,7 +20,7 @@
 
 		$data[];
 
-		if ($row = $result->fetch_assoc())
+		if ($result->num_rows() > 0)
 		{
 			convertResults($result);
 		}
@@ -35,7 +35,7 @@
 
 	function convertResults( $result )
 	{
-		for($row = $result=>fetch_assoc())
+		while ($row = $result=>fetch_assoc())
 		{
 			$data[] = [
 		        'FirstName' => $row['FirstName'],
