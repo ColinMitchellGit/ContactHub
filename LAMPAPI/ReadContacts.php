@@ -28,10 +28,10 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["FirstName"] . '"';
-			$searchResults .= '"' . $row["LastName"] . '"';
-			$searchResults .= '"' . $row["PhoneNumber"] . '"';
-			$searchResults .= '"' . $row["Email"] . '"';
+			$searchResults .= '"' . $row["FirstName"] . ',"';
+			$searchResults .= '"' . $row["LastName"] . ',"';
+			$searchResults .= '"' . $row["PhoneNumber"] . ',"';
+			$searchResults .= '"' . $row["Email"] . ',"';
 			$searchResults .= '"' . $row["ContactID"] . '"';
 		}
 
