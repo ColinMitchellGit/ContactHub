@@ -21,10 +21,8 @@
 		                        WHERE (`UserID`=? AND `ContactID`=?)");
 		$stmt->bind_param("ssisii", $firstName, $lastName, $phoneNumber, $email,
                                     $userID, $contactID);
-		$stmt->execute();
-		$result = $stmt->get_result()
 
-		if (mysqli_affected_rows($conn) == 1)
+		if ($stmt->execute() == true)
 		{
 			returnInfo("Update successful!");
 		}
