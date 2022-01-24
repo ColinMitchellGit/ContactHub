@@ -29,6 +29,10 @@
 			}
 			$searchCount++;
 			$searchResults .= '"' . $row["FirstName"] . '"';
+			$searchResults .= '"' . $row["LastName"] . '"';
+			$searchResults .= '"' . $row["PhoneNumber"] . '"';
+			$searchResults .= '"' . $row["Email"] . '"';
+			$searchResults .= '"' . $row["ContactID"] . '"';
 		}
 
 		if( $searchCount == 0 )
