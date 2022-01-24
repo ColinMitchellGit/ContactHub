@@ -28,10 +28,10 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["FirstName"] . ',"';
-			$searchResults .= '"' . $row["LastName"] . ',"';
-			$searchResults .= '"' . $row["PhoneNumber"] . ',"';
-			$searchResults .= '"' . $row["Email"] . ',"';
+			$searchResults .= '"' . $row["FirstName"] . '",';
+			$searchResults .= '"' . $row["LastName"] . '",';
+			$searchResults .= '"' . $row["PhoneNumber"] . '",';
+			$searchResults .= '"' . $row["Email"] . '",';
 			$searchResults .= '"' . $row["ContactID"] . '"';
 		}
 
@@ -71,3 +71,5 @@
 		sendResultInfoAsJson( $retValue );
 	}
 ?>
+
+{"results":["John,""Smith,""3194923949,""johnsmith2@gmail.com,""10"],"error":""}
