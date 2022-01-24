@@ -1,12 +1,9 @@
 <?php
 	$inData = getRequestInfo();
 
-	$firstName = $inData["firstName"];
-	$lastName = $inData["lastName"];
-	$phoneNumber = $inData["phoneNumber"];
-	$email = $inData["email"];
 	$userID = $inData["userID"];
-
+	$contactID = $inData["contactID"];
+	
 	$conn = new mysqli("localhost", "TheBeast", "Group15LovesCOP4331", "COP4331Group15");
 
 	if ($conn->connect_error)
@@ -16,8 +13,8 @@
 	else
 	{
 		# No need to check if contact exists since the user is currently viewing the contact's page
-		$stmt = $conn->prepare("DELETE FROM `Contacts` WHERE `FirstName`=? AND `LastName`=? AND `PhoneNumber`=? AND `Email`=? AND `UserID`=?");
-		$stmt->bind_param("ssisi", $firstName, $lastName, $phoneNumber,$email, $userID);
+		$stmt = $conn->prepare("DELETE FROM `Contacts` WHERE `UserID`=? AND `ContactID`=?");
+		$stmt->bind_param("ii", $userID, $contactID);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
