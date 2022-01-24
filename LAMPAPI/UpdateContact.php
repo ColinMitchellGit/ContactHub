@@ -17,8 +17,8 @@
     else
     {
 		# There's no need to check if the contact exists if they are on the contact
-		$stmt = $conn->prepare("UPDATE Contacts SET FirstName=?, LastName=?, PhoneNumber=?, Email=?
-		                        WHERE UserID=? AND ContactID=?");
+		$stmt = $conn->prepare("UPDATE `Contacts` SET `FirstName`=?, `LastName`=?, `PhoneNumber`=?, `Email`=?
+		                        WHERE (`UserID`=? AND `ContactID`=?)");
 		$stmt->bind_param("ssisii", $firstName, $lastName, $phoneNumber, $email,
                                     $userID, $contactID);
 		$stmt->execute();
