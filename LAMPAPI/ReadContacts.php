@@ -2,8 +2,7 @@
 	$inData = getRequestInfo();
 
 	$userid = $inData["userID"];
-	$search = $inData["search"];
-	$string = "%" . $search . "%";
+	$string = "%" . $inData["search"] . "%";
 
 	$conn = new mysqli("localhost", "TheBeast", "Group15LovesCOP4331", "COP4331Group15");
 
@@ -13,15 +12,15 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT UserID,FirstName,LastName FROM Users WHERE Login=? AND Password=?");
-		$stmt->bind_param("si", $string, $userid);
+		$stmt = $conn->prepare("SELECT `FirstName`,`LastName`,`PhoneNumber`,`Email`,`ContactID` FROM `Contacts` WHERE (`FirstName` LIKE ? OR `LastName` LIKE ? OR `PhoneNumber` LIKE ? OR `Email` LIKE ?) AND (`UserID`=?);");
+		$stmt->bind_param("ssssi", $string, $string, $string, $string, $userid);
 		$stmt->execute();
 
 		$result = $stmt->get_result();
 
 		if ($result->num_rows() > 0)
 		{
-			returnWithError("Not working");
+			convertResults($result);
 		}
 		else
 		{
@@ -30,6 +29,24 @@
 
 		$stmt->close();
 		$conn->close();
+	}
+
+	function convertResults( $result )
+	{
+		$data = array();
+
+		while ($row = $result->fetch_assoc())
+		{
+			$data[] = [
+				'FirstName' => $row['FirstName'],
+		        'LastName' => $row['LastName'],
+				'PhoneNumber' => $row['PhoneNumber'],
+				'Email' => $row['Email'],
+				'ContactID' =>  $row['ContactID']
+    		];
+		}
+
+		sendResultInfoAsJson($data);
 	}
 
 	function getRequestInfo()
