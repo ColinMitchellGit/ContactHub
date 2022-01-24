@@ -3,6 +3,13 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <!-- linking the stylesheet(CSS) -->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <!--  Linking the javascript-->
+    <script type="text/javascript" src="/main.js"></script>
+
+
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,34 +25,9 @@
             box-sizing: border-box;
         }
         body{
-        background-color: rgb(207, 225, 201);
-        }
-        .row {
-        background: rgb(231, 240, 228);
-        border-radius: 20px;
-<!--        box-shadow: 12px 12px 22px grey;-->
-        }
-        img {
-        border-top-left-radius: 20px;
-        border-bottom-left-radius: 20px;
+            background-color: rgb(207, 225, 201);
         }
 
-        .btn1 {
-            border: none;
-            outline: none;
-            height: 50px;
-            width: 100%;
-            background-color: black;
-            color: white;
-            border-radius: 4px;
-            font-weight: bold;
-           }
-           .btn1:hover{
-           background: rgb(172, 202, 161);
-           border: 1px solid;
-           color: black;
-           border-color: darkgreen;
-           }
 
 
     </style>
@@ -55,10 +37,10 @@
     <div class="container">
         <div class="row no-gutters">
             <div class="col-lg-5">
-                <img src="./images/ghibli7.jpg" class="img-fluid" width="100%" alt="">
+                <img src="./images/ghibli7.jpg" class="img-fluid" alt="">
             </div>
             <!-- login form-->
-            <div class="col-lg-7 px-5 pt-5">
+            <div class="col-lg-7 px-5 pt-5" id="loginDiv">
                 <h1 class = "font-weight-bold"><img src="./images/logototoro2.png" class="img-fluid" width="120" height="30"  alt=""></h1>
                 <h4>Sign in to your account</h4>
                 <form action="">
@@ -66,7 +48,7 @@
 
                         <!-- email address -->
                         <div class="col-lg-7">
-                            <input type="email" placeholder="Email Address" class="form-control my-3 p-3">
+                            <input type="email" placeholder="Username" class="form-control my-3 p-3">
                         </div>
                     </div>
 
@@ -80,13 +62,13 @@
                     <!-- login BUTTON-->
                     <div class="form-row">
                         <div class="col-lg-7">
-                            <button type="button" class="btn1 mt-3 mb-5">Login</button>
+                            <button type="button" id="loginButton" class="button1 mt-3 mb-5" onclick="doLogout();">Login</button>
                         </div>
                     </div>
 
-                    <a href="#">Forgot Password?</a>
+                    <button type="button" id="forgotPasswordButton" class="button2 mt-1" onclick="doForgotPassword();"> Forgot Password? </button>
 
-                    <p>Don't have an account? <a href="#">Register here</a></p>
+                    <p>Don't have an account? <button type="button" id="RegisterButton" class="button3" onclick="doRegister();"> Register Here </button>
 
 
                 </form>
