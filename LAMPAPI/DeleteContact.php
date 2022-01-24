@@ -3,7 +3,7 @@
 
 	$userID = $inData["userID"];
 	$contactID = $inData["contactID"];
-	
+
 	$conn = new mysqli("localhost", "TheBeast", "Group15LovesCOP4331", "COP4331Group15");
 
 	if ($conn->connect_error)
@@ -15,7 +15,16 @@
 		# No need to check if contact exists since the user is currently viewing the contact's page
 		$stmt = $conn->prepare("DELETE FROM `Contacts` WHERE `UserID`=? AND `ContactID`=?");
 		$stmt->bind_param("ii", $userID, $contactID);
-		$stmt->execute();
+
+		if($stmt->execute() == true)
+		{
+			returnWithError("");
+		}
+		else
+		{
+			returnWithError("Deletion did not work.");
+		}
+		
 		$stmt->close();
 		$conn->close();
 	}
