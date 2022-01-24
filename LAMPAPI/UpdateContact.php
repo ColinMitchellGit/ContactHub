@@ -17,20 +17,20 @@
     else
     {
 		# There's no need to check if the contact exists if they are on the contact
-		$stmt = $conn->prepare("UPDATE Contacts SET `FirstName`=?, `LastName`=?, `PhoneNumber`=?, `Email`=? 
-		                        WHERE `UserID`=? AND `ContactID`=?");
-		$stmt->bind_param("ssisii", $firstName, $lastName, $phoneNumber, $email, 
-                                       $userid, $contactID);
+		$stmt = $conn->prepare("UPDATE Contacts SET FirstName=?, LastName=?, PhoneNumber=?, Email=?
+		                        WHERE UserID=? AND ContactID=?");
+		$stmt->bind_param("ssisii", $firstName, $lastName, $phoneNumber, $email,
+                                    $userid, $contactID);
 		$stmt->execute();
 
 		$result = $stmt->get_result();
 		if ($result != TRUE)
 		{
-			returnWithError("Edit failed!");
+			returnWithError("Update failed!");
 		}
 		else
 		{
-			returnInfo($stmt->error);
+			returnInfo("Update successful!");
 		}
 
         $stmt->close();
@@ -57,7 +57,7 @@
 
 	function returnInfo( $info )
 	{
-		$retValue = '{"info":"' . $err . '"}';
+		$retValue = '{"info":"' . $info . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
 ?>
