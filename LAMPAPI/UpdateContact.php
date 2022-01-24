@@ -30,7 +30,7 @@
 		}
 		else
 		{
-			returnInfo("Edit successful!");
+			returnInfo($stmt->error);
 		}
 
         $stmt->close();
