@@ -13,8 +13,8 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT `FirstName`,`LastName`,`PhoneNumber`,`Email`,`ContactID` FROM `Contacts` WHERE (`FirstName` LIKE ? OR `LastName` LIKE ? OR `PhoneNumber` LIKE ? OR `Email` LIKE ?) AND (`UserID`=?)");
-		$stmt->bind_param("ssssi", $string, $string, $string, $string, $userid);
+		$stmt = $conn->prepare("SELECT UserID,FirstName,LastName FROM Users WHERE Login=? AND Password=?");
+		$stmt->bind_param("si", $string, $userid);
 		$stmt->execute();
 
 		$result = $stmt->get_result();
