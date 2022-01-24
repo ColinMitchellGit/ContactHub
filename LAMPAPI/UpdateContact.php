@@ -22,9 +22,9 @@
 		$stmt->bind_param("ssisii", $firstName, $lastName, $phoneNumber, $email,
                                     $userID, $contactID);
 		$stmt->execute();
+		$result = $stmt->get_result()
 
-
-		if ($result = $stmt->get_result())
+		if ($row = $result->fetch_assoc())
 		{
 			returnInfo("Update successful!");
 		}
