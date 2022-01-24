@@ -23,14 +23,14 @@
                                     $userid, $contactID);
 		$stmt->execute();
 
-		$result = $stmt->get_result();
-		if ($result != TRUE)
+
+		if ($result = $stmt->get_result())
 		{
-			returnWithError("Update failed!");
+			returnInfo("Update successful!");
 		}
 		else
 		{
-			returnInfo("Update successful!");
+			returnWithError("Update failed!");
 		}
 
         $stmt->close();
