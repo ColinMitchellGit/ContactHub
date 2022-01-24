@@ -24,7 +24,7 @@
 		$stmt->execute();
 		$result = $stmt->get_result()
 
-		if ($row = $result->fetch_assoc())
+		if (mysqli_affected_rows($conn) == 1)
 		{
 			returnInfo("Update successful!");
 		}
