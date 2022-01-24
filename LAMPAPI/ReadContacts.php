@@ -20,7 +20,7 @@
 
 		if ($result->num_rows() > 0)
 		{
-			convertResults($result);
+			returnWithError("Not working");
 		}
 		else
 		{
@@ -29,23 +29,6 @@
 
 		$stmt->close();
 		$conn->close();
-	}
-
-	function convertResults( $result )
-	{
-		$data = array();
-		while ($row = $result->fetch_assoc())
-		{
-			$data[] = [
-				'FirstName' => $row['FirstName'],
-		        'LastName' => $row['LastName'],
-				'PhoneNumber' => $row['PhoneNumber'],
-				'Email' => $row['Email'],
-				'ContactID' =>  $row['ContactID']
-    		];
-		}
-
-		sendResultInfoAsJson($data);
 	}
 
 	function getRequestInfo()
