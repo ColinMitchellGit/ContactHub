@@ -33,11 +33,15 @@
 
 	function convertResults( $result )
 	{
-		$data = array();
-
-		while ($row = $result->fetch_assoc())
+		for($row = $result->fetch_assoc())
 		{
-			$data[] = $row;
+			$data[] = [
+				'FirstName' => $row['FirstName'],
+		        'LastName' => $row['LastName'],
+				'PhoneNumber' => $row['PhoneNumber'],
+				'Email' => $row['Email'],
+				'ContactID' =>  $row['ContactID']
+    		];
 		}
 
 		sendResultInfoAsJson($data);
