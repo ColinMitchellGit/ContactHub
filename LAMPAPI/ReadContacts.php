@@ -18,9 +18,11 @@
 
 		$result = $stmt->get_result();
 
-		if ($jsonOBJ = $result->fetch_all())
+		$data[];
+
+		if ($row = $result->fetch_assoc())
 		{
-			sendResultInfoAsJson($jsonOBJ);
+			convertResults($result);
 		}
 		else
 		{
@@ -29,6 +31,22 @@
 
 		$stmt->close();
 		$conn->close();
+	}
+
+	function convertResults( $result )
+	{
+		for($row = $result=>fetch_assoc())
+		{
+			$data[] = [
+		        'FirstName' => $row['FirstName'],
+		        'LastName' => $row['LastName'],
+				'PhoneNumber' => $row['PhoneNumber'],
+				'Email' => $row['Email'],
+				'ContactID' =>  $row['ContactID']
+    		];
+		}
+
+		sendResultInfoAsJson($data);
 	}
 
 	function getRequestInfo()
