@@ -17,18 +17,18 @@
 		$stmt->bind_param("ssssi", $string, $string, $string, $string, $userid);
 		$stmt->execute();
 		$result = $stmt->get_result();
-		/*
+
 		if ($result->num_rows() > 0)
 		{
-			#convertResults($result);
+			convertResults($result);
 		}
 		else
 		{
 			returnWithError("No Contacts Found");
 		}
-		*/
-		#$stmt->close();
-		#$conn->close();
+
+		$stmt->close();
+		$conn->close();
 	}
 
 	function convertResults( $result )
