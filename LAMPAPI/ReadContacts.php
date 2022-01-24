@@ -12,6 +12,7 @@
 	}
 	else
 	{
+		/*
 		$stmt = $conn->prepare("SELECT FirstName,LastName,PhoneNumber,Email,ContactID FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ? OR PhoneNumber LIKE ? OR Email LIKE ?) AND (UserID=?)");
 		$stmt->bind_param("ssssi", $string, $string, $string, $string, $userid);
 		$stmt->execute();
@@ -25,9 +26,9 @@
 		{
 			returnWithError("No Contacts Found");
 		}
-
-		$stmt->close();
-		$conn->close();
+		*/
+		#$stmt->close();
+		#$conn->close();
 	}
 
 	function convertResults( $result )
