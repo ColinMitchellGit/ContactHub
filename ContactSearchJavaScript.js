@@ -1,11 +1,11 @@
 //Global
-var UserId = '0';
+var UserId = '0'; //not sure how I am getting this...
 
 //------------------------------------------------------------------------
 
 function doLogout(){
 
-//go to 
+//Was told a cookie does this
 
 }
 
@@ -22,28 +22,90 @@ xhr.open("POST", url, false);
 xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 xhr.send(jsonSearchPayload);
 
-UnpackPayload();
+var TableContents = UnpackPayload();
+
+SetTable(TableContents);
 }
 
 //Note: payload format
-{
+
   "userID": 1,
   "search": "gmail"
+
+//-------------------------------------------------------------------------
+
+SetTable(var tableElements){
+
+
+//http://www.jquery-bootgrid.com/Examples#data
+//refering to this for table management, many questions
+
+
 }
+
 //------------------------------------------------------------------------
 
 UnpackPayload(){
 
 
+//can I use a json fuction.... to parse into a 2d array.
 
 
 
 
-
-return TableArray
+return TableArray;
 }
 
-//note 
+
+//------------------------------------------------------------------------
+
+//needs edit html box
+UpdateContact(){
+
+var EditFname = document.getElementById("EditContactFirstName").value;
+var EditLname = document.getElementById("EditContactLastName").value;
+var EditNumber = document.getElementById("EditContactNumber").value;
+var EditEmail = document.getElementById("EditContactEmail").value;
+var SelectedContactID = document.getElementById("ContactID").value;
+
+if(validateFormEmpty(EditFname) && validateFormEmpty(EditLname) && validateFormEmpty(EditNumber) && validateFormEmpty(EditEmail))
+{
+	if(validateFormNumber(EditNumber) && validateFormEmail(EditEmail))
+	{
+		var jsonNewContactPayload = 
+		'{
+		"firstName":"'+ EditFname +'",
+		"lastName":"'+ EditLname +'",
+		"phoneNumber":"'+ EditNumber +'",
+		"email":"'+ EditEmail +'",
+		"userID":"'+ UserId +'"
+		"contactID":"' + SelectedContactID + '"
+		'}';
+
+		document.getElementById("EditContactFirstName").innerHTML("");
+		document.getElementById("EditContactLastName").innerHTML("");
+		document.getElementById("EditContactNumber").innerHTML("");
+		document.getElementById("EditContactEmail").innerHTML("");
+
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", url, false);
+		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+		xhr.send(jsonNewContactPayload);
+
+	}
+}
+
+}
+//Note UpdateContact Json payload
+
+  "firstName": "Dave",
+  "lastName": "Mitchell",
+  "phoneNumber": 3219493444,
+  "email": "example@gmail.com",
+  "userID": 1,
+  "contactID": 12
+
+
 //------------------------------------------------------------------------
 function addNewContact(){
 
@@ -55,7 +117,7 @@ var newEmail = document.getElementById("NewContactEmail").value;
 //cleaning text
 if(validateFormEmpty(newFname) && validateFormEmpty(newLname) && validateFormEmpty(newNumber) && validateFormEmpty(newEmail))
 {
-	if(validateFormNumber(newNumber) && )
+	if(validateFormNumber(newNumber) && validateFormEmail(newEmail))
 	{
 		var jsonNewContactPayload = 
 		'{
@@ -63,7 +125,7 @@ if(validateFormEmpty(newFname) && validateFormEmpty(newLname) && validateFormEmp
 		"lastName":"'+ newLname +'",
 		"phoneNumber":"'+ newNumber +'",
 		"email":"'+ newEmail +'",
-		"userID":"'+ UserId +"
+		"userID":"'+ UserId +'"
 		'}';
 
 		document.getElementById("NewContactFirstName").innerHTML("");
@@ -77,17 +139,18 @@ if(validateFormEmpty(newFname) && validateFormEmpty(newLname) && validateFormEmp
 		xhr.send(jsonNewContactPayload);
 
 	}
+}
 
 }
 
-//note new contact payload
-'{ 
+//note new contact json payload
+
   "firstName": "fred",
   "lastName": "jones",
   "phoneNumber": "3219493444",
   "email": "example@gmail.com",
   "userID": 1
-}';
+
 //-------------------------------------------------------------------------------
 //Helper text cleaners
 
