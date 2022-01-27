@@ -72,7 +72,7 @@ if(validateFormEmpty(EditFname) && validateFormEmpty(EditLname) && validateFormE
 {
 	if(validateFormNumber(EditNumber) && validateFormEmail(EditEmail))
 	{
-		var jsonNewContactPayload = 
+		var jsonUpdateContactPayload = 
 		'{
 		"firstName":"'+ EditFname +'",
 		"lastName":"'+ EditLname +'",
@@ -90,7 +90,7 @@ if(validateFormEmpty(EditFname) && validateFormEmpty(EditLname) && validateFormE
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", url, false);
 		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-		xhr.send(jsonNewContactPayload);
+		xhr.send(jsonUpdateContactPayload);
 
 	}
 }
