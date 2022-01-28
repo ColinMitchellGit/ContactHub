@@ -7,6 +7,46 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+function doRegister()
+{
+    let username = document.getElementById("newUsername").value;
+    let password = document.getElementById("newPassword").value;
+    let firstName = document.getElementById("newFirstName").value;
+    let lastName = document.getElementById("newLastName").value;
+
+
+    let temp = {firstName:firstName,lastName:lastName,login:username,password:password};
+    let jsonPayload = JSON.stringify( temp );
+
+    let url = urlBase + '/Register' + extension;
+    let xhr = XMLHttpRequest();
+
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        xhr.send(jsonPayload)
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState === 4 && this.status === 200)
+            {
+                let jsonObject = JSON.parse( xhr.responseText );
+                error = jsonObject.error;
+
+                if (error != "")
+                {
+                    // register failed for some reason
+                    return;
+                }
+
+                saveCookie();
+                window.location.href = "cover.html";
+            }
+
+        }
+    }
+}
 function doLogin()
 {
 	// Grabbing the username and password from the input fields.
@@ -74,7 +114,7 @@ function doLogin()
 				// automatically getting logged out.
                 saveCookie();
 
-                window.location.href = "color.html";
+                window.location.href = "cover.html";
             }
         };
     }

@@ -87,7 +87,7 @@
 
                         <!-- email address -->
                         <div class="col-lg-7">
-                            <input id="usernameField" type="email" placeholder="Username" class="form-control my-3 p-3">
+                            <input id="usernameField" type="text" placeholder="Username" class="form-control my-3 p-3">
                         </div>
                     </div>
 
@@ -101,7 +101,7 @@
                     <!-- login BUTTON-->
                     <div class="form-row">
                         <div class="col-lg-7">
-                            <button type="button" id="loginButton" class="button1 mt-3 mb-5" onclick="doLogout();">Login</button>
+                            <button type="button" id="loginButton" class="button1 mt-3 mb-5" onclick="doLogin();">Login</button>
                         </div>
                     </div>
 
@@ -122,11 +122,11 @@
                                     <form>
                                         <div class="mb-3">
                                             <label class="form-label required">Username</label>
-                                            <input type="text" class="form-control">
+                                            <input id="newUsername" type="text" placeholder="Username" class="form-control">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label required">Password</label>
-                                            <input type="password" placeholder="******" class="form-control">
+                                            <input id="newUsername" type="password" placeholder="******" class="form-control">
                                             <!--                                                <input type="email" class="form-control">-->
                                         </div>
                                         <div class="mb-3">
