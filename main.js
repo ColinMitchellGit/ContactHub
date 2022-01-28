@@ -46,6 +46,10 @@ function doRegister()
 
         }
     }
+    catch (err)
+    {
+        document.getElementById("loginResult").innerHTML = err.message;
+    }
 }
 function doLogin()
 {
