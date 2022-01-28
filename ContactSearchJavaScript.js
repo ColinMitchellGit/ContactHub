@@ -1,8 +1,6 @@
 //Global
-var UserId = '0'; //not sure how I am getting this...
 const urlBase = 'http://contactmanager15.xyz/LAMPAPI';
 const extension = 'php';
-let url = urlBase + '/ReadContacts.' + extension;
 
 //------------------------------------------------------------------------
 
@@ -56,7 +54,7 @@ var grid = $("#grid-command-buttons").bootgrid({
             id: /*?*/
         };
     },
-    /*InsertTableHere*/,
+    tableElements,
     formatters: {
         "commands": function(column, row)
         {
@@ -71,11 +69,9 @@ var grid = $("#grid-command-buttons").bootgrid({
     {
         //alert("You pressed edit on row: " + $(this).data("row-id"));
 	createEditContact(contactID);
-	//add html for updateContact
 
     }).end().find(".command-delete").on("click", function(e)
     {
-        //alert("You pressed delete on row: " + $(this).data("row-id"));
 	deleteContact(contactID);
 
     });
@@ -135,7 +131,6 @@ function createEditContact(var ID){
 
 //------------------------------------------------------------------------
 
-//needs edit html box
 function UpdateContact(var ContactID){
 
 var EditFname = document.getElementById("EditContactFirstName").value;
