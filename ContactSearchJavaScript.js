@@ -31,7 +31,7 @@ xhr.open("POST", url, false);
 xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 xhr.send(jsonPayload);
 
-var TableContents = UnpackPayload();
+var TableContents = unpackPayload(/*payload*/);
 
 SetTable(TableContents);
 }
@@ -43,7 +43,7 @@ SetTable(TableContents);
 
 //-------------------------------------------------------------------------
 
-SetTable(var tableElements){
+function SetTable(var tableElements){
 
 
 //http://www.jquery-bootgrid.com/Examples#data
@@ -53,10 +53,10 @@ var grid = $("#grid-command-buttons").bootgrid({
     post: function ()
     {
         return {
-            id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
+            id: /*?*/
         };
     },
-    url: "/api/data/basic",
+    /*InsertTableHere*/,
     formatters: {
         "commands": function(column, row)
         {
@@ -70,13 +70,13 @@ var grid = $("#grid-command-buttons").bootgrid({
     grid.find(".command-edit").on("click", function(e)
     {
         //alert("You pressed edit on row: " + $(this).data("row-id"));
-
-
+	createEditContact(contactID);
+	//add html for updateContact
 
     }).end().find(".command-delete").on("click", function(e)
     {
-        alert("You pressed delete on row: " + $(this).data("row-id"));
-
+        //alert("You pressed delete on row: " + $(this).data("row-id"));
+	deleteContact(contactID);
 
     });
 });
@@ -85,28 +85,64 @@ var grid = $("#grid-command-buttons").bootgrid({
 
 //------------------------------------------------------------------------
 
-UnpackPayload(){
+function unpackPayload(var payload){
 
 
 //can I use a json fuction.... to parse into a 2d array.
-
-
+let Table Array = JSON.parse(payload);
 
 
 return TableArray;
+}
+
+//------------------------------------------------------------------------
+
+function deleteConact(var ID){
+
+	let jsonDeletePayload = {userID:UserId,contactID:ID};
+	let jsonPayload = JSON.stringify( jsonSDeletePayload );
+
+	let url = urlBase + '/DeleteContact.' + extension;
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", url, false);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	xhr.send(jsonPayload);
+
+}
+
+//Note delete payload
+
+
+  //"userID": 1,
+  //"contactID": 11
+
+//------------------------------------------------------------------------
+
+function createEditContact(var ID){
+
+	//should create pop up/dailog box with
+	/*
+	"EditContactFirstName" text field and label
+	"EditContactLastName" text field and label
+	"EditContactNumber" text field and label
+	"EditContactEmail" text field and label
+	add a button to confirm that runs UpdateContact(ID) on click
+	*/
+
 }
 
 
 //------------------------------------------------------------------------
 
 //needs edit html box
-UpdateContact(){
+function UpdateContact(var ContactID){
 
 var EditFname = document.getElementById("EditContactFirstName").value;
 var EditLname = document.getElementById("EditContactLastName").value;
 var EditNumber = document.getElementById("EditContactNumber").value;
 var EditEmail = document.getElementById("EditContactEmail").value;
-var SelectedContactID = document.getElementById("ContactID").value;
+var SelectedContactID = ContactID;
 
 if(validateFormEmpty(EditFname) && validateFormEmpty(EditLname) && validateFormEmpty(EditNumber) && validateFormEmpty(EditEmail))
 {
