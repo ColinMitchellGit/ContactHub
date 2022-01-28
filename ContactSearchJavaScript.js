@@ -1,12 +1,18 @@
 //Global
 var UserId = '0'; //not sure how I am getting this...
+const urlBase = 'http://contactmanager15.xyz/LAMPAPI';
+const extension = 'php';
+let url = urlBase + '/ReadContacts.' + extension;
 
 //------------------------------------------------------------------------
 
-function doLogout(){
-
-//Was told a cookie does this
-
+function doLogout()
+{
+    userId = 0;
+    firstName = "";
+    lastName = "";
+    document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    window.location.href = "index.html";
 }
 
 //------------------------------------------------------------------------
@@ -15,12 +21,15 @@ function searchContact(){
 
 var searchTextStr = document.getElementById("searchText").value;
 
-var jsonSearchPayload = '{"userID": '+ UserId + '"search": '+ searchTextStr +"'}';
+let jsonSearchPayload = {userID:UserId,search:searchTextStr};
+let jsonPayload = JSON.stringify( jsonSearchPayload );
+
+let url = urlBase + '/ReadContacts.' + extension;
 
 var xhr = new XMLHttpRequest();
 xhr.open("POST", url, false);
 xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-xhr.send(jsonSearchPayload);
+xhr.send(jsonPayload);
 
 var TableContents = UnpackPayload();
 
@@ -29,8 +38,8 @@ SetTable(TableContents);
 
 //Note: payload format
 
-  "userID": 1,
-  "search": "gmail"
+  //"userID": 1,
+  //"search": "gmail"
 
 //-------------------------------------------------------------------------
 
@@ -39,7 +48,38 @@ SetTable(var tableElements){
 
 //http://www.jquery-bootgrid.com/Examples#data
 //refering to this for table management, many questions
+var grid = $("#grid-command-buttons").bootgrid({
+    ajax: true,
+    post: function ()
+    {
+        return {
+            id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
+        };
+    },
+    url: "/api/data/basic",
+    formatters: {
+        "commands": function(column, row)
+        {
+            return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " + 
+                "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
+        }
+    }
+}).on("loaded.rs.jquery.bootgrid", function()
+{
+    /* Executes after data is loaded and rendered */
+    grid.find(".command-edit").on("click", function(e)
+    {
+        //alert("You pressed edit on row: " + $(this).data("row-id"));
 
+
+
+    }).end().find(".command-delete").on("click", function(e)
+    {
+        alert("You pressed delete on row: " + $(this).data("row-id"));
+
+
+    });
+});
 
 }
 
@@ -72,15 +112,20 @@ if(validateFormEmpty(EditFname) && validateFormEmpty(EditLname) && validateFormE
 {
 	if(validateFormNumber(EditNumber) && validateFormEmail(EditEmail))
 	{
-		var jsonUpdateContactPayload = 
-		'{
-		"firstName":"'+ EditFname +'",
-		"lastName":"'+ EditLname +'",
-		"phoneNumber":"'+ EditNumber +'",
-		"email":"'+ EditEmail +'",
-		"userID":"'+ UserId +'"
-		"contactID":"' + SelectedContactID + '"
-		'}';
+
+		let url = urlBase + '/UpdateContact.' + extension;
+
+		let jsonUpdateContactPayload = 
+		{
+		firstName:EditFname,
+		lastName:EditLname,
+		phoneNumber:EditNumber,
+		email:EditEmail,
+		userID:UserId,
+		contactID:SelectedContactID
+		};
+		
+		let jsonPayload = JSON.stringify( jsonUpdateContactPayload );
 
 		document.getElementById("EditContactFirstName").innerHTML("");
 		document.getElementById("EditContactLastName").innerHTML("");
@@ -90,7 +135,7 @@ if(validateFormEmpty(EditFname) && validateFormEmpty(EditLname) && validateFormE
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", url, false);
 		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-		xhr.send(jsonUpdateContactPayload);
+		xhr.send(jsonPayload);
 
 	}
 }
@@ -98,12 +143,12 @@ if(validateFormEmpty(EditFname) && validateFormEmpty(EditLname) && validateFormE
 }
 //Note UpdateContact Json payload
 
-  "firstName": "Dave",
-  "lastName": "Mitchell",
-  "phoneNumber": 3219493444,
-  "email": "example@gmail.com",
-  "userID": 1,
-  "contactID": 12
+  //"firstName": "Dave",
+  //"lastName": "Mitchell",
+  //"phoneNumber": 3219493444,
+  //"email": "example@gmail.com",
+  //"userID": 1,
+  //"contactID": 12
 
 
 //------------------------------------------------------------------------
@@ -119,14 +164,19 @@ if(validateFormEmpty(newFname) && validateFormEmpty(newLname) && validateFormEmp
 {
 	if(validateFormNumber(newNumber) && validateFormEmail(newEmail))
 	{
-		var jsonNewContactPayload = 
-		'{
-		"firstName":"'+ newFname +'",
-		"lastName":"'+ newLname +'",
-		"phoneNumber":"'+ newNumber +'",
-		"email":"'+ newEmail +'",
-		"userID":"'+ UserId +'"
-		'}';
+
+		let url = urlBase + '/CreateContact.' + extension;
+
+		let jsonNewContactPayload = 
+		{
+		firstName:newFname,
+		lastName:newLname,
+		phoneNumber:newNumber,
+		email:newEmail,
+		userID:UserId
+		};
+
+		let jsonPayload = JSON.stringify( jsonNewContactPayload );
 
 		document.getElementById("NewContactFirstName").innerHTML("");
 		document.getElementById("NewContactLastName").innerHTML("");
@@ -136,7 +186,7 @@ if(validateFormEmpty(newFname) && validateFormEmpty(newLname) && validateFormEmp
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", url, false);
 		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-		xhr.send(jsonNewContactPayload);
+		xhr.send(jsonPayload);
 
 	}
 }
@@ -145,11 +195,11 @@ if(validateFormEmpty(newFname) && validateFormEmpty(newLname) && validateFormEmp
 
 //note new contact json payload
 
-  "firstName": "fred",
-  "lastName": "jones",
-  "phoneNumber": "3219493444",
-  "email": "example@gmail.com",
-  "userID": 1
+  //"firstName": "fred",
+  //"lastName": "jones",
+  //"phoneNumber": "3219493444",
+  //"email": "example@gmail.com",
+  //"userID": 1
 
 //-------------------------------------------------------------------------------
 //Helper text cleaners
@@ -157,8 +207,9 @@ if(validateFormEmpty(newFname) && validateFormEmpty(newLname) && validateFormEmp
 function validateFormEmpty(String y) {
   var x = y
   if (x == "") {
-    alert("All fields must be filled out");
-    return false;
+	//alert("All fields must be filled out");
+	
+	return false;
   }
   else { return true; }
 }
@@ -170,17 +221,25 @@ function validateFormNumber(String y) {
   if (x.match(numbers)) {
     return true;
   }
-  else { alert("Phone Numbers must be all digits");
-    return false; }
+  else 
+  { 
+	//alert("Phone Numbers must be all digits");
+	
+	return false; 
+  }
 }
 
 function validateFormEmail(String y) {
   var x = y
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(x)) {
-    return true;
+    	return true;
   }
-  else { alert("That is not a vaild Email");
-    return false; }
+  else 
+  { 
+	//alert("That is not a vaild Email");
+	
+	return false; 
+  }
 }
 
 //-------------------------------------------------------------------------------
