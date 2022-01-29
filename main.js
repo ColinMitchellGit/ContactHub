@@ -74,7 +74,7 @@ function doLogin()
 				// automatically getting logged out.
                 saveCookie();
 
-                window.location.href = "color.html";
+                window.location.href = "cover.html";
             }
         };
     }
