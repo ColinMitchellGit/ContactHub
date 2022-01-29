@@ -19,6 +19,7 @@ function doRegister()
     let temp = {firstName:firstName,lastName:lastName,login:username,password:password,secQuestion1:secq1,secQuestion2:secq2};
     let jsonPayload = JSON.stringify( temp );
 
+    console.log(JSON.stringify( temp ));	
     let url = urlBase + '/Register.' + extension;
     let xhr = new XMLHttpRequest();
 
@@ -29,6 +30,7 @@ function doRegister()
     {
         console.log("Hit the try");
         xhr.send(jsonPayload)
+	console.log("json payload in the air");    
         xhr.onreadystatechange = function()
         {
             if (this.readyState === 4 && this.status === 200)
@@ -47,7 +49,7 @@ function doRegister()
                 console.log("Success!");
 
                 saveCookie();
-                window.location.href = "index.html";
+               // window.location.href = "index.html";
             }
 
         }
