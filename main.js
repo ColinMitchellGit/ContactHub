@@ -25,19 +25,24 @@ function doRegister()
 
     try
     {
+        console.log("Hit the try");
         xhr.send(jsonPayload)
         xhr.onreadystatechange = function()
         {
             if (this.readyState === 4 && this.status === 200)
             {
+                console.log("Status good!");
                 let jsonObject = JSON.parse( xhr.responseText );
                 error = jsonObject.error;
 
                 if (error != "")
                 {
+                    console.log("Failed...returning");
                     // register failed for some reason
                     return;
                 }
+
+                console.log("Success!");
 
                 saveCookie();
                 window.location.href = "index.html";
