@@ -37,15 +37,13 @@
 
 			$stmt = $conn->prepare("SELECT * FROM Users WHERE `Login`=? AND `SecQ1`=? AND `SecQ2`=?");
 			$stmt->bind_param("sss", $login, $secQ1, $secQ2);
-			$stmt->execute();
-			$result = $stmt->get_result();
-			if ( $row = $result->fetch_assoc() )
+			if ($stmt->execute() == true)
 			{
-				returnWithInfo("User found");
+				returnInfo("Password updated");
 			}
 			else
 			{
-				returnWithError("Error in validation");
+				returnWithError("Failed to update password");
 			}
 		}
 		else if ( $option == 2 )
