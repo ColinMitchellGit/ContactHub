@@ -2,7 +2,10 @@
 	$inData = getRequestInfo();
 
 	$option = $inData["option"];
-
+	$login = $inData["login"];
+	$secQ1 = $inData["secQ1"];
+	$secQ2 = $inData["secQ2"];
+	
 	$conn = new mysqli("localhost", "TheBeast", "Group15LovesCOP4331", "COP4331Group15");
 
 /*
@@ -28,11 +31,11 @@
     {
 		if ( $option == 1 )
 		{ 
-			$login = $inData["login"];
-			$secQ1 = $inData["secQ1"];
-			$secQ2 = $inData["secQ2"];
+			// $login = $inData["login"];
+			// $secQ1 = $inData["secQ1"];
+			// $secQ2 = $inData["secQ2"];
 
-			$stmt = $conn->prepare("SELECT * FROM Users WHERE Login=? AND SecQ1=? AND SecQ2=?");
+			$stmt = $conn->prepare("SELECT * FROM Users WHERE `Login`=? AND `SecQ1`=? AND `SecQ2`=?");
 			$stmt->bind_param("sss", $login, $secQ1, $secQ2);
 			$stmt->execute();
 			$result = $stmt->get_result();
@@ -49,7 +52,7 @@
 		{
 			$newPassword = $inData["newPassword"];
 
-			$stmt = $conn->prepare("UPDATE `Users` SET `Password`=? WHERE Login=?");
+			$stmt = $conn->prepare("UPDATE Users SET `Password`=? WHERE `Login`=?");
 			$stmt->bind_param("ss", $newPassword, $login);
 			if ($stmt->execute() == true)
 			{
