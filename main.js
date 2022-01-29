@@ -14,11 +14,10 @@ function doRegister()
     let firstName = document.getElementById("newFirstName").value;
     let lastName = document.getElementById("newLastName").value;
 
-
     let temp = {firstName:firstName,lastName:lastName,login:username,password:password};
     let jsonPayload = JSON.stringify( temp );
 
-    let url = urlBase + '/Register' + extension;
+    let url = urlBase + '/Register.' + extension;
     let xhr = XMLHttpRequest();
 
     xhr.open("POST", url, true);
@@ -41,7 +40,7 @@ function doRegister()
                 }
 
                 saveCookie();
-                window.location.href = "cover.html";
+                window.location.href = "index.html";
             }
 
         }
@@ -51,6 +50,7 @@ function doRegister()
         document.getElementById("loginResult").innerHTML = err.message;
     }
 }
+
 function doLogin()
 {
 	// Grabbing the username and password from the input fields.
