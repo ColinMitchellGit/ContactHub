@@ -7,6 +7,13 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+function doForgot()
+{
+    let username = document.getElementById("oldUsername");
+    let firstName = document.getElementById("firstName");
+    let lastName = document.getElementById("lastName");
+}
+
 function doRegister()
 {
     let username = document.getElementById("newUsername").value;
