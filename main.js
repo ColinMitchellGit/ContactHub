@@ -18,7 +18,7 @@ function doRegister()
     let jsonPayload = JSON.stringify( temp );
 
     let url = urlBase + '/Register.' + extension;
-    let xhr = XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
 
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
