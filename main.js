@@ -7,21 +7,16 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
-function doForgot()
-{
-    let username = document.getElementById("oldUsername");
-    let firstName = document.getElementById("firstName");
-    let lastName = document.getElementById("lastName");
-}
-
 function doRegister()
 {
     let username = document.getElementById("newUsername").value;
     let password = document.getElementById("newPassword").value;
     let firstName = document.getElementById("newFirstName").value;
     let lastName = document.getElementById("newLastName").value;
+    let secq1 = document.getElementById("secQuestion1").value;
+    let secq2 = document.getElementById("secQuestion2").value;
 
-    let temp = {firstName:firstName,lastName:lastName,login:username,password:password};
+    let temp = {firstName:firstName,lastName:lastName,login:username,password:password,secQuestion1:secq1,secQuestion2:secq2};
     let jsonPayload = JSON.stringify( temp );
 
     let url = urlBase + '/Register.' + extension;
