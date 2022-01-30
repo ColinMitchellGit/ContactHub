@@ -7,6 +7,55 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+function doRegister()
+{
+    let username = document.getElementById("newUsername").value;
+    let password = document.getElementById("newPassword").value;
+    let firstName = document.getElementById("newFirstName").value;
+    let lastName = document.getElementById("newLastName").value;
+
+    let temp = {firstName:firstName,lastName:lastName,login:username,password:password};
+    let jsonPayload = JSON.stringify( temp );
+
+    let url = urlBase + '/Register.' + extension;
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        console.log("Hit the try");
+        xhr.send(jsonPayload)
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState === 4 && this.status === 200)
+            {
+                console.log("Status good!");
+                let jsonObject = JSON.parse( xhr.responseText );
+                error = jsonObject.error;
+
+                if (error != "")
+                {
+                    console.log("Failed...returning");
+                    // register failed for some reason
+                    return;
+                }
+
+                console.log("Success!");
+
+                saveCookie();
+                window.location.href = "index.html";
+            }
+
+        }
+    }
+    catch (err)
+    {
+        document.getElementById("loginResult").innerHTML = err.message;
+    }
+}
+
 function doLogin()
 {
 	// Grabbing the username and password from the input fields.
