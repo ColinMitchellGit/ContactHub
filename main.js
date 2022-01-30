@@ -63,7 +63,7 @@ function doForgot()
 
 function doReset()
 {
-    let newPassword = document.getElementById("resetPassword");
+    let newPassword = document.getElementById("resetPassword").value;
     var option = 2;
 
     let temp = {option:option,newPassword:newPassword};
@@ -88,7 +88,7 @@ function doReset()
             {
                 console.log("Status good!");
                 let jsonObject = JSON.parse( xhr.responseText );
-                error = jsonObject.error;
+                error = jsonObject.info;
 
                 if (error != "Password updated")
                 {
