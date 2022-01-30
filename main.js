@@ -36,9 +36,10 @@ function doForgot()
             {
                 console.log("Status good!");
                 let jsonObject = JSON.parse( xhr.responseText );
-                error = jsonObject.error;
+                error = jsonObject.info;
+		console.log(jsonObject);
 
-                if (error != "")
+		if (error != "")
                 {
                     console.log(error);
                     return;

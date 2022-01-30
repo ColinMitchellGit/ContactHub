@@ -35,11 +35,11 @@
 			$stmt->bind_param("sss", $login, $secQ1, $secQ2);
 			if ($stmt->execute() == true)
 			{
-				returnInfo("Password updated");
+				returnInfo("");
 			}
 			else
 			{
-				returnWithError("Failed to update password");
+				returnWithError("Verification Failed");
 			}
 		}
 		else if ( $option == 2 )
