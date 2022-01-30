@@ -5,6 +5,8 @@
 	$lastName = $inData["lastName"];
 	$login = $inData["login"];
 	$password = $inData["password"];
+	$secQ1 = $inData["secQuestion1"];
+	$secQ2 = $inData["secQuestion2"];
 
 	$conn = new mysqli("localhost", "TheBeast", "Group15LovesCOP4331", "COP4331Group15");
 	if ($conn->connect_error)
@@ -14,8 +16,8 @@
 	else
 	{
 		# First we check to make sure the user doesnt already exist
-		$stmt = $conn->prepare("SELECT UserID,FirstName,LastName FROM Users WHERE Login=? AND Password=?");
-		$stmt->bind_param("ss", $login, $password);
+		$stmt = $conn->prepare("SELECT UserID,FirstName,LastName FROM Users WHERE Login=?");
+		$stmt->bind_param("s", $login);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
@@ -26,8 +28,8 @@
 		}
 		else
 		{
-			$stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Login, Password) VALUES(?,?,?,?)");
-			$stmt->bind_param("ssss", $firstName, $lastName, $login, $password);
+			$stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Login, Password, SecQ1, SecQ2) VALUES(?,?,?,?,?,?)");
+			$stmt->bind_param("ssssss", $firstName, $lastName, $login, $password, $secQ1, $secQ2);
 			$stmt->execute();
 			$stmt->close();
 			$conn->close();

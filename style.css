@@ -3,7 +3,7 @@
 .row {
     background: rgb(231, 240, 228);
     border-radius: 20px;
-<!--        box-shadow: 12px 12px 22px grey;-->
+    box-shadow: 12px 12px 22px grey;
 }
 img {
     border-top-left-radius: 20px;

@@ -106,8 +106,6 @@
                         </div>
                     </div>
 
-                    <button type="button" id="forgotPasswordButton" class="button2 mt-1" onclick="doForgotPassword();"> Forgot Password? </button>
-
                     <p>Don't have an account?
                         <!--                            <button type="button" id="RegisterButton" class="button3" onclick="doRegister();"> Register Here </button>-->
 
@@ -142,6 +140,14 @@
                                             <label class="form-label required">Last Name</label>
                                             <input id="newLastName" type="text" placeholder="Last Name" class="form-control">
                                         </div>
+                                        <div class="mb-3">
+                                            <label class="form-label required">Question 1: What's your first pet's name?</label>
+                                            <input id="secQuestion1" type="text" placeholder="Answer" class="form-control">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label required">Question 2: What city was your mother born in?</label>
+                                            <input id="secQuestion2" type="text" placeholder="Answer" class="form-control">
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -152,7 +158,37 @@
                         </div>
                     </div>
 
-
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal2">Forgot Password?</button>
+                    <div class="modal" id="myModal2">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Reset Password</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label class="form-label required">Username</label>
+                                            <input id="verifyUser" type="text" placeholder="Username" class="form-control">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label required">Question 1: What's your first pet's name?</label>
+                                            <input id="verifySecQ1" type="text" placeholder="Answer" class="form-control">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label required">Question 2: What city was your mother born in?</label>
+                                            <input id="verifySecQ2" type="text" placeholder="Answer" class="form-control">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary" onclick="doForgot();">Submit</button>
+                                    <button type="submit" class="btn btn-danger">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
