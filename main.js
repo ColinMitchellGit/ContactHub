@@ -58,9 +58,12 @@ function doForgot()
     {
         document.getElementById("loginResult").innerHTML = err.message;
     }
+}
 
+function doReset()
+{
     let newPassword = document.getElementById("resetPassword");
-    option = 2;
+    var option = 2;
 
     let temp2 = {option:option,newPassword:newPassword};
     let jsonPayload2 = JSON.stringify( temp2 );
@@ -104,7 +107,6 @@ function doForgot()
     {
         document.getElementById("loginResult").innerHTML = err.message;
     }
-
 }
 
 function doRegister()
