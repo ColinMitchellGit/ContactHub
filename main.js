@@ -40,7 +40,7 @@ function doForgot()
 
                 if (error != "")
                 {
-                    console.log("Failed...returning");
+                    console.log(error);
                     return;
                 }
 
