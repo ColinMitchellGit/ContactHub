@@ -7,6 +7,106 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+function doForgot()
+{
+    let username = document.getElementById("verifyUser").value;
+    let secq1 = document.getElementById("verifySecQ1").value;
+    let secq2 = document.getElementById("verifySecQ2").value;
+    
+    var option = 1;
+
+    let temp = {option:option,login:username,secQuestion1:secq1,secQuestion2:secq2};
+    let jsonPayload = JSON.stringify( temp );
+
+    console.log(JSON.stringify( temp ));	
+    let url = urlBase + '/ForgotPassword.' + extension;
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        console.log("Hit the try");
+        xhr.send(jsonPayload)
+	    console.log("json payload in the air");    
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState === 4 && this.status === 200)
+            {
+                console.log("Status good!");
+                let jsonObject = JSON.parse( xhr.responseText );
+                error = jsonObject.error;
+
+                if (error != "")
+                {
+                    console.log("Failed...returning");
+                    return;
+                }
+
+                console.log("Success!");
+
+                saveCookie();
+                
+                // take to the place where you tupe new password
+                window.location.href = "index2.html";
+            }
+
+        }
+    }
+    catch (err)
+    {
+        document.getElementById("loginResult").innerHTML = err.message;
+    }
+
+    let newPassword = document.getElementById("resetPassword");
+    option = 2;
+
+    let temp2 = {option:option,newPassword:newPassword};
+    let jsonPayload2 = JSON.stringify( temp2 );
+
+    console.log(JSON.stringify( temp2 ));	
+    let xhr2 = new XMLHttpRequest();
+
+    xhr2.open("POST", url, true);
+    xhr2.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        console.log("Hit the try");
+        xhr2.send(jsonPayload)
+	    console.log("json payload in the air");    
+        xhr2.onreadystatechange = function()
+        {
+            if (this.readyState === 4 && this.status === 200)
+            {
+                console.log("Status good!");
+                let jsonObject2 = JSON.parse( xhr2.responseText );
+                error = jsonObject2.error;
+
+                if (error != "")
+                {
+                    console.log("Failed...returning");
+                    return;
+                }
+
+                console.log("Success!");
+
+                saveCookie();
+                
+                // take to the place where you tupe new password
+                window.location.href = "index.html";
+            }
+
+        }
+    }
+    catch (err)
+    {
+        document.getElementById("loginResult").innerHTML = err.message;
+    }
+
+}
+
 function doRegister()
 {
     let username = document.getElementById("newUsername").value;

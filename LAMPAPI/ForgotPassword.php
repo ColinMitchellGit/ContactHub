@@ -31,10 +31,6 @@
     {
 		if ( $option == 1 )
 		{ 
-			// $login = $inData["login"];
-			// $secQ1 = $inData["secQ1"];
-			// $secQ2 = $inData["secQ2"];
-
 			$stmt = $conn->prepare("SELECT * FROM Users WHERE `Login`=? AND `SecQ1`=? AND `SecQ2`=?");
 			$stmt->bind_param("sss", $login, $secQ1, $secQ2);
 			if ($stmt->execute() == true)
