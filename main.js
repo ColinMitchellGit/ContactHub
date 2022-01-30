@@ -69,7 +69,9 @@ function doReset()
     let temp = {option:option,newPassword:newPassword};
     let jsonPayload = JSON.stringify( temp );
 
-    console.log(JSON.stringify( temp ));	
+    console.log(JSON.stringify( temp ));
+    let url = urlBase + '/ForgotPassword.' + extension;
+	
     let xhr = new XMLHttpRequest();
 
     xhr.open("POST", url, true);
