@@ -63,10 +63,11 @@ function doForgot()
 
 function doReset()
 {
+    let username = document.getElementById("confirmUser").value;
     let newPassword = document.getElementById("resetPassword").value;
     var option = 2;
 
-    let temp = {option:option,newPassword:newPassword};
+    let temp = {option:option,login:username,newPassword:newPassword};
     let jsonPayload = JSON.stringify( temp );
 
     console.log(JSON.stringify( temp ));
