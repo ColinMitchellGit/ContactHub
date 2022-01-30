@@ -37,9 +37,9 @@ function doForgot()
                 console.log("Status good!");
                 let jsonObject = JSON.parse( xhr.responseText );
                 error = jsonObject.info;
-		console.log(jsonObject);
+                console.log(jsonObject);
 
-		if (error != "")
+                if (error != "")
                 {
                     console.log(error);
                     return;
@@ -66,29 +66,29 @@ function doReset()
     let newPassword = document.getElementById("resetPassword");
     var option = 2;
 
-    let temp2 = {option:option,newPassword:newPassword};
-    let jsonPayload2 = JSON.stringify( temp2 );
+    let temp = {option:option,newPassword:newPassword};
+    let jsonPayload = JSON.stringify( temp );
 
-    console.log(JSON.stringify( temp2 ));	
-    let xhr2 = new XMLHttpRequest();
+    console.log(JSON.stringify( temp ));	
+    let xhr = new XMLHttpRequest();
 
-    xhr2.open("POST", url, true);
-    xhr2.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     try
     {
         console.log("Hit the try");
-        xhr2.send(jsonPayload)
+        xhr.send(jsonPayload)
 	    console.log("json payload in the air");    
-        xhr2.onreadystatechange = function()
+        xhr.onreadystatechange = function()
         {
             if (this.readyState === 4 && this.status === 200)
             {
                 console.log("Status good!");
-                let jsonObject2 = JSON.parse( xhr2.responseText );
-                error = jsonObject2.error;
+                let jsonObject = JSON.parse( xhr.responseText );
+                error = jsonObject.error;
 
-                if (error != "")
+                if (error != "Password updated")
                 {
                     console.log("Failed...returning");
                     return;
@@ -98,7 +98,6 @@ function doReset()
 
                 saveCookie();
                 
-                // take to the place where you tupe new password
                 window.location.href = "index.html";
             }
 
