@@ -30,17 +30,9 @@
 	</p><br /><br />
 
 
-	<table id="grid-keep-selection" class="table table-condensed table-hover table-striped">
-    		<thead>
-        		<tr>
-            			<th data-column-id="id" data-type="numeric" data-identifier="true">ID</th>
-            			<th data-column-id="First Name">First Name</th>
-            			<th data-column-id="Last Name" data-order="desc">Last Name</th>
-				<th data-column-id="Phone Number" data-order="desc">Phone Number</th>
-				<th data-column-id="Email" data-order="desc">Email</th>
-				<th data-column-id="commands" data-formatter="commands" data-sortable="false">Commands</th>S
-        		</tr>
-    		</thead>
+	<table id="tableElements">
+    		
+		
 	</table>
 
 	<input type="text" id="NewContactFirstName" placeholder="First Name">
@@ -54,6 +46,8 @@
 	<button type="button" id="addNewContact" class="buttons" onclick="addNewContact();"> Add Contact </button><br />
 	<span id="addNewContact"></span>
 	</div>
+
+	<input type="text" id="ErrorBox" placeholder="No Errors">
 
 </body>
 </html>

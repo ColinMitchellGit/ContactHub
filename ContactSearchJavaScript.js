@@ -1,6 +1,7 @@
 //Global
 const urlBase = 'http://contactmanager15.xyz/LAMPAPI';
 const extension = 'php';
+//var UserID = 1;
 
 //------------------------------------------------------------------------
 
@@ -17,7 +18,7 @@ function doLogout()
 
 function searchContact(){
 
-var searchTextStr = document.getElementById("searchText").value;
+var searchTextStr = document.getElementById("searchText").value.trim();
 
 let jsonSearchPayload = {userID:UserId,search:searchTextStr};
 let jsonPayload = JSON.stringify( jsonSearchPayload );
@@ -25,13 +26,26 @@ let jsonPayload = JSON.stringify( jsonSearchPayload );
 let url = urlBase + '/ReadContacts.' + extension;
 
 var xhr = new XMLHttpRequest();
-xhr.open("POST", url, false);
+xhr.open("POST", url, true);
 xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-xhr.send(jsonPayload);
+try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText );
+				//SetTable(jsonObject); cant pass json object
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		//create a html for ErrorBox
+		document.getElementById("ErrorBox").innerHTML = err.message;
+	}
 
-var TableContents = unpackPayload(/*payload*/);
-
-SetTable(TableContents);
 }
 
 //Note: payload format
@@ -43,52 +57,11 @@ SetTable(TableContents);
 
 function SetTable(var tableElements){
 
+let tbl = document.getElementById("tableElements");
 
-//http://www.jquery-bootgrid.com/Examples#data
-//refering to this for table management, many questions
-var grid = $("#grid-command-buttons").bootgrid({
-    ajax: true,
-    post: function ()
-    {
-        return {
-            id: /*?*/
-        };
-    },
-    tableElements,
-    formatters: {
-        "commands": function(column, row)
-        {
-            return "<button type=\"button\" class=\"btn btn-xs btn-default command-edit\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-pencil\"></span></button> " + 
-                "<button type=\"button\" class=\"btn btn-xs btn-default command-delete\" data-row-id=\"" + row.id + "\"><span class=\"fa fa-trash-o\"></span></button>";
-        }
-    }
-}).on("loaded.rs.jquery.bootgrid", function()
-{
-    /* Executes after data is loaded and rendered */
-    grid.find(".command-edit").on("click", function(e)
-    {
-        //alert("You pressed edit on row: " + $(this).data("row-id"));
-	createEditContact(contactID);
+let row = document.createElement("tr");
 
-    }).end().find(".command-delete").on("click", function(e)
-    {
-	deleteContact(contactID);
-
-    });
-});
-
-}
-
-//------------------------------------------------------------------------
-
-function unpackPayload(var payload){
-
-
-//can I use a json fuction.... to parse into a 2d array.
-let Table Array = JSON.parse(payload);
-
-
-return TableArray;
+tbl.appendChild(row);
 }
 
 //------------------------------------------------------------------------
@@ -103,7 +76,22 @@ function deleteConact(var ID){
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", url, false);
 	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	xhr.send(jsonPayload);
+	try
+	{
+		xhr.onreadystatechange = function() 
+		{
+			if (this.readyState == 4 && this.status == 200) 
+			{
+				let jsonObject = JSON.parse( xhr.responseText )
+			}
+		};
+		xhr.send(jsonPayload);
+	}
+	catch(err)
+	{
+		//create a html for ErrorBox
+		document.getElementById("ErrorBox").innerHTML = err.message;
+	}
 
 }
 
@@ -139,9 +127,9 @@ var EditNumber = document.getElementById("EditContactNumber").value;
 var EditEmail = document.getElementById("EditContactEmail").value;
 var SelectedContactID = ContactID;
 
-if(validateFormEmpty(EditFname) && validateFormEmpty(EditLname) && validateFormEmpty(EditNumber) && validateFormEmpty(EditEmail))
+if(validateFormEmpty(EditFname, 2) && validateFormEmpty(EditLname, 2) && validateFormEmpty(EditNumber, 2) && validateFormEmpty(EditEmail, 2))
 {
-	if(validateFormNumber(EditNumber) && validateFormEmail(EditEmail))
+	if(validateFormNumber(EditNumber, 2) && validateFormEmail(EditEmail, 2))
 	{
 
 		let url = urlBase + '/UpdateContact.' + extension;
@@ -166,9 +154,27 @@ if(validateFormEmpty(EditFname) && validateFormEmpty(EditLname) && validateFormE
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", url, false);
 		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-		xhr.send(jsonPayload);
+		try
+		{
+			xhr.onreadystatechange = function() 
+			{
+				if (this.readyState == 4 && this.status == 200) 
+				{
+					let jsonObject = JSON.parse( xhr.responseText );
+				}
+			};
+			xhr.send(jsonPayload);
+		}
+		catch(err)
+		{
+			//create a html for ErrorBox
+			document.getElementById("ErrorBox").innerHTML = err.message;
+		}
 
 	}
+
+}
+
 }
 
 }
@@ -191,9 +197,9 @@ var newNumber = document.getElementById("NewContactNumber").value;
 var newEmail = document.getElementById("NewContactEmail").value;
 
 //cleaning text
-if(validateFormEmpty(newFname) && validateFormEmpty(newLname) && validateFormEmpty(newNumber) && validateFormEmpty(newEmail))
+if(validateFormEmpty(newFname,1 ) && validateFormEmpty(newLname, 1) && validateFormEmpty(newNumber, 1) && validateFormEmpty(newEmail, 1))
 {
-	if(validateFormNumber(newNumber) && validateFormEmail(newEmail))
+	if(validateFormNumber(newNumber, 1) && validateFormEmail(newEmail, 1))
 	{
 
 		let url = urlBase + '/CreateContact.' + extension;
@@ -235,17 +241,25 @@ if(validateFormEmpty(newFname) && validateFormEmpty(newLname) && validateFormEmp
 //-------------------------------------------------------------------------------
 //Helper text cleaners
 
-function validateFormEmpty(String y) {
+function validateFormEmpty(String y, int x) {
   var x = y
   if (x == "") {
-	//alert("All fields must be filled out");
-	
+	document.getElementById("ErrorBox").innerHTML("All fields must be filled out");
+	if(x == 1)
+	{
+		//change color of html to on add contact to red
+	}
+	if(x == 2)
+	{
+		//change color of html to on edit contact to red
+	}
+
 	return false;
   }
   else { return true; }
 }
 
-function validateFormNumber(String y) {
+function validateFormNumber(String y, int x) {
   var x = y
   var numbers = /^[0-9]+$/;
       
@@ -254,21 +268,35 @@ function validateFormNumber(String y) {
   }
   else 
   { 
-	//alert("Phone Numbers must be all digits");
-	
+	document.getElementById("ErrorBox").innerHTML("Phone Numbers must be all digits");
+	if(x == 1)
+	{
+		//change color of html to on add contact to red
+	}
+	if(x == 2)
+	{
+		//change color of html to on edit contact to red
+	}
 	return false; 
   }
 }
 
-function validateFormEmail(String y) {
+function validateFormEmail(String y, int x) {
   var x = y
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(x)) {
     	return true;
   }
   else 
   { 
-	//alert("That is not a vaild Email");
-	
+	document.getElementById("ErrorBox").innerHTML("That is not a vaild Email");
+	if(x == 1)
+	{
+		//change color of html to on add contact to red
+	}
+	if(x == 2)
+	{
+		//change color of html to on edit contact to red
+	}
 	return false; 
   }
 }
