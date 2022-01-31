@@ -88,7 +88,7 @@
 
                         <!-- email address -->
                         <div class="col-lg-7">
-                            <input id="usernameField" type="email" placeholder="Username" class="form-control my-3 p-3">
+                            <input id="usernameField" type="text" placeholder="Username" class="form-control my-3 p-3">
                         </div>
                     </div>
 
@@ -102,11 +102,9 @@
                     <!-- login BUTTON-->
                     <div class="form-row">
                         <div class="col-lg-7">
-                            <button type="button" id="loginButton" class="button1 mt-3 mb-5" onclick="doLogout();">Login</button>
+                            <button type="button" id="loginButton" class="button1 mt-3 mb-5" onclick="doLogin();">Login</button>
                         </div>
                     </div>
-
-                    <button type="button" id="forgotPasswordButton" class="button2 mt-1" onclick="doForgotPassword();"> Forgot Password? </button>
 
                     <p>Don't have an account?
                         <!--                            <button type="button" id="RegisterButton" class="button3" onclick="doRegister();"> Register Here </button>-->
@@ -123,28 +121,74 @@
                                     <form>
                                         <div class="mb-3">
                                             <label class="form-label required">Username</label>
-                                            <input type="text" class="form-control">
+                                            <input id="newUsername" type="text" placeholder="Username" class="form-control">
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label required">Password</label>
-                                            <input type="password" placeholder="******" class="form-control">
+                                            <input id="newPassword" type="password" placeholder="******" class="form-control">
                                             <!--                                                <input type="email" class="form-control">-->
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label required">Do you make smelly poos in the morning?</label>
-                                            <textarea class="form-control"></textarea>
+                                            <label class="form-label required">Confirm Password</label>
+                                            <input id="newPasswordConfirm" type="password" placeholder="******" class="form-control">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label required">First Name</label>
+                                            <input id="newFirstName" type="text" placeholder="First Name" class="form-control">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label required">Last Name</label>
+                                            <input id="newLastName" type="text" placeholder="Last Name" class="form-control">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label required">Question 1: What's your first pet's name?</label>
+                                            <input id="secQuestion1" type="text" placeholder="Answer" class="form-control">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label required">Question 2: What city was your mother born in?</label>
+                                            <input id="secQuestion2" type="text" placeholder="Answer" class="form-control">
                                         </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary" onclick="doRegister();">Submit</button>
                                     <button type="submit" class="btn btn-danger">Cancel</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal2">Forgot Password?</button>
+                    <div class="modal" id="myModal2">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Reset Password</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label class="form-label required">Username</label>
+                                            <input id="verifyUser" type="text" placeholder="Username" class="form-control">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label required">Question 1: What's your first pet's name?</label>
+                                            <input id="verifySecQ1" type="text" placeholder="Answer" class="form-control">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label required">Question 2: What city was your mother born in?</label>
+                                            <input id="verifySecQ2" type="text" placeholder="Answer" class="form-control">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary" onclick="doForgot();">Submit</button>
+                                    <button type="submit" class="btn btn-danger">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

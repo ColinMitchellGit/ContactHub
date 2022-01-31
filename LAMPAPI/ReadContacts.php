@@ -1,9 +1,12 @@
 <?php
 	$inData = getRequestInfo();
 
+	$searchCount = 0;
+	$searchResults = "";
+
 	$userid = $inData["userID"];
-	$search = $inData["search"];
-	$string = "%" . $search . "%";
+	$string = "%" . $inData["search"] . "%";
+
 	$conn = new mysqli("localhost", "TheBeast", "Group15LovesCOP4331", "COP4331Group15");
 
 	if ($conn->connect_error)
@@ -12,19 +15,33 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT FirstName,LastName,PhoneNumber,Email FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ? OR PhoneNumber LIKE ? OR Email LIKE ?) AND (UserID=?)");
+
+		$stmt = $conn->prepare("SELECT FirstName,LastName,PhoneNumber,Email,ContactID FROM Contacts WHERE FirstName LIKE ? OR LastName LIKE ? OR PhoneNumber LIKE ? OR Email LIKE ? AND UserID=?");
 		$stmt->bind_param("ssssi", $string, $string, $string, $string, $userid);
 		$stmt->execute();
-
 		$result = $stmt->get_result();
 
-		if ($jsonOBJ = $result->fetch_all())
+		while($row = $result->fetch_assoc())
 		{
-			sendResultInfoAsJson($jsonOBJ);
+			if( $searchCount > 0 )
+			{
+				$searchResults .= ",";
+			}
+			$searchCount++;
+			$searchResults .= '["' . $row["FirstName"] . '",';
+			$searchResults .= '"' . $row["LastName"] . '",';
+			$searchResults .= '"' . $row["PhoneNumber"] . '",';
+			$searchResults .= '"' . $row["Email"] . '",';
+			$searchResults .= '"' . $row["ContactID"] . '"]';
+		}
+
+		if( $searchCount == 0 )
+		{
+			returnWithError( "No Contacts Found" );
 		}
 		else
 		{
-			returnWithError("No Contacts Found");
+			returnWithInfo( $searchResults );
 		}
 
 		$stmt->close();
@@ -44,7 +61,13 @@
 
 	function returnWithError( $err )
 	{
-		$retValue = '{"error":"' . $err . '"}';
+		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+		sendResultInfoAsJson( $retValue );
+	}
+
+	function returnWithInfo( $searchResults )
+	{
+		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
 ?>
