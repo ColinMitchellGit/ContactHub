@@ -35,7 +35,7 @@ try
 			if (this.readyState == 4 && this.status == 200) 
 			{
 				let jsonObject = JSON.parse( xhr.responseText );
-				//SetTable(jsonObject); cant pass json object
+				//fill a table with the json data
 			}
 		};
 		xhr.send(jsonPayload);
@@ -53,20 +53,11 @@ try
   //"userID": 1,
   //"search": "gmail"
 
-//-------------------------------------------------------------------------
 
-function SetTable(var tableElements){
-
-let tbl = document.getElementById("tableElements");
-
-let row = document.createElement("tr");
-
-tbl.appendChild(row);
-}
 
 //------------------------------------------------------------------------
 
-function deleteConact(var ID){
+function deleteContact(var ID){
 
 	let jsonDeletePayload = {userID:UserId,contactID:ID};
 	let jsonPayload = JSON.stringify( jsonSDeletePayload );
@@ -105,7 +96,7 @@ function deleteConact(var ID){
 
 function createEditContact(var ID){
 
-	//should create pop up/dailog box with
+	//should create pop up/dialog box with
 	/*
 	"EditContactFirstName" text field and label
 	"EditContactLastName" text field and label
@@ -160,7 +151,7 @@ if(validateFormEmpty(EditFname, 2) && validateFormEmpty(EditLname, 2) && validat
 			{
 				if (this.readyState == 4 && this.status == 200) 
 				{
-					let jsonObject = JSON.parse( xhr.responseText );
+					let jsonUpdateObject = JSON.parse( xhr.responseText );
 				}
 			};
 			xhr.send(jsonPayload);
@@ -223,9 +214,39 @@ if(validateFormEmpty(newFname,1 ) && validateFormEmpty(newLname, 1) && validateF
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", url, false);
 		xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-		xhr.send(jsonPayload);
+		try
+		{
+			xhr.onreadystatechange = function() 
+			{
+				if (this.readyState == 4 && this.status == 200) 
+				{
+					let jsonNewContactObject = JSON.parse( xhr.responseText );
+				}
+			};
+			xhr.send(jsonPayload);
+		}
+		catch(err)
+		{
+			//create a html for ErrorBox
+			document.getElementById("ErrorBox").innerHTML = err.message;
+		}
 
+		document.getElementById("NewContactFirstName").style.borderColor = "black";
+        document.getElementById("NewContactLastName").style.borderColor = "black";
+        document.getElementById("NewContactNumber").style.borderColor = "black";
+        document.getElementById("NewContactEmail").style.borderColor = "black";
+
+        document.getElementById("NewContactFirstName").style.borderStyle = "";
+        document.getElementById("NewContactLastName").style.borderStyle = "";
+        document.getElementById("NewContactNumber").style.borderStyle = "";
+        document.getElementById("NewContactEmail").style.borderStyle = "";
+
+        document.getElementById("NewContactFirstNameLabel").style.color = "black";
+        document.getElementById("NewContactLastNameLabel").style.color = "black";
+        document.getElementById("NewContactNumberLabel").style.color = "black";
+        document.getElementById("NewContactEmailLabel").style.color = "black";
 	}
+
 }
 
 }
@@ -248,6 +269,20 @@ function validateFormEmpty(String y, int x) {
 	if(x == 1)
 	{
 		//change color of html to on add contact to red
+		document.getElementById("NewContactFirstName").style.borderColor = "red";
+        document.getElementById("NewContactLastName").style.borderColor = "red";
+        document.getElementById("NewContactNumber").style.borderColor = "red";
+        document.getElementById("NewContactEmail").style.borderColor = "red";
+
+        document.getElementById("NewContactFirstName").style.borderStyle = "solid";
+        document.getElementById("NewContactLastName").style.borderStyle = "solid";
+        document.getElementById("NewContactNumber").style.borderStyle = "solid";
+        document.getElementById("NewContactEmail").style.borderStyle = "solid";
+
+        document.getElementById("NewContactFirstNameLabel").style.color = "red";
+        document.getElementById("NewContactLastNameLabel").style.color = "red";
+        document.getElementById("NewContactNumberLabel").style.color = "red";
+        document.getElementById("NewContactEmailLabel").style.color = "red";
 	}
 	if(x == 2)
 	{
@@ -272,6 +307,9 @@ function validateFormNumber(String y, int x) {
 	if(x == 1)
 	{
 		//change color of html to on add contact to red
+		document.getElementById("NewContactNumber").style.borderColor = "red";
+        document.getElementById("NewContactNumber").style.borderStyle = "solid";
+        document.getElementById("NewContactNumberLabel").style.color = "red";
 	}
 	if(x == 2)
 	{
@@ -288,10 +326,13 @@ function validateFormEmail(String y, int x) {
   }
   else 
   { 
-	document.getElementById("ErrorBox").innerHTML("That is not a vaild Email");
+	document.getElementById("ErrorBox").innerHTML("That is not a valid Email");
 	if(x == 1)
 	{
 		//change color of html to on add contact to red
+		document.getElementById("NewContactEmail").style.borderColor = "red";
+        document.getElementById("NewContactEmail").style.borderStyle = "solid";
+        document.getElementById("NewContactEmailLabel").style.color = "red";
 	}
 	if(x == 2)
 	{
