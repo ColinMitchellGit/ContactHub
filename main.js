@@ -122,7 +122,7 @@ function doRegister()
     let secq2 = document.getElementById("secQuestion2").value;
 
 	// If any of the fields are blank, we abort out of registering since every field is required.
-	if (username == null || password == null || firstName == null || lastName == null || secq1 == null || secq2 == null)
+	if (username == "" || password == "" || firstName == "" || lastName == "" || secq1 == "" || secq2 == "")
 	{
 		console.log("A required field for registration is missing.");
 		return;
