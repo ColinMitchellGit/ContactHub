@@ -32,7 +32,7 @@
 			$searchResults .= '"lastName": ' . '"' . $row["LastName"] . '",';
 			$searchResults .= '"phoneNumber": ' . '"' . $row["PhoneNumber"] . '",';
 			$searchResults .= '"email": ' . '"' . $row["Email"] . '",';
-			$searchResults .= '"contactID": ' . '"' . $row["ContactID"] . '"}';
+			$searchResults .= '"contactID": ' . $row["ContactID"] . '}';
 		}
 
 		if( $searchCount == 0 )
