@@ -121,8 +121,6 @@ function doRegister()
     let secq1 = document.getElementById("secQuestion1").value;
     let secq2 = document.getElementById("secQuestion2").value;
 
-	console.log(username);
-	
 	// If any of the fields are blank, we abort out of registering since every field is required.
 	if (username == "" || password == "" || firstName == "" || lastName == "" || secq1 == "" || secq2 == "")
 	{
