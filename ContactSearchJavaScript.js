@@ -57,9 +57,9 @@ try
 
 //------------------------------------------------------------------------
 
-function deleteContact(var ID){
+function deleteContact(String fieldID){
 
-	let jsonDeletePayload = {userID:UserId,contactID:ID};
+	let jsonDeletePayload = {userID:UserId,contactID:fieldID};
 	let jsonPayload = JSON.stringify( jsonSDeletePayload );
 
 	let url = urlBase + '/DeleteContact.' + extension;
@@ -112,11 +112,11 @@ function createEditContact(var ID){
 
 function UpdateContact(var ContactID){
 
-var EditFname = document.getElementById("EditContactFirstName").value;
-var EditLname = document.getElementById("EditContactLastName").value;
-var EditNumber = document.getElementById("EditContactNumber").value;
-var EditEmail = document.getElementById("EditContactEmail").value;
-var SelectedContactID = ContactID;
+String EditFname = document.getElementById("EditContactFirstName").value.trim;
+String EditLname = document.getElementById("EditContactLastName").value.trim;
+String EditNumber = document.getElementById("EditContactNumber").value.trim;
+String EditEmail = document.getElementById("EditContactEmail").value.trim;
+String SelectedContactID = ContactID;
 
 if(validateFormEmpty(EditFname, 2) && validateFormEmpty(EditLname, 2) && validateFormEmpty(EditNumber, 2) && validateFormEmpty(EditEmail, 2))
 {
@@ -182,14 +182,14 @@ if(validateFormEmpty(EditFname, 2) && validateFormEmpty(EditLname, 2) && validat
 //------------------------------------------------------------------------
 function addNewContact(){
 
-var newFname = document.getElementById("NewContactFirstName").value;
-var newLname = document.getElementById("NewContactLastName").value;
-var newNumber = document.getElementById("NewContactNumber").value;
-var newEmail = document.getElementById("NewContactEmail").value;
+	var newFname = document.getElementById("NewContactFirstName").value.trim;
+	var newLname = document.getElementById("NewContactLastName").value.trim;
+	var newNumber = document.getElementById("NewContactNumber").value.trim;
+	var newEmail = document.getElementById("NewContactEmail").value.trim;
 
 //cleaning text
 if(validateFormEmpty(newFname,1, "NewContactFirstName", "NewContactFirstNameLabel") && validateFormEmpty(newLname, 1, "NewContactLastName", "NewContactLastNameLabel") 
-&& validateFormEmpty(newNumber, 1, "NewContactNumber", "NewContactNumberLabel") && validateFormEmpty(newEmail, 1, "NewContactEmail", ))
+	&& validateFormEmpty(newNumber, 1, "NewContactNumber", "NewContactNumberLabel") && validateFormEmpty(newEmail, 1, "NewContactEmail", "NewContactEmailLabel"))
 {
 	if(validateFormNumber(newNumber, 1, "NewContactNumber", "NewContactNumberLabel") && validateFormEmail(newEmail, 1, "NewContactEmail", "NewContactEmailLabel"))
 	{
@@ -232,7 +232,7 @@ if(validateFormEmpty(newFname,1, "NewContactFirstName", "NewContactFirstNameLabe
 			document.getElementById("ErrorBox").innerHTML = err.message;
 		}
 
-		document.getElementById("NewContactFirstName").style.borderColor = "black";
+			document.getElementById("NewContactFirstName").style.borderColor = "black";
         	document.getElementById("NewContactLastName").style.borderColor = "black";
         	document.getElementById("NewContactNumber").style.borderColor = "black";
         	document.getElementById("NewContactEmail").style.borderColor = "black";
@@ -264,8 +264,8 @@ if(validateFormEmpty(newFname,1, "NewContactFirstName", "NewContactFirstNameLabe
 //Helper text cleaners
 
 function validateFormEmpty(String y, int x, String htmltag, String htmllabel) {
-  var x = y
-  if (x == "") {
+  
+  if (y == "") {
 	document.getElementById("ErrorBox").innerHTML("All fields must be filled out");
 	if(x == 1)
 	{
@@ -287,10 +287,10 @@ function validateFormEmpty(String y, int x, String htmltag, String htmllabel) {
 }
 
 function validateFormNumber(String y, int x, String htmltag, String htmllabel) {
-  var x = y
+  
   var numbers = /^[0-9]+$/;
       
-  if (x.match(numbers)) {
+  if (y.match(numbers)) {
     return true;
   }
   else 
@@ -312,8 +312,8 @@ function validateFormNumber(String y, int x, String htmltag, String htmllabel) {
 }
 
 function validateFormEmail(String y, int x, String htmltag, String htmllabel) {
-  var x = y
-  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(x)) {
+
+  if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(y)) {
     	return true;
   }
   else 
