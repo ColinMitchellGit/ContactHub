@@ -28,11 +28,11 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '["' . $row["FirstName"] . '",';
-			$searchResults .= '"' . $row["LastName"] . '",';
-			$searchResults .= '"' . $row["PhoneNumber"] . '",';
-			$searchResults .= '"' . $row["Email"] . '",';
-			$searchResults .= '"' . $row["ContactID"] . '"]';
+			$searchResults .= '{' . '"firstName": ' . '"' . $row["FirstName"] . '",';
+			$searchResults .= '"lastName": ' . '"' . $row["LastName"] . '",';
+			$searchResults .= '"phoneNumber": ' . '"' . $row["PhoneNumber"] . '",';
+			$searchResults .= '"email": ' . '"' . $row["Email"] . '",';
+			$searchResults .= '"contactID": ' . $row["ContactID"] . '}';
 		}
 
 		if( $searchCount == 0 )
