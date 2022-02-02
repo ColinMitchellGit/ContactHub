@@ -12,13 +12,13 @@ function doForgot()
     let username = document.getElementById("verifyUser").value;
     let secq1 = document.getElementById("verifySecQ1").value;
     let secq2 = document.getElementById("verifySecQ2").value;
-    
+
     var option = 1;
 
     let temp = {option:option,login:username,secQuestion1:secq1,secQuestion2:secq2};
     let jsonPayload = JSON.stringify( temp );
 
-    console.log(JSON.stringify( temp ));	
+    console.log(JSON.stringify( temp ));
     let url = urlBase + '/ForgotPassword.' + extension;
     let xhr = new XMLHttpRequest();
 
@@ -29,7 +29,7 @@ function doForgot()
     {
         console.log("Hit the try");
         xhr.send(jsonPayload)
-	    console.log("json payload in the air");    
+	    console.log("json payload in the air");
         xhr.onreadystatechange = function()
         {
             if (this.readyState === 4 && this.status === 200)
@@ -48,7 +48,7 @@ function doForgot()
                 console.log("Success!");
 
                 saveCookie();
-                
+
                 // take to the place where you tupe new password
                 window.location.href = "index2.html";
             }
@@ -72,7 +72,7 @@ function doReset()
 
     console.log(JSON.stringify( temp ));
     let url = urlBase + '/ForgotPassword.' + extension;
-	
+
     let xhr = new XMLHttpRequest();
 
     xhr.open("POST", url, true);
@@ -82,7 +82,7 @@ function doReset()
     {
         console.log("Hit the try");
         xhr.send(jsonPayload)
-	    console.log("json payload in the air");    
+	    console.log("json payload in the air");
         xhr.onreadystatechange = function()
         {
             if (this.readyState === 4 && this.status === 200)
@@ -100,7 +100,7 @@ function doReset()
                 console.log("Success!");
 
                 saveCookie();
-                
+
                 window.location.href = "index.html";
             }
 
@@ -121,10 +121,17 @@ function doRegister()
     let secq1 = document.getElementById("secQuestion1").value;
     let secq2 = document.getElementById("secQuestion2").value;
 
+	// If any of the fields are blank, we abort out of registering since every field is required.
+	if (username == null || password == null || firstName == null || lastName == null || secq1 == null || secq2 == null)
+	{
+		console.log("A required field for registration is missing.");
+		return;
+	}
+
     let temp = {firstName:firstName,lastName:lastName,login:username,password:password,secQuestion1:secq1,secQuestion2:secq2};
     let jsonPayload = JSON.stringify( temp );
 
-    console.log(JSON.stringify( temp ));	
+    console.log(JSON.stringify( temp ));
     let url = urlBase + '/Register.' + extension;
     let xhr = new XMLHttpRequest();
 
@@ -135,7 +142,7 @@ function doRegister()
     {
         console.log("Hit the try");
         xhr.send(jsonPayload)
-	console.log("json payload in the air");    
+		console.log("json payload in the air");
         xhr.onreadystatechange = function()
         {
             if (this.readyState === 4 && this.status === 200)
