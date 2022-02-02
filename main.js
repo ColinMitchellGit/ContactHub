@@ -114,14 +114,15 @@ function doReset()
 
 function doRegister()
 {
-    //let username = document.getElementById("newUsername").value;
-	let username = "";
+    let username = document.getElementById("newUsername").value;
     let password = document.getElementById("newPassword").value;
     let firstName = document.getElementById("newFirstName").value;
     let lastName = document.getElementById("newLastName").value;
     let secq1 = document.getElementById("secQuestion1").value;
     let secq2 = document.getElementById("secQuestion2").value;
 
+	console.log(username);
+	
 	// If any of the fields are blank, we abort out of registering since every field is required.
 	if (username == "" || password == "" || firstName == "" || lastName == "" || secq1 == "" || secq2 == "")
 	{
