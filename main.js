@@ -114,7 +114,8 @@ function doReset()
 
 function doRegister()
 {
-    let username = document.getElementById("newUsername").value;
+    //let username = document.getElementById("newUsername").value;
+	let username = "";
     let password = document.getElementById("newPassword").value;
     let firstName = document.getElementById("newFirstName").value;
     let lastName = document.getElementById("newLastName").value;
