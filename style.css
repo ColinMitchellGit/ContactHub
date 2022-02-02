@@ -3,11 +3,17 @@
 .row {
     background: rgb(231, 240, 228);
     border-radius: 20px;
-    box-shadow: 12px 12px 22px grey;
+    /*box-shadow: 12px 12px 22px grey;*/
+    /*Seif NO! BAD SEIF*/
 }
 img {
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
+}
+
+#modal2 {
+    background-color: blue;
+
 }
 
 .button1 {

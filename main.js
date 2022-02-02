@@ -7,6 +7,7 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+
 function doForgot()
 {
     let username = document.getElementById("verifyUser").value;
