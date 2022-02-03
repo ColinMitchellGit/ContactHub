@@ -320,22 +320,18 @@ function doReadContacts()
 					let data2 = row.insertCell(1);
 
 					let button1 = document.createElement("button");
-					data2.appendChild(button1);
 					button1.type = "button";
-					button2.classList.add("button1");
-					button2.classList.add("mt-3");
-					button2.classList.add("mb-5");
+					button1.className = "button1 mt-3 mb-5";
 					button1.onclick = function() {doLogout();};
 					button1.innerHTML = "Edit";
+					data2.appendChild(button1);
 
 					let button2 = document.createElement("button");
-					data2.appendChild(button2);
 					button2.type = "button";
-					button2.classList.add("button1");
-					button2.classList.add("mt-3");
-					button2.classList.add("mb-5");
+					button2.className = "button1 mt-3 mb-5";
 					button2.onclick = function() {doLogout();};
 					button2.innerHTML = "Delete";
+					data2.appendChild(button2);
 				}
 			}
 		};
