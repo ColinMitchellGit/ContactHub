@@ -251,6 +251,49 @@ function doLogin()
     }
 }
 
+function doDeleteContact(contactID)
+{
+    let temp = {userID:userId,contactID:contactID};
+    let jsonPayload = JSON.stringify( temp );
+
+    let url = urlBase + '/DeleteContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        console.log("hit the try");
+        xhr.send(jsonPayload);
+        console.log("json payload in the air");
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState === 4 && this.status === 200)
+            {
+                console.log("Status good!");
+                let jsonObject = JSON.parse( xhr.responseText );
+                error = jsonObject.error;
+                console.log(jsonObject);
+
+                if (error != "")
+                {
+                    console.log(error);
+                    return;
+                }
+
+                console.log("Success!");
+                saveCookie();
+                window.location.href = "cover.html";
+            }
+        }
+    }
+    catch (err)
+    {
+        console.log(err);
+    }
+}
+
 function doReadContacts()
 {
 	readCookie();
@@ -295,7 +338,7 @@ function doReadContacts()
 				}
 
 				let contactArray = jsonObject.results;
-				console.log(contactArray);
+				console.log(contactArray + "\n");
 
 				// Resetting the contact table to be empty
 				resetContactTable();
@@ -329,7 +372,7 @@ function doReadContacts()
 					let button2 = document.createElement("button");
 					button2.type = "button";
 					button2.className = "button1 mt-3 mb-5";
-					button2.onclick = function() {doLogout();};
+					button2.onclick = function() {doDeleteContact(contactID);};
 					button2.innerHTML = "Delete";
 					data2.appendChild(button2);
 				}
