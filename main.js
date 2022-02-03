@@ -278,6 +278,9 @@ function doDeleteContact(contactID)
                     console.log(error);
                     return;
                 }
+
+				// Reset the contact table to update it.
+				resetContactTable();
             }
         }
     }
