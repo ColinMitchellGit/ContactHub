@@ -460,7 +460,7 @@ function doReadContacts()
 					let button1 = document.createElement("button");
 					button1.type = "button";
 					button1.className = "button1 mt-3 mb-5";
-					button1.onclick = function() {$("#myModal").toggle();};
+					button1.onclick = function() {$("#myModal").modal("show");};
 					button1.innerHTML = "Edit";
 					data2.appendChild(button1);
 
