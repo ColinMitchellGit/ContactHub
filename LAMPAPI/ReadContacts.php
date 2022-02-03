@@ -15,9 +15,18 @@
 	}
 	else
 	{
+		// If the search term is an empty string, we want to return all contacts of the user
+		if ($inData["search"] == "")
+		{
+			$stmt = $conn->prepare("SELECT FirstName,LastName,PhoneNumber,Email,ContactID FROM Contacts WHERE UserID=?");
+			$stmt->bind_param("i", $userid);
+		}
+		else
+		{
+			$stmt = $conn->prepare("SELECT FirstName,LastName,PhoneNumber,Email,ContactID FROM Contacts WHERE FirstName LIKE ? OR LastName LIKE ? OR PhoneNumber LIKE ? OR Email LIKE ? AND UserID=?");
+			$stmt->bind_param("ssssi", $string, $string, $string, $string, $userid);
+		}
 
-		$stmt = $conn->prepare("SELECT FirstName,LastName,PhoneNumber,Email,ContactID FROM Contacts WHERE FirstName LIKE ? OR LastName LIKE ? OR PhoneNumber LIKE ? OR Email LIKE ? AND UserID=?");
-		$stmt->bind_param("ssssi", $string, $string, $string, $string, $userid);
 		$stmt->execute();
 		$result = $stmt->get_result();
 
