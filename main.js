@@ -264,27 +264,20 @@ function doDeleteContact(contactID)
 
     try
     {
-        console.log("hit the try");
         xhr.send(jsonPayload);
-        console.log("json payload in the air");
+
         xhr.onreadystatechange = function()
         {
             if (this.readyState === 4 && this.status === 200)
             {
-                console.log("Status good!");
                 let jsonObject = JSON.parse( xhr.responseText );
                 error = jsonObject.error;
-                console.log(jsonObject);
 
                 if (error != "")
                 {
                     console.log(error);
                     return;
                 }
-
-                console.log("Success!");
-                saveCookie();
-                window.location.href = "cover.html";
             }
         }
     }
@@ -296,6 +289,7 @@ function doDeleteContact(contactID)
 
 function doReadContacts()
 {
+	// Reading cookie so we can get the User's ID
 	readCookie();
 
 	let searchTerm = document.getElementById("searchBar").value;
@@ -328,8 +322,8 @@ function doReadContacts()
 				// Parsing the returned information from the query to a JSON object.
 				let jsonObject = JSON.parse( xhr.responseText );
 
-
-
+				// If we encounter an error we know its because no contacts where found.
+				// So we just empty the table and return.
 				if (jsonObject.error != "")
 				{
 					console.log(jsonObject.error);
@@ -337,31 +331,37 @@ function doReadContacts()
 					return;
 				}
 
+				// Storing just the contacts in their own array.
 				let contactArray = jsonObject.results;
 				console.log(contactArray + "\n");
 
-				// Resetting the contact table to be empty
+				// Resetting the contact table to be empty so we don't have any repeating
+				// contacts in the list when we append new ones.
 				resetContactTable();
 
-				// Grabbing the table to add/delete rows
+				// Grabbing the table to add/delete rows.
 				let table = document.getElementById("myTable");
 
 				for (var i = 0; i < contactArray.length; i++)
 				{
+					// Grabbing contact info
 					let contactFirstName = contactArray[i].firstName;
 					let contactLastName = contactArray[i].lastName;
 					let phoneNumber = contactArray[i].phoneNumber;
 					let email = contactArray[i].email;
 					let contactID = contactArray[i].contactID;
 
-					// Inserting at i + 1 since we have a header row
+					// Inserting in the second row slot since we have a header row.
 					let row = table.insertRow(i + 1);
 
+					// Adding the first cell which is just the contact's full name.
 					let data1 = row.insertCell(0);
 					data1.innerHTML = contactFirstName + " " + contactLastName;
 
+					// Adding the second cell which contains the edit and delete buttons.
 					let data2 = row.insertCell(1);
 
+					// Creating and applying attributes to buttons, then appending them.
 					let button1 = document.createElement("button");
 					button1.type = "button";
 					button1.className = "button1 mt-3 mb-5";
