@@ -346,11 +346,9 @@ function resetContactTable()
 {
 	let table = document.getElementById("myTable");
 
-	let rows = table.rows.length;
-
-	for (var i = 1; i < rows; i++) {
-		table.deleteRow(1);
-	}
+	for (var i = 1; i< table.rows.length;){
+		table.deleteRow(i);
+    }
 }
 
 function saveCookie()
