@@ -280,6 +280,8 @@ function doReadContacts()
 				// Parsing the returned information from the query to a JSON object.
 				let jsonObject = JSON.parse( xhr.responseText );
 
+				console.log(jsonObject.error);
+				
 				if (jsonObject.error != "")
 				{
 					return;
