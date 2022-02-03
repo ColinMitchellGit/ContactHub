@@ -51,7 +51,7 @@ function doForgot()
                 saveCookie();
 
                 // take to the place where you tupe new password
-                window.location.href = "index2.html";
+                window.location.href = "resetPassword.html";
             }
 
         }
