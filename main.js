@@ -464,7 +464,7 @@ function doReadContacts()
 					{
 						let modal = document.getElementById("myModal");
 
-						modal.modal("show");
+						modal.show();
 					};
 					button1.innerHTML = "Edit";
 					data2.appendChild(button1);
