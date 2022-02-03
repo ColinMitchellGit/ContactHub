@@ -254,7 +254,7 @@ function doLogin()
 function doReadContacts()
 {
 	readCookie();
-	
+
 	let searchTerm = document.getElementById("searchBar").value;
 
 	console.log("UserID: " + userId);
@@ -351,7 +351,7 @@ function readCookie()
     }
     else
     {
-        document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+        //document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
     }
 }
 
