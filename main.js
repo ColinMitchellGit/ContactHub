@@ -296,6 +296,9 @@ function doReadContacts()
 				let contactArray = jsonObject.results;
 				console.log(contactArray);
 
+				// Resetting the contact table to be empty
+				resetContactTable();
+
 				// Grabbing the table to add/delete rows
 				let table = document.getElementById("myTable");
 
@@ -337,6 +340,17 @@ function doReadContacts()
 		console.log(err);
 	}
 
+}
+
+function resetContactTable()
+{
+	let table = document.getElementById("myTable");
+
+	let rows = table.rows.length;
+
+	for (var i = 1; i < rows; i++) {
+		table.deleteRow(1);
+	}
 }
 
 function saveCookie()
