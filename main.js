@@ -255,6 +255,9 @@ function doReadContacts()
 {
 	let searchTerm = document.getElementById("searchBar").value;
 
+	console.log("UserID: " + userId);
+	console.log("Search term: " + searchTerm);
+	
 	let tmp = {userID:userId,search:searchTerm};
 	let jsonPayload = JSON.stringify( tmp );
 
@@ -280,16 +283,16 @@ function doReadContacts()
 				// Parsing the returned information from the query to a JSON object.
 				let jsonObject = JSON.parse( xhr.responseText );
 
-				console.log(jsonObject.error);
+
 
 				if (jsonObject.error != "")
 				{
+					console.log(jsonObject.error);
 					return;
 				}
 
 				let contactArray = jsonObject.results;
 
-				console.log("Search term: " + searchTerm);
 				console.log(contactArray);
 				/*
 				for (var i = 0; i < contactArray.length; i++) {
