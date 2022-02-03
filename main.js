@@ -251,9 +251,6 @@ function doLogin()
     }
 }
 
-let searchBar = document.getElementById("searchBar");
-searchBar.onkeyup = doReadContacts;
-
 function doReadContacts()
 {
     let searchTerm = document.getElementById("searchBar").value;
