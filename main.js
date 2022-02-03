@@ -290,6 +290,7 @@ function doReadContacts()
 				if (jsonObject.error != "")
 				{
 					console.log(jsonObject.error);
+					resetContactTable();
 					return;
 				}
 
