@@ -372,7 +372,7 @@ function doReadContacts()
 					let button2 = document.createElement("button");
 					button2.type = "button";
 					button2.className = "button1 mt-3 mb-5";
-					button2.onclick = function() {doDeleteContact(contactID);};
+					button2.onclick = function() {doDeleteContact(contactID);doReadContacts();};
 					button2.innerHTML = "Delete";
 					data2.appendChild(button2);
 				}
