@@ -294,16 +294,41 @@ function doReadContacts()
 				}
 
 				let contactArray = jsonObject.results;
-
 				console.log(contactArray);
-				/*
-				for (var i = 0; i < contactArray.length; i++) {
-					let firstName = contactArray[i].firstName;
-					let lastName = contactArray[i].lastName;
+
+				// Grabbing the table to add/delete rows
+				let table = document.getElementById("myTable");
+
+				for (var i = 0; i < contactArray.length; i++)
+				{
+					let contactFirstName = contactArray[i].firstName;
+					let contactLastName = contactArray[i].lastName;
 					let phoneNumber = contactArray[i].phoneNumber;
 					let email = contactArray[i].email;
 					let contactID = contactArray[i].contactID;
-				}*/
+
+					// Inserting at i + 1 since we have a header row
+					let row = table.insertRow(i + 1);
+
+					let data1 = row.insertCell(0);
+					data1.innerHTML = contactFirstName + " " + contactLastName;
+
+					let data2 = row.insertCell(1);
+
+					let button1 = createElement("button");
+					button1.type = "button";
+					button1.class = "button1 mt-3 mb-5";
+					button1.onclick ="doLogout();";
+					button1.innerHTML = "Edit";
+					data2.appendChild(button1);
+
+					let button2 = createElement("button");
+					button2.type = "button";
+					button2.class = "button1 mt-3 mb-5";
+					button2.onclick ="doLogout();";
+					button2.innerHTML = "Delete";
+					data2.appendChild(button2);
+				}
 			}
 		};
 	}
