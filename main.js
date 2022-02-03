@@ -347,6 +347,7 @@ function resetContactTable()
 {
 	let table = document.getElementById("myTable");
 
+	// This is just deleting every row but the table header row
 	for (var i = 1; i< table.rows.length;){
 		table.deleteRow(i);
     }
