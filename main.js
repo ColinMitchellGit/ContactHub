@@ -281,7 +281,7 @@ function doReadContacts()
 				let jsonObject = JSON.parse( xhr.responseText );
 
 				console.log(jsonObject.error);
-				
+
 				if (jsonObject.error != "")
 				{
 					return;
@@ -289,6 +289,7 @@ function doReadContacts()
 
 				let contactArray = jsonObject.results;
 
+				console.log("Search term: " + searchTerm);
 				console.log(contactArray);
 				/*
 				for (var i = 0; i < contactArray.length; i++) {
