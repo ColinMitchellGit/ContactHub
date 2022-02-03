@@ -279,8 +279,9 @@ function doDeleteContact(contactID)
                     return;
                 }
 
-				// Reset the contact table to update it.
+				// Resetting the table and reading the updated list of contacts back into it.
 				resetContactTable();
+				doReadContacts();
             }
         }
     }
