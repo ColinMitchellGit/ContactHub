@@ -315,14 +315,14 @@ function doReadContacts()
 
 					let data2 = row.insertCell(1);
 
-					let button1 = createElement("button");
+					let button1 = document.createElement("button");
 					button1.type = "button";
 					button1.class = "button1 mt-3 mb-5";
 					button1.onclick ="doLogout();";
 					button1.innerHTML = "Edit";
 					data2.appendChild(button1);
 
-					let button2 = createElement("button");
+					let button2 = document.createElement("button");
 					button2.type = "button";
 					button2.class = "button1 mt-3 mb-5";
 					button2.onclick ="doLogout();";
