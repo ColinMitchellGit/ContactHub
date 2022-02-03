@@ -251,6 +251,96 @@ function doLogin()
     }
 }
 
+function doAddContact()
+{
+    let firstName = document.getElementById("addFirst").value;
+    let lastName = document.getElementById("addLast").value;
+    let phoneNumber = document.getElementById("addPhone").value;
+    let email = document.getElementById("addEmail").value;
+
+    let temp = {firstName:firstName,lastName:lastName,phoneNumber:phoneNumber,email:email,userID:userId};
+    let jsonPayload = JSON.stringify( temp );
+    let url = urlBase + '/CreateContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        xhr.send(jsonPayload);
+
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState === 4 && this.status === 200)
+            {
+                let jsonObject = JSON.parse( xhr.responseText );
+                error = jsonObject.error;
+                if (error != "")
+                {
+                    console.log(error);
+                    return;
+                }
+
+                resetContactTable();
+                doReadContacts();
+
+                window.location.href = "cover.html";
+            }
+        }
+    }
+    catch (err)
+    {
+        console.log(err);
+    }
+}
+
+function doEditContact(contactID)
+{
+    let firstName = document.getElementById("newFirst").value;
+    let lastName = document.getElementById("newLast").value;
+    let phoneNumber = document.getElementById("newPhone").value;
+    let email = document.getElementById("newEmail").value;
+
+    let temp = {firstName:firstName,lastName:lastName,phoneNumber:phoneNumber,email:email,userID:userId,contactID:contactID};
+    let jsonPayload = JSON.stringify( temp );
+    let url = urlBase + '/UpdateContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        xhr.send(jsonPayload);
+
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState === 4 && this.status === 200)
+            {
+                let jsonObject = JSON.parse( xhr.responseText );
+                error = jsonObject.error;
+                if (error != "")
+                {
+                    console.log(error);
+                    return;
+                }
+
+                resetContactTable();
+                doReadContacts();
+
+                window.location.href = "cover.html";
+
+
+            }
+        }
+    }
+    catch (err)
+    {
+        console.log(err);
+    }
+}
+
 function doDeleteContact(contactID)
 {
     let temp = {userID:userId,contactID:contactID};
@@ -276,6 +366,7 @@ function doDeleteContact(contactID)
                 if (error != "")
                 {
                     console.log(error);
+                    resetContactTable();
                     return;
                 }
 
@@ -431,14 +522,14 @@ function readCookie()
         }
     }
 
-    if( userId < 0 )
-    {
-        window.location.href = "index.html";
-    }
-    else
-    {
-        //document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-    }
+    // if( userId < 0 )
+    // {
+    //     window.location.href = "index.html";
+    // }
+    // else
+    // {
+    //     //document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+    // }
 }
 
 function doLogout()
