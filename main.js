@@ -253,11 +253,13 @@ function doLogin()
 
 function doReadContacts()
 {
+	readCookie();
+	
 	let searchTerm = document.getElementById("searchBar").value;
 
 	console.log("UserID: " + userId);
 	console.log("Search term: " + searchTerm);
-	
+
 	let tmp = {userID:userId,search:searchTerm};
 	let jsonPayload = JSON.stringify( tmp );
 
