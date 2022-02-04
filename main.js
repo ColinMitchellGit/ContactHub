@@ -458,7 +458,7 @@ function doReadContacts()
 					row.onclick = function()
 					{
 						row.setAttribute("data-bs-toggle", "modal");
-						row.setAttribute("data-bs-target", "#myModal");
+						row.setAttribute("data-bs-target", "#myModal3");
 					}
 
 					// Adding the first cell which is just the contact's full name.
