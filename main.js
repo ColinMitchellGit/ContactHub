@@ -487,7 +487,7 @@ function doReadContacts()
 					};
 
 					let editbutton = document.getElementById("editSubmit");
-					editbutton.setAttribute("data-bs-toggle", "collapse");
+					editbutton.setAttribute("data-bs-toggle", "modal");
 					editbutton.setAttribute("data-bs-target", "#myModal2");
 
 					data2.appendChild(button1);
