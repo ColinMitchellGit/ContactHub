@@ -460,10 +460,10 @@ function doReadContacts()
 						row.setAttribute("data-bs-toggle", "modal");
 						row.setAttribute("data-bs-target", "#myModal3");
                         globalContactID = contactID;
-						document.getElementById("newFirst").value = contactFirstName;
-					    document.getElementById("newLast").value = contactLastName;
-					    document.getElementById("newPhone").value = phoneNumber;
-					    document.getElementById("newEmail").value = email;
+						document.getElementById("contactFirst").value = contactFirstName;
+					    document.getElementById("contactLast").value = contactLastName;
+					    document.getElementById("contactPhone").value = phoneNumber;
+					    document.getElementById("contactEmail").value = email;
 					}
 
 					// Adding the first cell which is just the contact's full name.
