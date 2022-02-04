@@ -348,7 +348,7 @@ function doDeleteContact(contactID)
   	} else {
     	return;
   	}
-	
+
     let temp = {userID:userId,contactID:contactID};
     let jsonPayload = JSON.stringify( temp );
 
@@ -454,6 +454,12 @@ function doReadContacts()
 
 					// Inserting in the second row slot since we have a header row.
 					let row = table.insertRow(i + 1);
+
+					row.onclick = function()
+					{
+						row.setAttribute("data-bs-toggle", "modal");
+						row.setAttribute("data-bs-target", "#myModal");
+					}
 
 					// Adding the first cell which is just the contact's full name.
 					let data1 = row.insertCell(0);
