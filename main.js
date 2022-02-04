@@ -343,6 +343,12 @@ function doEditContact(contactID)
 
 function doDeleteContact(contactID)
 {
+	if (confirm("Are you sure you want to delete this contact?"))
+	{
+  	} else {
+    	return;
+  	}
+	
     let temp = {userID:userId,contactID:contactID};
     let jsonPayload = JSON.stringify( temp );
 
@@ -460,7 +466,6 @@ function doReadContacts()
 					let button1 = document.createElement("button");
 					button1.type = "button";
 					button1.className = "button1 mt-3 mb-5";
-					button1.onclick = function() {$('#myModal').modal('show');};
 					button1.setAttribute("data-bs-toggle", "modal");
 					button1.setAttribute("data-bs-target", "#myModal2");
 					button1.innerHTML = "Edit";
