@@ -475,6 +475,7 @@ function doReadContacts()
 					button1.setAttribute("data-bs-toggle", "modal");
 					button1.setAttribute("data-bs-target", "#myModal2");
 					button1.innerHTML = "Edit";
+
                     button1.onclick = function()
 					{
 						globalContactID = contactID;
@@ -484,7 +485,11 @@ function doReadContacts()
 					    document.getElementById("newPhone").value = phoneNumber;
 					    document.getElementById("newEmail").value = email;
 					};
-					
+
+					let editbutton = document.getElementById("editSubmit");
+					editbutton.setAttribute("data-bs-toggle", "collapse");
+					editbutton.setAttribute("data-bs-target", "#myModal2");
+
 					data2.appendChild(button1);
 
 					let button2 = document.createElement("button");
