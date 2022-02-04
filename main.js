@@ -329,7 +329,7 @@ function doEditContact()
                 resetContactTable();
                 doReadContacts();
 
-                location.reload();
+                window.location.href = "cover.html";
 
 
             }
