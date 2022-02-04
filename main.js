@@ -484,8 +484,6 @@ function doReadContacts()
 					    document.getElementById("newPhone").value = phoneNumber;
 					    document.getElementById("newEmail").value = email;
 					};
-
-					document.getElementById("editSubmit").onclick = $('#myModal2').modal('hide');
 					data2.appendChild(button1);
 
 					let button2 = document.createElement("button");
