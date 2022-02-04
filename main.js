@@ -510,7 +510,7 @@ function doReadContacts()
 
 function doWelcome()
 {
-    document.getElementById("welcome").innerHTML = "Welcome" + firstName + " " + lastName 
+    document.getElementById("welcome").innerHTML = "Welcome, " + firstName + "!"
 }
 
 function resetContactTable()
