@@ -295,14 +295,14 @@ function doAddContact()
     }
 }
 
-function doEditContact(contactID)
+function doEditContact()
 {
     let firstName = document.getElementById("newFirst").value;
     let lastName = document.getElementById("newLast").value;
     let phoneNumber = document.getElementById("newPhone").value;
     let email = document.getElementById("newEmail").value;
 
-    let temp = {firstName:firstName,lastName:lastName,phoneNumber:phoneNumber,email:email,userID:userId,contactID:contactID};
+    let temp = {firstName:firstName,lastName:lastName,phoneNumber:phoneNumber,email:email,userID:userId,contactID:globalContactID};
     let jsonPayload = JSON.stringify( temp );
     let url = urlBase + '/UpdateContact.' + extension;
 
