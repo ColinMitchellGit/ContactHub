@@ -473,7 +473,7 @@ function doReadContacts()
 					button1.type = "button";
 					button1.className = "button1 mt-3 mb-5";
 					button1.setAttribute("data-bs-toggle", "modal");
-					button1.setAttribute("data-bs-target", "#myModal");
+					button1.setAttribute("data-bs-target", "#myModal2");
 					button1.innerHTML = "Edit";
 					data2.appendChild(button1);
 
