@@ -6,7 +6,7 @@ const extension = 'php';
 let userId = 0;
 let firstName = "";
 let lastName = "";
-
+let globalContactID = 0;
 
 function doForgot()
 {
@@ -475,6 +475,7 @@ function doReadContacts()
 					button1.setAttribute("data-bs-toggle", "modal");
 					button1.setAttribute("data-bs-target", "#myModal2");
 					button1.innerHTML = "Edit";
+                    button1.onclick = function() { globalContactID = contactID };
 					data2.appendChild(button1);
 
 					let button2 = document.createElement("button");
