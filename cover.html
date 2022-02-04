@@ -124,6 +124,41 @@
                             </div>
                         </div>
                     </div>
+                    <div class="modal" id="myModal2">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Edit Contact</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form>
+                                        <div class="mb-3">
+                                            <label class="form-label required">First Name</label>
+                                            <input id="newFirst" type="text" placeholder="John" class="form-control">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label required">Last Name</label>
+                                            <input id="newLast" type="text" placeholder="Smith" class="form-control">
+                                            <!--                                                <input type="email" class="form-control">-->
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label required">Phone Number</label>
+                                            <input id="newPhone" type="text" placeholder="1234567890" class="form-control">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label required">Email</label>
+                                            <input id="newEmail" type="text" placeholder="example@gmail.com" class="form-control">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-primary" onclick="doEditContact();">Submit</button>
+                                    <button type="submit" class="btn btn-danger">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <a href="#" class="btn btn-secondary my-2" onclick="doLogout();">Logout</a>
                 </p>
             </div>
