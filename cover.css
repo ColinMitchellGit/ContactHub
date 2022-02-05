@@ -16,7 +16,7 @@
  * Base structure
  */
 
-.welcome-heading {
+.welcome-heading !important { 
 	background-color: black;
 }
 
