@@ -86,10 +86,13 @@
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light" id="welcome"></h1>
+				<div id="welcome-heading">
                 <p class="lead text-muted">All your contacts, down below, in one place! Feel free to edit, delete, or add contacts as you please.</p>
                 <p>
                     <!-- <a href="#" class="btn btn-primary my-2">Add Contact</a> -->
                     <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#myModal">Add Contact</button>
+					<a href="#" class="btn btn-secondary my-2" onclick="doLogout();">Logout</a>
+				</div>
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -195,7 +198,7 @@
                         </div>
                     </div>
                 </div>
-                    <a href="#" class="btn btn-secondary my-2" onclick="doLogout();">Logout</a>
+
                 </p>
             </div>
         </div>
