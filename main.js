@@ -330,7 +330,7 @@ function doEditContact()
                 document.getElementById("searchBar").value = "";
                 doReadContacts();
 
-                window.location.href = "cover.html";
+                window.location.reload();
 
 
             }
