@@ -327,6 +327,7 @@ function doEditContact()
                 }
 
                 resetContactTable();
+                document.getElementById("searchBar") = "";
                 doReadContacts();
 
                 window.location.href = "cover.html";
