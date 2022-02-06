@@ -298,19 +298,6 @@ function doAddContact()
 
 }
 
-/*
-
-if (validateFormEmpty(newFname, "NewContactFirstName", "NewContactFirstNameLabel") && validateFormEmpty(newLname, "NewContactLastName", "NewContactLastNameLabel")
-    && validateFormEmpty(newNumber, "NewContactNumber", "NewContactNumberLabel") && validateFormEmpty(newEmail, "NewContactEmail", "NewContactEmailLabel")) {
-    if (validateFormNumber(newNumber, "NewContactNumber", "NewContactNumberLabel") && validateFormEmail(newEmail, "NewContactEmail", "NewContactEmailLabel")) {
-
-
-    }
-
-}
-
-*/
-
 
 //-------------------------------------------------------------------------------
 //Helper text cleaners
@@ -321,9 +308,7 @@ function validateFormEmpty(input, htmltag, htmllabel) {
 
         //change color of html to on add contact to red
         document.getElementById(htmltag).style.borderColor = "red";
-
         document.getElementById(htmltag).style.borderStyle = "solid";
-
         document.getElementById(htmllabel).style.color = "red";
         
         return false;
@@ -393,36 +378,40 @@ function doEditContact()
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    try
-    {
-        xhr.send(jsonPayload);
 
-        xhr.onreadystatechange = function()
-        {
-            if (this.readyState === 4 && this.status === 200)
-            {
-                let jsonObject = JSON.parse( xhr.responseText );
-                error = jsonObject.error;
-                if (error != "")
-                {
-                    console.log(error);
-                    return;
+    if (validateFormEmpty(firstName, "newFirst", "newFirstLabel") && validateFormEmpty(lastName, "newdLast", "newLastLabel")
+        && validateFormEmpty(phoneNumber, "newPhone", "newPhoneLabel") && validateFormEmpty(email, "newEmail", "newEmailLabel")) {
+        if (validateFormNumber(phoneNumber, "newPhone", "newPhoneLabel") && validateFormEmail(email, "newEmail", "newEmailLabel")) {
+
+            try {
+                xhr.send(jsonPayload);
+
+                xhr.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        let jsonObject = JSON.parse(xhr.responseText);
+                        error = jsonObject.error;
+                        if (error != "") {
+                            console.log(error);
+                            return;
+                        }
+
+                        resetContactTable();
+                        document.getElementById("searchBar").value = "";
+                        doReadContacts();
+
+                        window.location.reload();
+
+
+                    }
                 }
-
-                resetContactTable();
-                document.getElementById("searchBar").value = "";
-                doReadContacts();
-
-                window.location.reload();
-
-
             }
+            catch (err) {
+                console.log(err);
+            }
+
         }
     }
-    catch (err)
-    {
-        console.log(err);
-    }
+
 }
 
 function doDeleteContact(contactID)
