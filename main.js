@@ -266,9 +266,9 @@ function doAddContact()
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    if (validateFormEmpty(firstName, "addFirst", "addFirstLabel") && validateFormEmpty(lastName, "addLast", "addLastLabel")
-        && validateFormEmpty(phoneNumber, "addPhone", "addPhoneLabel") && validateFormEmpty(email, "addEmail", "addEmailLabel")) {
-        if (validateFormNumber(phoneNumber, "addPhone", "addPhoneLabel") && validateFormEmail(email, "addEmail", "addEmailLabel")) {
+    if (validateFormEmpty(firstName, "addFirst", "addFirstLabel", "errorBox") && validateFormEmpty(lastName, "addLast", "addLastLabel", "errorBox")
+        && validateFormEmpty(phoneNumber, "addPhone", "addPhoneLabel", "errorBox") && validateFormEmpty(email, "addEmail", "addEmailLabel", "errorBox")) {
+        if (validateFormNumber(phoneNumber, "addPhone", "addPhoneLabel", "errorBox") && validateFormEmail(email, "addEmail", "addEmailLabel", "errorBox")) {
 
             try {
                 xhr.send(jsonPayload);
@@ -315,7 +315,7 @@ if (validateFormEmpty(newFname, "NewContactFirstName", "NewContactFirstNameLabel
 //-------------------------------------------------------------------------------
 //Helper text cleaners
 
-function validateFormEmpty(input, htmltag, htmllabel) {
+function validateFormEmpty(input, htmltag, htmllabel, errortag) {
 
     if (input == "") {
 
@@ -325,6 +325,9 @@ function validateFormEmpty(input, htmltag, htmllabel) {
         document.getElementById(htmltag).style.borderStyle = "solid";
 
         document.getElementById(htmllabel).style.color = "red";
+
+        document.getElementById(errortag).innerHTML = "Field can't be empty";
+        document.getElementById(errortag).style.color = "red";
         
         return false;
     }
