@@ -266,9 +266,9 @@ function doAddContact()
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    if (validateFormEmpty(firstName, "addFirst", "addFirstLabel") && validateFormEmpty(lastName, "addLast", "addLastLabel")
-        && validateFormEmpty(phoneNumber, "addPhone", "addPhoneLabel") && validateFormEmpty(email, "addEmail", "addEmailLabel")) {
-        if (validateFormNumber(phoneNumber, "addPhone", "addPhoneLabel") && validateFormEmail(email, "addEmail", "addEmailLabel")) {
+    if (validateFormEmpty(firstName, "addFirst", "addFirstLabel", "errorBox") && validateFormEmpty(lastName, "addLast", "addLastLabel", "errorBox")
+        && validateFormEmpty(phoneNumber, "addPhone", "addPhoneLabel", "errorBox") && validateFormEmpty(email, "addEmail", "addEmailLabel", "errorBox")) {
+        if (validateFormNumber(phoneNumber, "addPhone", "addPhoneLabel", "errorBox") && validateFormEmail(email, "addEmail", "addEmailLabel", "errorBox")) {
 
             try {
                 xhr.send(jsonPayload);
@@ -302,7 +302,7 @@ function doAddContact()
 //-------------------------------------------------------------------------------
 //Helper text cleaners
 
-function validateFormEmpty(input, htmltag, htmllabel) {
+function validateFormEmpty(input, htmltag, htmllabel, errortag) {
 
     if (input == "") {
 
@@ -310,6 +310,9 @@ function validateFormEmpty(input, htmltag, htmllabel) {
         document.getElementById(htmltag).style.borderColor = "red";
         document.getElementById(htmltag).style.borderStyle = "solid";
         document.getElementById(htmllabel).style.color = "red";
+
+        document.getElementById(errortag).innerHTML = "Field can't be empty";
+        document.getElementById(errortag).style.color = "red";
         
         return false;
     }
@@ -318,11 +321,13 @@ function validateFormEmpty(input, htmltag, htmllabel) {
         document.getElementById(htmltag).style.borderColor = "black";
         document.getElementById(htmltag).style.borderStyle = "";
         document.getElementById(htmllabel).style.color = "black";
+        document.getElementById(errortag).innerHTML = "";
+        document.getElementById(errortag).style.color = "black";
         return true;
     }
 }
 
-function validateFormNumber(input, htmltag, htmllabel) {
+function validateFormNumber(input, htmltag, htmllabel, errortag) {
 
     var numbers = /^[0-9]+$/;
 
@@ -339,11 +344,13 @@ function validateFormNumber(input, htmltag, htmllabel) {
         document.getElementById(htmltag).style.borderColor = "red";
         document.getElementById(htmltag).style.borderStyle = "solid";
         document.getElementById(htmllabel).style.color = "red";
+        document.getElementById(errortag).innerHTML = "Phone number must be 10 digits";
+        document.getElementById(errortag).style.color = "red";
         return false;
     }
 }
 
-function validateFormEmail(input, htmltag, htmllabel) {
+function validateFormEmail(input, htmltag, htmllabel, errortag) {
 
     if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input)) {
 
@@ -359,6 +366,8 @@ function validateFormEmail(input, htmltag, htmllabel) {
         document.getElementById(htmltag).style.borderColor = "red";
         document.getElementById(htmltag).style.borderStyle = "solid";
         document.getElementById(htmllabel).style.color = "red";
+        document.getElementById(errortag).innerHTML = "Must be a valid email";
+        document.getElementById(errortag).style.color = "red";
         return false;
     }
 }
