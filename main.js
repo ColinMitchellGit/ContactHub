@@ -6,6 +6,7 @@ const extension = 'php';
 let userId = 0;
 let firstName = "";
 let lastName = "";
+let globalContactID = 0;
 
 function doForgot()
 {
@@ -50,7 +51,7 @@ function doForgot()
                 saveCookie();
 
                 // take to the place where you tupe new password
-                window.location.href = "index2.html";
+                window.location.href = "resetPassword.html";
             }
 
         }
@@ -161,7 +162,7 @@ function doRegister()
                 console.log("Success!");
 
                 saveCookie();
-               // window.location.href = "index.html";
+                window.location.href = "index.html";
             }
 
         }
@@ -248,7 +249,279 @@ function doLogin()
 		// This is just catching any error that may have occurred while sending a query to the API.
         document.getElementById("loginResult").innerHTML = err.message;
     }
+}
 
+function doAddContact()
+{
+    let firstName = document.getElementById("addFirst").value;
+    let lastName = document.getElementById("addLast").value;
+    let phoneNumber = document.getElementById("addPhone").value;
+    let email = document.getElementById("addEmail").value;
+
+    let temp = {firstName:firstName,lastName:lastName,phoneNumber:phoneNumber,email:email,userID:userId};
+    let jsonPayload = JSON.stringify( temp );
+    let url = urlBase + '/CreateContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        xhr.send(jsonPayload);
+
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState === 4 && this.status === 200)
+            {
+                let jsonObject = JSON.parse( xhr.responseText );
+                error = jsonObject.error;
+                if (error != "")
+                {
+                    console.log(error);
+                    return;
+                }
+
+                resetContactTable();
+                doReadContacts();
+
+                window.location.href = "cover.html";
+            }
+        }
+    }
+    catch (err)
+    {
+        console.log(err);
+    }
+}
+
+function doEditContact()
+{
+    let firstName = document.getElementById("newFirst").value;
+    let lastName = document.getElementById("newLast").value;
+    let phoneNumber = document.getElementById("newPhone").value;
+    let email = document.getElementById("newEmail").value;
+
+    let temp = {firstName:firstName,lastName:lastName,phoneNumber:phoneNumber,email:email,userID:userId,contactID:globalContactID};
+    let jsonPayload = JSON.stringify( temp );
+    let url = urlBase + '/UpdateContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        xhr.send(jsonPayload);
+
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState === 4 && this.status === 200)
+            {
+                let jsonObject = JSON.parse( xhr.responseText );
+                error = jsonObject.error;
+                if (error != "")
+                {
+                    console.log(error);
+                    return;
+                }
+
+                resetContactTable();
+                document.getElementById("searchBar").value = "";
+                doReadContacts();
+
+                window.location.reload();
+
+
+            }
+        }
+    }
+    catch (err)
+    {
+        console.log(err);
+    }
+}
+
+function doDeleteContact(contactID)
+{
+	if (confirm("Are you sure you want to delete this contact?"))
+	{
+  	} else {
+    	return;
+  	}
+
+    let temp = {userID:userId,contactID:contactID};
+    let jsonPayload = JSON.stringify( temp );
+
+    let url = urlBase + '/DeleteContact.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        xhr.send(jsonPayload);
+
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState === 4 && this.status === 200)
+            {
+                let jsonObject = JSON.parse( xhr.responseText );
+                error = jsonObject.error;
+
+                if (error != "")
+                {
+                    console.log(error);
+                    resetContactTable();
+                    return;
+                }
+
+				// Resetting the table and reading the updated list of contacts back into it.
+				resetContactTable();
+				doReadContacts();
+            }
+        }
+    }
+    catch (err)
+    {
+        console.log(err);
+    }
+}
+
+function doReadContacts()
+{
+	// Reading cookie so we can get the User's ID
+	readCookie();
+
+	let searchTerm = document.getElementById("searchBar").value;
+
+	console.log("UserID: " + userId);
+	console.log("Search term: " + searchTerm);
+
+	let tmp = {userID:userId,search:searchTerm};
+	let jsonPayload = JSON.stringify( tmp );
+
+	let url = urlBase + '/ReadContacts.' + extension;
+
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try
+	{
+		// We send the API query and wait for it to return.
+		// The API queries are "asynchronous", which means that other
+		// code can run in the background while the query is pending.
+		xhr.send(jsonPayload);
+
+		// Once the API query returns and is noted as ready, this function triggers.
+		xhr.onreadystatechange = function()
+		{
+			// This tells if the query has returned and everything is correct with it.
+			if (this.readyState === 4 && this.status === 200)
+			{
+				// Parsing the returned information from the query to a JSON object.
+				let jsonObject = JSON.parse( xhr.responseText );
+
+				// If we encounter an error we know its because no contacts where found.
+				// So we just empty the table and return.
+				if (jsonObject.error != "")
+				{
+					console.log(jsonObject.error);
+					resetContactTable();
+					return;
+				}
+
+				// Storing just the contacts in their own array.
+				let contactArray = jsonObject.results;
+				console.log(contactArray + "\n");
+
+				// Resetting the contact table to be empty so we don't have any repeating
+				// contacts in the list when we append new ones.
+				resetContactTable();
+
+				// Grabbing the table to add/delete rows.
+				let table = document.getElementById("myTable");
+
+				for (var i = 0; i < contactArray.length; i++)
+				{
+					// Grabbing contact info
+					let contactFirstName = contactArray[i].firstName;
+					let contactLastName = contactArray[i].lastName;
+					let phoneNumber = contactArray[i].phoneNumber;
+					let email = contactArray[i].email;
+					let contactID = contactArray[i].contactID;
+
+					// Inserting in the second row slot since we have a header row.
+					let row = table.insertRow(i + 1);
+
+					row.onclick = function()
+					{
+						row.setAttribute("data-bs-toggle", "modal");
+						row.setAttribute("data-bs-target", "#myModal3");
+                        globalContactID = contactID;
+						document.getElementById("contactFirst").value = contactFirstName;
+					    document.getElementById("contactLast").value = contactLastName;
+					    document.getElementById("contactPhone").value = phoneNumber;
+					    document.getElementById("contactEmail").value = email;
+					}
+
+					// Adding the first cell which is just the contact's full name.
+					let data1 = row.insertCell(0);
+					data1.innerHTML = contactFirstName + " " + contactLastName;
+
+					// Adding the second cell which contains the edit and delete buttons.
+					let data2 = row.insertCell(1);
+
+					// Creating and applying attributes to buttons, then appending them.
+					let button1 = document.createElement("button");
+					button1.type = "button";
+					button1.className = "button1 mt-3 mb-5";
+					button1.setAttribute("data-bs-toggle", "modal");
+					button1.setAttribute("data-bs-target", "#myModal2");
+					button1.innerHTML = "Edit";
+                    button1.onclick = function()
+					{
+						globalContactID = contactID;
+
+						document.getElementById("newFirst").value = contactFirstName;
+					    document.getElementById("newLast").value = contactLastName;
+					    document.getElementById("newPhone").value = phoneNumber;
+					    document.getElementById("newEmail").value = email;
+					};
+					data2.appendChild(button1);
+
+					let button2 = document.createElement("button");
+					button2.type = "button";
+					button2.className = "button1 mt-3 mb-5";
+					button2.onclick = function() {doDeleteContact(contactID);doReadContacts();};
+					button2.innerHTML = "Delete";
+					data2.appendChild(button2);
+				}
+			}
+		};
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+
+}
+
+function doWelcome()
+{
+    document.getElementById("welcome").innerHTML = "Welcome, " + firstName + "!"
+}
+
+function resetContactTable()
+{
+	let table = document.getElementById("myTable");
+
+	// This is just deleting every row but the table header row
+	for (var i = 1; i< table.rows.length;){
+		table.deleteRow(i);
+    }
 }
 
 function saveCookie()
@@ -282,14 +555,14 @@ function readCookie()
         }
     }
 
-    if( userId < 0 )
-    {
-        window.location.href = "index.html";
-    }
-    else
-    {
-        document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-    }
+    // if( userId < 0 )
+    // {
+    //     window.location.href = "index.html";
+    // }
+    // else
+    // {
+    //     //document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+    // }
 }
 
 function doLogout()
