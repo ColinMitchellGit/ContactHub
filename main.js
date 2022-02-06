@@ -299,78 +299,7 @@ function doAddContact()
 }
 
 
-//-------------------------------------------------------------------------------
-//Helper text cleaners
 
-function validateFormEmpty(input, htmltag, htmllabel, errortag) {
-
-    if (input == "") {
-
-        //change color of html to on add contact to red
-        document.getElementById(htmltag).style.borderColor = "red";
-        document.getElementById(htmltag).style.borderStyle = "solid";
-        document.getElementById(htmllabel).style.color = "red";
-
-        document.getElementById(errortag).innerHTML = "Field can't be empty";
-        document.getElementById(errortag).style.color = "red";
-        
-        return false;
-    }
-    else {
-
-        document.getElementById(htmltag).style.borderColor = "black";
-        document.getElementById(htmltag).style.borderStyle = "";
-        document.getElementById(htmllabel).style.color = "black";
-        document.getElementById(errortag).innerHTML = "";
-        document.getElementById(errortag).style.color = "black";
-        return true;
-    }
-}
-
-function validateFormNumber(input, htmltag, htmllabel, errortag) {
-
-    var numbers = /^[0-9]+$/;
-
-    if (input.match(numbers) && input.length == 10) {
-
-        document.getElementById(htmltag).style.borderColor = "black";
-        document.getElementById(htmltag).style.borderStyle = "";
-        document.getElementById(htmllabel).style.color = "black";
-        return true;
-    }
-    else {
-
-        //change color of html to on add contact to red
-        document.getElementById(htmltag).style.borderColor = "red";
-        document.getElementById(htmltag).style.borderStyle = "solid";
-        document.getElementById(htmllabel).style.color = "red";
-        document.getElementById(errortag).innerHTML = "Phone number must be 10 digits";
-        document.getElementById(errortag).style.color = "red";
-        return false;
-    }
-}
-
-function validateFormEmail(input, htmltag, htmllabel, errortag) {
-
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input)) {
-
-        document.getElementById(htmltag).style.borderColor = "black";
-        document.getElementById(htmltag).style.borderStyle = "";
-        document.getElementById(htmllabel).style.color = "black";
-        return true;
-    }
-    else {
-
-        
-        //change color of html to on add contact to red
-        document.getElementById(htmltag).style.borderColor = "red";
-        document.getElementById(htmltag).style.borderStyle = "solid";
-        document.getElementById(htmllabel).style.color = "red";
-        document.getElementById(errortag).innerHTML = "Must be a valid email";
-        document.getElementById(errortag).style.color = "red";
-        return false;
-    }
-}
 
 function doEditContact()
 {
@@ -388,9 +317,9 @@ function doEditContact()
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
 
-    if (validateFormEmpty(firstName, "newFirst", "newFirstLabel") && validateFormEmpty(lastName, "newdLast", "newLastLabel")
-        && validateFormEmpty(phoneNumber, "newPhone", "newPhoneLabel") && validateFormEmpty(email, "newEmail", "newEmailLabel")) {
-        if (validateFormNumber(phoneNumber, "newPhone", "newPhoneLabel") && validateFormEmail(email, "newEmail", "newEmailLabel")) {
+    if (validateFormEmpty(firstName, "newFirst", "newFirstLabel", "errorEditBox") && validateFormEmpty(lastName, "newdLast", "newLastLabel", "errorEditBox")
+        && validateFormEmpty(phoneNumber, "newPhone", "newPhoneLabel", "errorEditBox") && validateFormEmpty(email, "newEmail", "newEmailLabel", "errorEditBox")) {
+        if (validateFormNumber(phoneNumber, "newPhone", "newPhoneLabel", "errorEditBox") && validateFormEmail(email, "newEmail", "newEmailLabel", "errorEditBox")) {
 
             try {
                 xhr.send(jsonPayload);
@@ -588,6 +517,83 @@ function doReadContacts()
 		console.log(err);
 	}
 
+}
+
+//-------------------------------------------------------------------------------
+//Helper text cleaners
+
+function validateFormEmpty(input, htmltag, htmllabel, errortag) {
+
+    if (input == "") {
+
+        //change color of html to on add contact to red
+        document.getElementById(htmltag).style.borderColor = "red";
+        document.getElementById(htmltag).style.borderStyle = "solid";
+        document.getElementById(htmllabel).style.color = "red";
+
+        document.getElementById(errortag).innerHTML = "Field can't be empty";
+        document.getElementById(errortag).style.color = "red";
+
+        return false;
+    }
+    else {
+
+        document.getElementById(htmltag).style.borderColor = "black";
+        document.getElementById(htmltag).style.borderStyle = "";
+        document.getElementById(htmllabel).style.color = "black";
+        document.getElementById(errortag).innerHTML = "";
+        document.getElementById(errortag).style.color = "black";
+        return true;
+    }
+}
+
+function validateFormNumber(input, htmltag, htmllabel, errortag) {
+
+    var numbers = /^[0-9]+$/;
+
+    if (input.match(numbers) && input.length == 10) {
+
+        document.getElementById(htmltag).style.borderColor = "black";
+        document.getElementById(htmltag).style.borderStyle = "";
+        document.getElementById(htmllabel).style.color = "black";
+        document.getElementById(errortag).innerHTML = "";
+        document.getElementById(errortag).style.color = "black";
+        return true;
+    }
+    else {
+
+        //change color of html to on add contact to red
+        document.getElementById(htmltag).style.borderColor = "red";
+        document.getElementById(htmltag).style.borderStyle = "solid";
+        document.getElementById(htmllabel).style.color = "red";
+        document.getElementById(errortag).innerHTML = "Phone number must be 10 digits";
+        document.getElementById(errortag).style.color = "red";
+        return false;
+    }
+}
+
+function validateFormEmail(input, htmltag, htmllabel, errortag) {
+
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input)) {
+
+        document.getElementById(htmltag).style.borderColor = "black";
+        document.getElementById(htmltag).style.borderStyle = "";
+        document.getElementById(htmllabel).style.color = "black";
+        document.getElementById(errortag).innerHTML = "";
+        document.getElementById(errortag).style.color = "black";
+        return true;
+    }
+    else {
+
+
+        //change color of html to on add contact to red
+        document.getElementById(htmltag).style.borderColor = "red";
+        document.getElementById(htmltag).style.borderStyle = "solid";
+        document.getElementById(htmllabel).style.color = "red";
+        document.getElementById(errortag).innerHTML = "Must be a valid email";
+        document.getElementById(errortag).style.color = "red";
+        return false;
+    }
 }
 
 function doWelcome()
