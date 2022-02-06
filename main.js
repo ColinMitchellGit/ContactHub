@@ -266,32 +266,115 @@ function doAddContact()
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    try
-    {
-        xhr.send(jsonPayload);
+    if (validateFormEmpty(firstName, "addFirst", "addFirstLabel") && validateFormEmpty(lastName, "addLast", "addLastLabel")
+        && validateFormEmpty(phoneNumber, "addPhone", "addPhoneLabel") && validateFormEmpty(email, "addEmail", "addEmailLabel")) {
+        if (validateFormNumber(phoneNumber, "addPhone", "addPhoneLabel") && validateFormEmail(email, "addEmail", "addEmailLabel")) {
 
-        xhr.onreadystatechange = function()
-        {
-            if (this.readyState === 4 && this.status === 200)
-            {
-                let jsonObject = JSON.parse( xhr.responseText );
-                error = jsonObject.error;
-                if (error != "")
-                {
-                    console.log(error);
-                    return;
+            try {
+                xhr.send(jsonPayload);
+
+                xhr.onreadystatechange = function () {
+                    if (this.readyState === 4 && this.status === 200) {
+                        let jsonObject = JSON.parse(xhr.responseText);
+                        error = jsonObject.error;
+                        if (error != "") {
+                            console.log(error);
+                            return;
+                        }
+
+                        resetContactTable();
+                        doReadContacts();
+
+                        window.location.href = "cover.html";
+                    }
                 }
-
-                resetContactTable();
-                doReadContacts();
-
-                window.location.href = "cover.html";
+            }
+            catch (err) {
+                console.log(err);
             }
         }
+
     }
-    catch (err)
-    {
-        console.log(err);
+
+}
+
+/*
+
+if (validateFormEmpty(newFname, "NewContactFirstName", "NewContactFirstNameLabel") && validateFormEmpty(newLname, "NewContactLastName", "NewContactLastNameLabel")
+    && validateFormEmpty(newNumber, "NewContactNumber", "NewContactNumberLabel") && validateFormEmpty(newEmail, "NewContactEmail", "NewContactEmailLabel")) {
+    if (validateFormNumber(newNumber, "NewContactNumber", "NewContactNumberLabel") && validateFormEmail(newEmail, "NewContactEmail", "NewContactEmailLabel")) {
+
+
+    }
+
+}
+
+*/
+
+
+//-------------------------------------------------------------------------------
+//Helper text cleaners
+
+function validateFormEmpty(input, htmltag, htmllabel) {
+
+    if (input == "") {
+
+        //change color of html to on add contact to red
+        document.getElementById(htmltag).style.borderColor = "red";
+
+        document.getElementById(htmltag).style.borderStyle = "solid";
+
+        document.getElementById(htmllabel).style.color = "red";
+        
+        return false;
+    }
+    else {
+
+        document.getElementById(htmltag).style.borderColor = "black";
+        document.getElementById(htmltag).style.borderStyle = "";
+        document.getElementById(htmllabel).style.color = "black";
+        return true;
+    }
+}
+
+function validateFormNumber(input, htmltag, htmllabel) {
+
+    var numbers = /^[0-9]+$/;
+
+    if (input.match(numbers) && input.length == 10) {
+
+        document.getElementById(htmltag).style.borderColor = "black";
+        document.getElementById(htmltag).style.borderStyle = "";
+        document.getElementById(htmllabel).style.color = "black";
+        return true;
+    }
+    else {
+
+        //change color of html to on add contact to red
+        document.getElementById(htmltag).style.borderColor = "red";
+        document.getElementById(htmltag).style.borderStyle = "solid";
+        document.getElementById(htmllabel).style.color = "red";
+        return false;
+    }
+}
+
+function validateFormEmail(input, htmltag, htmllabel) {
+
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input)) {
+
+        document.getElementById(htmltag).style.borderColor = "black";
+        document.getElementById(htmltag).style.borderStyle = "";
+        document.getElementById(htmllabel).style.color = "black";
+        return true;
+    }
+    else {
+
+        
+        //change color of html to on add contact to red
+        document.getElementById(htmltag).style.borderColor = "red";
+        document.getElementById(htmltag).style.borderStyle = "solid";
+        document.getElementById(htmllabel).style.color = "red";
+        return false;
     }
 }
 
