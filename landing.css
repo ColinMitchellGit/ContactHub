@@ -82,7 +82,6 @@ body{
 
 #myTable tr:hover {
     background-color: #7c9ab4;
-	cursor: pointer;
 }
 .button1 {
     border: none;
