@@ -40,6 +40,12 @@
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
+#easteregg:hover {
+	cursor: pointer;
+	transition: transform 0.1s;
+	transform: scale(1.1);
+}
+
 html {
   font-family: sans-serif;
   line-height: 1.15;
