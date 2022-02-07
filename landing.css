@@ -1,5 +1,5 @@
 body{
-    background: linear-gradient(180deg, #EEE2DC 0%, #EEE2DC 100%);
+    background: linear-gradient(180deg, #cadeef 0%, #cadeef 100%);
 }
 
 .bg-light {
@@ -19,8 +19,8 @@ body{
     width: 80%; /* Full-width */
     font-size: 16px; /* Increase font-size */
     padding: 12px 20px 12px 40px; /* Add some padding */
-    border: 1px solid #bab2b5; /* Add a grey border */
-    border-width: 5px;
+    border: 1px solid #778fa4; /* Add a grey border */
+    border-width: 2.5px;
     margin-left: 120px;
     margin-bottom: 12px; /* Add some space below the input */
     border-radius: 15px;
@@ -32,7 +32,7 @@ body{
     width: 80%; /* Full-width */
     margin-left: 120px;
     /* border: 1px solid #7991D9;  Add a grey border */
-    background-color: #EDC7B7;
+    background-color: #91b0cb;
     border-radius: 15px;
     font-size: 18px; /* Increase font-size */
 
@@ -45,7 +45,7 @@ body{
     width: 80%; /* Full-width */
     margin-left: 120px;
     /* order: 1px solid #7991D9; Add a grey border */
-    background-color: #EDC7B7;
+    background-color: #91b0cb;
     border-radius: 15px;
     font-size: 18px; /* Increase font-size */
 
@@ -67,14 +67,21 @@ body{
 
 #myTable tr.header {
     /* Add a grey background color to the table header and on hover */
-    background-color: #EDC7B7;
+    background-color: #91b0cb;
+    border-radius: 400px;
+    color: #91b0cb;
+}
+
+#myTable tr.header:hover {
+    /* Add a grey background color to the table header and on hover */
+    background-color: #91b0cb;
     border-radius: 400px;
     color: #f3dddd;
 }
 
 
 #myTable tr:hover {
-    background-color: #dcbcad;
+    background-color: #7c9ab4;
 }
 .button1 {
     border: none;
