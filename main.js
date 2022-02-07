@@ -435,6 +435,12 @@ function doReadContacts()
 
 				for (var i = 0; i < contactArray.length; i++)
 				{
+					// Adding a max number of contacts that can be added to the table
+					if (i == 30)
+					{
+						break;
+					}
+
 					// Grabbing contact info
 					let contactFirstName = contactArray[i].firstName;
 					let contactLastName = contactArray[i].lastName;
