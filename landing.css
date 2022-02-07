@@ -33,7 +33,7 @@ body{
     margin-left: 120px;
     /* border: 1px solid #7991D9;  Add a grey border */
     background-color: #91b0cb;
-    /* border-radius: 15px; */
+    border-radius: 15px;
     font-size: 18px; /* Increase font-size */
 
 }
@@ -68,7 +68,7 @@ body{
 #myTable tr.header {
     /* Add a grey background color to the table header and on hover */
     background-color: #91b0cb;
-    border-radius: 400px;
+    /* border-radius: 400px; */
     color: #91b0cb;
 }
 
