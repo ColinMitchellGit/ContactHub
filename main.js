@@ -266,40 +266,30 @@ function doAddContact()
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    if (validateFormEmpty(firstName, "addFirst", "addFirstLabel", "errorBox") && validateFormEmpty(lastName, "addLast", "addLastLabel", "errorBox")
-        && validateFormEmpty(phoneNumber, "addPhone", "addPhoneLabel", "errorBox") && validateFormEmpty(email, "addEmail", "addEmailLabel", "errorBox")) {
-        if (validateFormNumber(phoneNumber, "addPhone", "addPhoneLabel", "errorBox") && validateFormEmail(email, "addEmail", "addEmailLabel", "errorBox")) {
+    try 
+    {
+        xhr.send(jsonPayload);
 
-            try {
-                xhr.send(jsonPayload);
-
-                xhr.onreadystatechange = function () {
-                    if (this.readyState === 4 && this.status === 200) {
-                        let jsonObject = JSON.parse(xhr.responseText);
-                        error = jsonObject.error;
-                        if (error != "") {
-                            console.log(error);
-                            return;
-                        }
-
-                        resetContactTable();
-                        doReadContacts();
-
-                        window.location.href = "cover.html";
-                    }
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+                error = jsonObject.error;
+                if (error != "") {
+                    console.log(error);
+                    return;
                 }
-            }
-            catch (err) {
-                console.log(err);
+
+                resetContactTable();
+                doReadContacts();
+
+                window.location.href = "cover.html";
             }
         }
-
     }
-
+    catch (err) {
+        console.log(err);
+    }
 }
-
-
-
 
 function doEditContact()
 {
@@ -316,40 +306,29 @@ function doEditContact()
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
+    try {
+        xhr.send(jsonPayload);
 
-    if (validateFormEmpty(firstName, "newFirst", "newFirstLabel", "errorEditBox") && validateFormEmpty(lastName, "newdLast", "newLastLabel", "errorEditBox")
-        && validateFormEmpty(phoneNumber, "newPhone", "newPhoneLabel", "errorEditBox") && validateFormEmpty(email, "newEmail", "newEmailLabel", "errorEditBox")) {
-        if (validateFormNumber(phoneNumber, "newPhone", "newPhoneLabel", "errorEditBox") && validateFormEmail(email, "newEmail", "newEmailLabel", "errorEditBox")) {
-
-            try {
-                xhr.send(jsonPayload);
-
-                xhr.onreadystatechange = function () {
-                    if (this.readyState === 4 && this.status === 200) {
-                        let jsonObject = JSON.parse(xhr.responseText);
-                        error = jsonObject.error;
-                        if (error != "") {
-                            console.log(error);
-                            return;
-                        }
-
-                        resetContactTable();
-                        document.getElementById("searchBar").value = "";
-                        doReadContacts();
-
-                        window.location.reload();
-
-
-                    }
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                let jsonObject = JSON.parse(xhr.responseText);
+                error = jsonObject.error;
+                if (error != "") {
+                    console.log(error);
+                    return;
                 }
-            }
-            catch (err) {
-                console.log(err);
-            }
 
+                resetContactTable();
+                document.getElementById("searchBar").value = "";
+                doReadContacts();
+
+            }
         }
     }
-
+    catch (err) 
+    {
+        console.log(err);
+    }
 }
 
 function doDeleteContact(contactID)
