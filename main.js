@@ -319,9 +319,7 @@ function doEditContact()
                 }
 
                 resetContactTable();
-                document.getElementById("searchBar").value = "";
                 doReadContacts();
-
             }
         }
     }
@@ -516,9 +514,6 @@ function validateFormEmpty(input, htmltag, htmllabel, errortag) {
         document.getElementById(htmltag).style.borderStyle = "solid";
         document.getElementById(htmllabel).style.color = "red";
 
-        document.getElementById(errortag).innerHTML = "Field can't be empty";
-        document.getElementById(errortag).style.color = "red";
-
         return false;
     }
     else {
@@ -526,8 +521,6 @@ function validateFormEmpty(input, htmltag, htmllabel, errortag) {
         document.getElementById(htmltag).style.borderColor = "black";
         document.getElementById(htmltag).style.borderStyle = "";
         document.getElementById(htmllabel).style.color = "black";
-        document.getElementById(errortag).innerHTML = "";
-        document.getElementById(errortag).style.color = "black";
         return true;
     }
 }
@@ -541,8 +534,6 @@ function validateFormNumber(input, htmltag, htmllabel, errortag) {
         document.getElementById(htmltag).style.borderColor = "black";
         document.getElementById(htmltag).style.borderStyle = "";
         document.getElementById(htmllabel).style.color = "black";
-        document.getElementById(errortag).innerHTML = "";
-        document.getElementById(errortag).style.color = "black";
         return true;
     }
     else {
@@ -551,8 +542,6 @@ function validateFormNumber(input, htmltag, htmllabel, errortag) {
         document.getElementById(htmltag).style.borderColor = "red";
         document.getElementById(htmltag).style.borderStyle = "solid";
         document.getElementById(htmllabel).style.color = "red";
-        document.getElementById(errortag).innerHTML = "Phone number must be 10 digits";
-        document.getElementById(errortag).style.color = "red";
         return false;
     }
 }
@@ -564,8 +553,6 @@ function validateFormEmail(input, htmltag, htmllabel, errortag) {
         document.getElementById(htmltag).style.borderColor = "black";
         document.getElementById(htmltag).style.borderStyle = "";
         document.getElementById(htmllabel).style.color = "black";
-        document.getElementById(errortag).innerHTML = "";
-        document.getElementById(errortag).style.color = "black";
         return true;
     }
     else {
@@ -575,8 +562,6 @@ function validateFormEmail(input, htmltag, htmllabel, errortag) {
         document.getElementById(htmltag).style.borderColor = "red";
         document.getElementById(htmltag).style.borderStyle = "solid";
         document.getElementById(htmllabel).style.color = "red";
-        document.getElementById(errortag).innerHTML = "Must be a valid email";
-        document.getElementById(errortag).style.color = "red";
         return false;
     }
 }
