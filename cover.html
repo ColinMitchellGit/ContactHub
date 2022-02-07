@@ -45,7 +45,7 @@
 <body onload="doReadContacts(); doWelcome();">
 
 <header>
-    <div class="collapse bg-dark" id="navbarHeader">
+    <div class="collapse bg-light" id="navbarHeader">
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-md-7 py-4">
@@ -63,7 +63,7 @@
             </div>
         </div>
     </div>
-    <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="navbar navbar-light bg-light shadow-sm">
         <div class="container">
             <a href="#" class="navbar-brand d-flex align-items-center">
                 <!--                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>-->
@@ -82,14 +82,14 @@
 
 <main>
 
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
+    <section class="py-1 text-center container" >
+        <div class="row py-sm-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light" id="welcome"></h1>
                 <p class="lead text-muted">All your contacts, down below, in one place! Feel free to edit, delete, or add contacts as you please.</p>
                 <p>
                     <!-- <a href="#" class="btn btn-primary my-2">Add Contact</a> -->
-                    <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#myModal">Add Contact</button>
+                    <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#myModal" style="background-color: pink">Add Contact</button>
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -201,16 +201,16 @@
         </div>
     </section>
 
-    <div class="album py-5 bg-light">
+    <div class="album py-5 ">
         <div class="container">
 
             <!--            TEST SEARCH BAR  -->
-            <input type="text" id="searchBar" onkeyup="doReadContacts();" placeholder="Search for names.." style="width:100%; height:50%; font-size:16px; padding: 12px 20px 12px 40px; border: 1px solid #ddd; margin-bottom: 12px;" >
+            <input type="text" id="searchBar" onkeyup="doReadContacts();" placeholder="Search for names.." >
 
             <table id="myTable">
                 <tr class="header">
-                    <th style="width:60%;">Name</th>
-                    <th style="width:40%;">Options</th>
+                    <th style="width:60%; border-radius: 25px ">Name</th>
+                    <th style="width:40%; border-radius: 25px">Options</th>
                 </tr>
             </table>
 

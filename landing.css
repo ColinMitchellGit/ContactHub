@@ -1,34 +1,78 @@
-.myInput {
-    /*background-image: url('/images/searchicon.png'); !* Add a search icon to input *!*/
+body{
+    background: linear-gradient(180deg, #EEE2DC 0%, #EEE2DC 100%);
+}
+
+.bg-light {
+    background-color: #0c4128;
+}
+
+/* Modify the background color */
+.navbar-custom {
+    background-color: #D3E9F6FF;
+}
+
+
+#searchBar {
+    background-image: url('/images/searchicon.png'); /* Add a search icon to input */
     background-position: 10px 12px; /* Position the search icon */
     background-repeat: no-repeat; /* Do not repeat the icon image */
-    width: 100%; /* Full-width */
+    width: 80%; /* Full-width */
     font-size: 16px; /* Increase font-size */
     padding: 12px 20px 12px 40px; /* Add some padding */
-    border: 1px solid #ddd; /* Add a grey border */
+    border: 1px solid #6b83cb; /* Add a grey border */
+    margin-left: 120px;
     margin-bottom: 12px; /* Add some space below the input */
+    border-radius: 50px;
 }
 
 #myTable {
-    border-collapse: collapse; /* Collapse borders */
-    width: 100%; /* Full-width */
-    border: 1px solid #ddd; /* Add a grey border */
+    /*border-collapse: collapse; !* Collapse borders *!*/
+    width: 80%; /* Full-width */
+    margin-left: 120px;
+    /* border: 1px solid #7991D9;  Add a grey border */
+    background-color: #EDC7B7;
+    border-radius: 25px;
     font-size: 18px; /* Increase font-size */
+
+}
+
+
+
+#myTable:hover {
+    /*border-collapse: collapse; !* Collapse borders *!*/
+    width: 80%; /* Full-width */
+    margin-left: 120px;
+    /* order: 1px solid #7991D9; Add a grey border */
+    background-color: #EDC7B7;
+    border-radius: 25px;
+    font-size: 18px; /* Increase font-size */
+
+
 }
 
 #myTable th, #myTable td {
-    text-align: left; /* Left-align text */
+    text-align: center; /* Left-align text */
     padding: 12px; /* Add padding */
+    color: #f8f8f8;
+    font-family: "Times New Roman";
+    font-weight: bold;
 }
 
 #myTable tr {
     /* Add a bottom border to all table rows */
-    border-bottom: 1px solid #ddd;
+    /*border-bottom: 1px solid #7991D9;*/
 }
 
-#myTable tr.header, #myTable tr:hover {
+#myTable tr.header {
     /* Add a grey background color to the table header and on hover */
-    background-color: #f1f1f1;
+    background-color: #6b83cb;
+    border-radius: 400px;
+    color: #f3dddd;
+}
+
+
+#myTable tr:hover {
+    background-color: #86a0ee;
 }
 .button1 {
     border: none;
