@@ -19,10 +19,12 @@ body{
     width: 80%; /* Full-width */
     font-size: 16px; /* Increase font-size */
     padding: 12px 20px 12px 40px; /* Add some padding */
-    border: 1px solid #6b83cb; /* Add a grey border */
+    border: 1px solid #bab2b5; /* Add a grey border */
+    border-width: 5px;
     margin-left: 120px;
     margin-bottom: 12px; /* Add some space below the input */
-    border-radius: 50px;
+    border-radius: 15px;
+    outline: none;
 }
 
 #myTable {
@@ -31,7 +33,7 @@ body{
     margin-left: 120px;
     /* border: 1px solid #7991D9;  Add a grey border */
     background-color: #EDC7B7;
-    border-radius: 25px;
+    border-radius: 15px;
     font-size: 18px; /* Increase font-size */
 
 }
@@ -44,7 +46,7 @@ body{
     margin-left: 120px;
     /* order: 1px solid #7991D9; Add a grey border */
     background-color: #EDC7B7;
-    border-radius: 25px;
+    border-radius: 15px;
     font-size: 18px; /* Increase font-size */
 
 
@@ -53,7 +55,7 @@ body{
 #myTable th, #myTable td {
     text-align: center; /* Left-align text */
     padding: 12px; /* Add padding */
-    color: #f8f8f8;
+    color: #050505;
     font-family: "Times New Roman";
     font-weight: bold;
 }
@@ -65,14 +67,14 @@ body{
 
 #myTable tr.header {
     /* Add a grey background color to the table header and on hover */
-    background-color: #6b83cb;
+    background-color: #EDC7B7;
     border-radius: 400px;
     color: #f3dddd;
 }
 
 
 #myTable tr:hover {
-    background-color: #86a0ee;
+    background-color: #dcbcad;
 }
 .button1 {
     border: none;
