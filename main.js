@@ -317,7 +317,8 @@ function doEditContact()
                     console.log(error);
                     return;
                 }
-
+                
+                console.log("hello???");
                 setTimeout(function(){document.location.href = "cover.html"},200);
                 resetContactTable();
                 doReadContacts();
