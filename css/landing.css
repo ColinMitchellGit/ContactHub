@@ -32,7 +32,7 @@ body{
     width: 80%; /* Full-width */
     margin-left: 120px;
     /* border: 1px solid #7991D9;  Add a grey border */
-    background-color: #91b0cb;
+    background-color: #9ebdd9;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     border-top-left-radius: 15px;
@@ -48,7 +48,7 @@ body{
     width: 80%; /* Full-width */
     margin-left: 120px;
     /* order: 1px solid #7991D9; Add a grey border */
-    background-color: #91b0cb;
+    background-color: #99b9d5;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
     border-top-left-radius: 15px;
@@ -73,7 +73,7 @@ body{
 
 #myTable tr.header {
     /* Add a grey background color to the table header */
-    background-color: #7c9ebd;
+    background-color: #87acce;
     /*border-radius: 400px;*/
     color: #91b0cb;
 }
