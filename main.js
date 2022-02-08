@@ -312,13 +312,12 @@ function doEditContact()
         xhr.onreadystatechange = function () {
             if (this.readyState === 4 && this.status === 200) {
                 let jsonObject = JSON.parse(xhr.responseText);
-                error = jsonObject.error;
+                error = jsonObject.info;
                 if (error != "") {
                     console.log(error);
                     return;
                 }
-
-                setTimeout(function(){document.location.href = "cover.html"},200);
+                
                 resetContactTable();
                 doReadContacts();
             }
