@@ -163,6 +163,7 @@ function doRegister()
 
                 saveCookie();
                 window.location.href = "index.html";
+                return false;
             }
 
         }
