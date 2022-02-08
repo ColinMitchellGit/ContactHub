@@ -24,7 +24,7 @@
 
 		if ($stmt->execute() == true)
 		{
-			returnInfo("Update successful!");
+			returnInfo("");
 		}
 		else
 		{
