@@ -317,7 +317,7 @@ function doEditContact()
                     console.log(error);
                     return;
                 }
-                
+
                 resetContactTable();
                 doReadContacts();
             }
@@ -480,7 +480,7 @@ function doReadContacts()
 					button1.className = "button1 mt-3 mb-5";
 					button1.setAttribute("data-bs-toggle", "modal");
 					button1.setAttribute("data-bs-target", "#myModal2");
-					button1.innerHTML = "Edit";
+					button1.innerHTML = "Edit +";
                     button1.onclick = function()
 					{
 						globalContactID = contactID;
@@ -496,7 +496,7 @@ function doReadContacts()
 					button2.type = "button";
 					button2.className = "button1 mt-3 mb-5";
 					button2.onclick = function() {doDeleteContact(contactID);doReadContacts();};
-					button2.innerHTML = "Delete";
+					button2.innerHTML = "Delete 🖉";
 					data2.appendChild(button2);
 				}
 			}
@@ -514,7 +514,7 @@ function convertNumber(number)
     let dashPhoneNumber = "(";
     for (var i = 0; i < number.length; i++)
     {
-        if (i == 3) 
+        if (i == 3)
         {
             dashPhoneNumber += ")-";
         }
@@ -524,7 +524,7 @@ function convertNumber(number)
         }
         dashPhoneNumber += number[i];
     }
-    
+
     return dashPhoneNumber;
 }
 
