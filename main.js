@@ -494,8 +494,6 @@ function doReadContacts()
 					};
 					data2.appendChild(button1);
 
-					data2.innerHTML = " "
-
 					let button2 = document.createElement("button");
 					button2.type = "button";
 					button2.className = "button1 mt-3 mb-5";
