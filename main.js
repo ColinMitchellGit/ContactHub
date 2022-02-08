@@ -486,7 +486,7 @@ function doReadContacts()
 
 						document.getElementById("newFirst").value = contactFirstName;
 					    document.getElementById("newLast").value = contactLastName;
-					    document.getElementById("newPhone").value = phoneNumber;
+					    document.getElementById("newPhone").value = contactArray[i].phoneNumber;
 					    document.getElementById("newEmail").value = email;
 					};
 					data2.appendChild(button1);
