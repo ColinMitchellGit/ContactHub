@@ -464,8 +464,14 @@ function doReadContacts()
 					let data1 = row.insertCell(0);
 					data1.innerHTML = contactFirstName + " " + contactLastName;
 
+                    let data3 = row.insertCell(1);
+					data3.innerHTML = email;
+
+                    let data4 = row.insertCell(2);
+					data4.innerHTML = phoneNumber;
+
 					// Adding the second cell which contains the edit and delete buttons.
-					let data2 = row.insertCell(1);
+					let data2 = row.insertCell(3);
 
 					// Creating and applying attributes to buttons, then appending them.
 					let button1 = document.createElement("button");
