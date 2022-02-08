@@ -492,6 +492,8 @@ function doReadContacts()
 					    document.getElementById("newPhone").value = phone;
 					    document.getElementById("newEmail").value = email;
 					};
+
+					button1.style.margin-right = "5px";
 					data2.appendChild(button1);
 
 					let button2 = document.createElement("button");
