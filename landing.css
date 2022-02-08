@@ -62,7 +62,7 @@ body{
 
 #myTable tr {
     /* Add a bottom border to all table rows */
-    border-bottom: 1px solid #7991D9;
+    border-bottom: 1px solid #15161a;
 }
 
 #myTable tr.header {
