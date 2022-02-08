@@ -496,7 +496,7 @@ function doReadContacts()
 					button2.type = "button";
 					button2.className = "button1 mt-3 mb-5";
 					button2.onclick = function() {doDeleteContact(contactID);doReadContacts();};
-					button2.innerHTML = "Delete &#xF4C9;";
+					button2.innerHTML = "Delete &#128393;";
 					data2.appendChild(button2);
 				}
 			}
