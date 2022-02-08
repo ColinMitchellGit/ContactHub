@@ -63,7 +63,7 @@ body{
     padding: 12px; /* Add padding */
     color: #050505;
     font-family: "Times New Roman";
-    font-weight: bold;
+    font-weight: light;
 }
 
 #myTable tr {
