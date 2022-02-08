@@ -6,11 +6,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Git Pull Origin Contacts</title>
-    <link rel="shortcut icon" type="image/jpg" href="./images/bluemountain.jpg"/>
+    <title>ContactHub</title>
+    <link rel="shortcut icon" type="image/jpg" href="./images/Totoro_Git.png"/>
 
 
-    <link rel="stylesheet" type="text/css" href="./landing.css">
+    <link rel="stylesheet" type="text/css" href="./css/landing.css">
     <!--  Linking the javascript-->
     <script type="text/javascript" src="./landing.js"></script>
     <script type="text/javascript" src="main.js"></script>
@@ -45,7 +45,7 @@
 <body onload="doReadContacts(); doWelcome();">
 
 <header>
-    <div class="collapse bg-dark" id="navbarHeader">
+    <div class="collapse bg-light" id="navbarHeader">
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-md-7 py-4">
@@ -63,7 +63,7 @@
             </div>
         </div>
     </div>
-    <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="navbar navbar-light bg-light shadow-sm">
         <div class="container">
             <a href="#" class="navbar-brand d-flex align-items-center">
                 <!--                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>-->
@@ -71,25 +71,36 @@
                     <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
                     <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
                 </svg>
-                <strong> &nbsp;&nbsp; Contact Manager</strong>
+                <light onclick="location.href='cover.html'">  &nbsp;&nbsp; ContactHub </light>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+			<a href="#" class="btn btn-secondary my-2" style="color: black; background-color: #91b0cb; border-color: #91b0cb; border-radius: 10px;"onclick="doLogout();">Logout
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="padding-bottom: 3px;" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                </svg>
+
+            </a>
         </div>
     </div>
 </header>
 
 <main>
 
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
+    <section class="py-1 text-center container" >
+        <div class="row py-sm-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light" id="welcome"></h1>
                 <p class="lead text-muted">All your contacts, down below, in one place! Feel free to edit, delete, or add contacts as you please.</p>
                 <p>
                     <!-- <a href="#" class="btn btn-primary my-2">Add Contact</a> -->
-                    <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#myModal">Add Contact</button>
+                    <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#myModal" style="color: black; background-color: #91b0cb; border-color: #91b0cb; border-radius: 10px;">Add Contact
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="padding-bottom: 3px;" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+
+                    </button>
                     <div class="modal" id="myModal">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -100,20 +111,20 @@
                                 <div class="modal-body">
                                     <form>
                                         <div class="mb-3">
-                                            <label class="form-label required">First Name</label>
+                                            <label id="addFirstLabel" class="form-label required">First Name</label>
                                             <input id="addFirst" type="text" placeholder="John" class="form-control">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label required">Last Name</label>
+                                            <label id="addLastLabel" class="form-label required">Last Name</label>
                                             <input id="addLast" type="text" placeholder="Smith" class="form-control">
                                             <!--                                                <input type="email" class="form-control">-->
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label required">Phone Number</label>
+                                            <label id="addPhoneLabel" class="form-label required">Phone Number</label>
                                             <input id="addPhone" type="text" placeholder="1234567890" class="form-control">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label required">Email</label>
+                                            <label id="addEmailLabel" class="form-label required">Email</label>
                                             <input id="addEmail" type="text" placeholder="example@gmail.com" class="form-control">
                                         </div>
                                     </form>
@@ -135,26 +146,26 @@
                                 <div class="modal-body">
                                     <form>
                                         <div class="mb-3">
-                                            <label class="form-label required">First Name</label>
+                                            <label id="newFirstLabel" class="form-label required">First Name</label>
                                             <input id="newFirst" type="text" placeholder="John" class="form-control">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label required">Last Name</label>
+                                            <label id="newLastLabel" class="form-label required">Last Name</label>
                                             <input id="newLast" type="text" placeholder="Smith" class="form-control">
                                             <!--                                                <input type="email" class="form-control">-->
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label required">Phone Number</label>
+                                            <label id="newPhoneLabel" class="form-label required">Phone Number</label>
                                             <input id="newPhone" type="text" placeholder="1234567890" class="form-control">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label required">Email</label>
+                                            <label id="newEmailLabel" class="form-label required">Email</label>
                                             <input id="newEmail" type="text" placeholder="example@gmail.com" class="form-control">
                                         </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary" onclick="doEditContact();">Submit</button>
+                                    <button type="button" data-bs-dismiss="modal" class="btn btn-primary" onclick="doEditContact();">Submit</button>
                                     <button onclick="location.href = 'cover.html';" class="btn btn-danger">Cancel</button>
                                 </div>
                             </div>
@@ -189,165 +200,46 @@
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary" onclick="doEditContact();">Submit</button>
                                 <button onclick="location.href = 'cover.html';" class="btn btn-danger">Cancel</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                    <a href="#" class="btn btn-secondary my-2" onclick="doLogout();">Logout</a>
-                </p>
+<!--                    <a href="#" class="btn btn-secondary my-2" onclick="doLogout();">Logout</a>-->
+
             </div>
         </div>
     </section>
 
-    <div class="album py-5 bg-light">
+    <div class="album py-5 ">
         <div class="container">
 
             <!--            TEST SEARCH BAR  -->
-            <input type="text" id="searchBar" onkeyup="doReadContacts();" placeholder="Search for names..">
+
+            <input type="text" id="searchBar" onkeyup="doReadContacts();" placeholder="Search for names.." >
 
             <table id="myTable">
                 <tr class="header">
-                    <th style="width:60%;">Name</th>
-                    <th style="width:40%;">Options</th>
+                    <th style="width:30%; border-top-left-radius: 10px ">Name</th>
+                    <th style="width:30%; border-radius: 0px ">Email</th>
+                    <th style="width:20%; border-radius: 0px ">Phone #</th>
+                    <th style="width:20%; border-top-right-radius: 10px">Options</th>
                 </tr>
             </table>
 
 
-
-
-
-
-
-            <!--            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">-->
-            <!--                <div class="col">-->
-            <!--                    <div class="card shadow-sm">-->
-            <!--                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Add contact photo!</text></svg>-->
-
-            <!--                        <div class="card-body">-->
-            <!--                            <p class="card-text">Magdalena Dobinda</p>-->
-            <!--                            <p class="card-text">Phone Number: 1-800-peaches</p>-->
-            <!--                            <p class="card-text">Email: peaches@apricots.com</p>-->
-            <!--                            <p class="card-text">Address: P. Sherman, 42 Wallaby Way, Sydney. </p>-->
-            <!--                            <div class="d-flex justify-content-between align-items-center">-->
-            <!--                                <div class="btn-group">-->
-            <!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
-            <!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>-->
-            <!--                                </div>-->
-            <!--                                <small class="text-muted">9 mins</small>-->
-            <!--                            </div>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <div class="col">-->
-            <!--                    <div class="card shadow-sm">-->
-            <!--                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Add contact photo!</text></svg>-->
-
-            <!--                        <div class="card-body">-->
-            <!--                            <p class="card-text">Colin Mitchell</p>-->
-            <!--                            <p class="card-text">Phone Number: 1-800-peaches</p>-->
-            <!--                            <p class="card-text">Email: peaches@apricots.com</p>-->
-            <!--                            <p class="card-text">Address: P. Sherman, 42 Wallaby Way, Sydney. </p>-->
-            <!--                            <div class="d-flex justify-content-between align-items-center">-->
-            <!--                                <div class="btn-group">-->
-            <!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
-            <!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>-->
-            <!--                                </div>-->
-            <!--                                <small class="text-muted">9 mins</small>-->
-            <!--                            </div>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <div class="col">-->
-            <!--                    <div class="card shadow-sm">-->
-            <!--                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Add contact photo!</text></svg>-->
-
-            <!--                        <div class="card-body">-->
-            <!--                            <p class="card-text">Seif Sallam</p>-->
-            <!--                            <p class="card-text">Phone Number: 1-800-peaches</p>-->
-            <!--                            <p class="card-text">Email: peaches@apricots.com</p>-->
-            <!--                            <p class="card-text">Address: P. Sherman, 42 Wallaby Way, Sydney. </p>-->
-            <!--                            <div class="d-flex justify-content-between align-items-center">-->
-            <!--                                <div class="btn-group">-->
-            <!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
-            <!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>-->
-            <!--                                </div>-->
-            <!--                                <small class="text-muted">9 mins</small>-->
-            <!--                            </div>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <div class="col">-->
-            <!--                    <div class="card shadow-sm">-->
-            <!--                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Add contact photo!</text></svg>-->
-
-            <!--                        <div class="card-body">-->
-            <!--                            <p class="card-text">Chad Higgins</p>-->
-            <!--                            <p class="card-text">Phone Number: 1-800-peaches</p>-->
-            <!--                            <p class="card-text">Email: peaches@apricots.com</p>-->
-            <!--                            <p class="card-text">Address: P. Sherman, 42 Wallaby Way, Sydney. </p>-->
-            <!--                            <div class="d-flex justify-content-between align-items-center">-->
-            <!--                                <div class="btn-group">-->
-            <!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
-            <!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>-->
-            <!--                                </div>-->
-            <!--                                <small class="text-muted">9 mins</small>-->
-            <!--                            </div>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <div class="col">-->
-            <!--                    <div class="card shadow-sm">-->
-            <!--                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Add contact photo!</text></svg>-->
-
-            <!--                        <div class="card-body">-->
-            <!--                            <p class="card-text">Seif Sallam</p>-->
-            <!--                            <p class="card-text">Phone Number: 1-800-peaches</p>-->
-            <!--                            <p class="card-text">Email: peaches@apricots.com</p>-->
-            <!--                            <p class="card-text">Address: P. Sherman, 42 Wallaby Way, Sydney. </p>-->
-            <!--                            <div class="d-flex justify-content-between align-items-center">-->
-            <!--                                <div class="btn-group">-->
-            <!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
-            <!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>-->
-            <!--                                </div>-->
-            <!--                                <small class="text-muted">9 mins</small>-->
-            <!--                            </div>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <div class="col">-->
-            <!--                    <div class="card shadow-sm">-->
-            <!--                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Add contact photo!</text></svg>-->
-
-            <!--                        <div class="card-body">-->
-            <!--                            <p class="card-text">Magdalena Dobinda</p>-->
-            <!--                            <p class="card-text">Phone Number: 1-800-peaches</p>-->
-            <!--                            <p class="card-text">Email: peaches@apricots.com</p>-->
-            <!--                            <p class="card-text">Address: P. Sherman, 42 Wallaby Way, Sydney. </p>-->
-            <!--                            <div class="d-flex justify-content-between align-items-center">-->
-            <!--                                <div class="btn-group">-->
-            <!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
-            <!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>-->
-            <!--                                </div>-->
-            <!--                                <small class="text-muted">9 mins</small>-->
-            <!--                            </div>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
         </div>
     </div>
 
 </main>
 
-<footer class="text-muted py-5">
+<footer class="text-muted py-1">
     <div class="container">
-        <p class="float-end mb-1">
-            <a href="#" class="btn btn-secondary my-2">Back to Top</a>
-            <!--            <a href="#">Back to top</a>-->
-        </p>
-        <p class="mb-1">Made by Group 15 for Small Project in COP4331</p>
+
+        <p class="mb-1" style="color: #cadeef"> .</p>
+        <p class="mb-1" style="color: #cadeef"> .</p>
+        <p class="mb-1" style="color: #cadeef"> .</p>
+        <p class="mb-1" >Made by Group 15 for Small Project in COP4331</p>
         <p class="mb-1">Enjoy(:</p>
     </div>
 </footer>

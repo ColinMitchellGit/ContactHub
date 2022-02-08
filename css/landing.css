@@ -1,0 +1,101 @@
+body{
+    background: linear-gradient(180deg, #cadeef 0%, #cadeef 100%);
+}
+
+.bg-light {
+    background-color: #0c4128;
+}
+
+/* Modify the background color */
+.navbar-custom {
+    background-color: #D3E9F6FF;
+}
+
+
+#searchBar {
+    background-image: url('/images/searchicon.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 80%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #778fa4; /* Add a grey border */
+    border-width: 2.5px;
+    margin-left: 120px;
+    margin-bottom: 12px; /* Add some space below the input */
+    border-radius: 15px;
+    outline: none;
+}
+
+#myTable {
+    /*border-collapse: collapse; !* Collapse borders *!*/
+    width: 80%; /* Full-width */
+    margin-left: 120px;
+    /* border: 1px solid #7991D9;  Add a grey border */
+    background-color: #9ebdd9;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    font-size: 18px; /* Increase font-size */
+
+}
+
+
+
+#myTable:hover {
+    /*border-collapse: collapse; !* Collapse borders *!*/
+    width: 80%; /* Full-width */
+    margin-left: 120px;
+    /* order: 1px solid #7991D9; Add a grey border */
+    background-color: #99b9d5;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    font-size: 18px; /* Increase font-size */
+
+
+}
+
+#myTable th, #myTable td {
+    text-align: center; /* Left-align text */
+    padding: 12px; /* Add padding */
+    color: #050505;
+    font-family: "Times New Roman";
+    font-weight: light;
+}
+
+#myTable tr {
+    /* Add a bottom border to all table rows */
+    border-bottom: 1px solid #15161a;
+}
+
+#myTable tr.header {
+    /* Add a grey background color to the table header */
+    background-color: #87acce;
+    /*border-radius: 400px;*/
+    color: #91b0cb;
+}
+
+#myTable tr.header:hover {
+    /* Add a grey background color to the table header and on hover */
+    background-color:  #87acce;
+    /*border-radius: 400px;*/
+    color: #f3dddd;
+    cursor: default;
+}
+
+#myTable tr:hover {
+    background-color: #90afcb;
+	cursor: pointer;
+}
+.button1 {
+    border: none;
+    /*height: 50px;*/
+    /*width: 10%;*/
+    /*background-color: black;*/
+    /*color: white;*/
+    /*border-radius: 4px;*/
+    /*font-weight: bold;*/
+}

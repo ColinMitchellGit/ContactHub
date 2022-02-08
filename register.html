@@ -12,23 +12,29 @@
     <link rel="stylesheet" href="css/styleLogin.css">
 
 </head>
-<body class="img js-fullheight" style="background-image: url(images/bluemountain.jpg); height: 500px; " >
+<body class="img js-fullheight" style="background-image: url(images/bluemountain.jpg); background-color: #0a1c2c;" >
+<div class="w-50 text-md-left" style="padding-left: 20px; padding-top: 10px;">
+    <a class="txt1" href="index.html">
+        <i class="fa fa-long-arrow-left"></i>
+        Back to login
+    </a>
+</div>
 <section class="ftco-section">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-4">
                 <div class="login-wrap p-0">
-                    <h3 class="mb-4 text-center">Create Account</h3>
+                    <h3 class="text-center" style="padding-bottom: 10px;">Create Account</h3>
                     <form action="#" class="signin-form">
                         <div class="mb-3">
-                            <input id="newFirstName" type="text" placeholder="First Name" class="form-control" style="margin-bottom: 10px; margin-top: -10px; >
+                            <input id="newFirstName" type="text" placeholder="First Name" class="form-control" style="margin-bottom: 10px; margin-top: -10px;" >
                         </div>
                         <div class="mb-3">
-                            <input id="newLastName" type="text" placeholder="Last Name" class="form-control" style="margin-bottom: -6px;">
+                            <input id="newLastName" type="text" placeholder="Last Name" class="form-control" style="margin-bottom: -7px;">
                         </div>
                         <div class="mb-3">
                             <label class="form-label required">Username</label>
-                            <input id="newUsername" type="text" placeholder="Username" class="form-control" style="margin-bottom: -6px;">
+                            <input id="newUsername" type="text" placeholder="Username" class="form-control" style="margin-bottom: -8px;">
                         </div>
                         <label class="form-label required">Password</label>
                         <div class="form-group">
@@ -40,17 +46,17 @@
                             <input id="newPasswordConfirm" type="password" class="form-control" placeholder="Password" required>
                             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
-                        <label class="form-label required">Security Questions:</label>
-                        <p> What was the name of your first pet? </p>
+<!--                        <label class="form-label required">Security Questions:</label>-->
+                        <p style="margin-top: -4px; margin-bottom: 4px;"> What was the name of your first pet? </p>
                         <div class="mb-3">
                             <input id="secQuestion1" type="text" placeholder="Answer" class="form-control">
                         </div>
-                        <p> What city was your mother born in? </p>
+                        <p style="margin-top: -4px; margin-bottom: 4px;"> What city was your mother born in? </p>
                         <div class="mb-3">
                             <input id="secQuestion2" type="text" placeholder="Answer" class="form-control">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="form-control btn btn-primary submit px-3" onclick="doRegister();">Submit</button>
+                            <button type="button" class="form-control btn btn-primary submit px-3" onclick="doRegister();">Submit</button>
                         </div>
                     </form>
                 </div>
