@@ -162,8 +162,7 @@ function doRegister()
                 console.log("Success!");
 
                 saveCookie();
-                window.location.href = "index.html";
-                return false;
+                setTimeout(function(){document.location.href = "index.html;"},500);
             }
 
         }
