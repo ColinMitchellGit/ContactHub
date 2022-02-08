@@ -80,7 +80,6 @@ body{
     cursor: default;
 }
 
-
 #myTable tr:hover {
     background-color: #7c9ab4;
 	cursor: pointer;
