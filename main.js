@@ -442,7 +442,7 @@ function doReadContacts()
 					// Grabbing contact info
 					let contactFirstName = contactArray[i].firstName;
 					let contactLastName = contactArray[i].lastName;
-					let phoneNumber = convertNumber(contactArray[i].phoneNumber);
+					let phoneNumber = contactArray[i].phoneNumber;
 					let email = contactArray[i].email;
 					let contactID = contactArray[i].contactID;
 
@@ -489,25 +489,7 @@ function doReadContacts()
 					    document.getElementById("newPhone").value = phoneNumber;
 					    document.getElementById("newEmail").value = email;
 					};
-
-					var xmlns1 = "http://www.w3.org/2000/svg";
-					let svg1 = document.createElementNS(xmlns, "svg");
-					svg1.setAttributeNS(null, "viewBox", "0 0 " + 16 + " " + 16);
-    				svg1.setAttributeNS(null, "width", 16);
-    				svg1.setAttributeNS(null, "height", 16);
-					svg1.setAttributeNS(null, "fill", "currentColor");
-					svg1.className = "bi bi-pencil-fill";
-					svg1.style.padding-bottom = "2px";
-					let path1 = document.createElementNS(xmlns,"path");
-					path1.setAttributeNS(null, "d", "M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z");
-					svg1.appendChild(path1);
-					button1.appendChild(svg1);
 					data2.appendChild(button1);
-
-
-
-
-
 
 					let button2 = document.createElement("button");
 					button2.type = "button";
@@ -524,25 +506,6 @@ function doReadContacts()
 		console.log(err);
 	}
 
-}
-
-function convertNumber(number)
-{
-    let dashPhoneNumber = "(";
-    for (var i = 0; i < number.length; i++)
-    {
-        if (i == 3)
-        {
-            dashPhoneNumber += ") ";
-        }
-        if (i == 6)
-        {
-            dashPhoneNumber += "-";
-        }
-        dashPhoneNumber += number[i];
-    }
-
-    return dashPhoneNumber;
 }
 
 function doWelcome()
@@ -608,4 +571,80 @@ function doLogout()
     lastName = "";
     document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     window.location.href = "index.html";
+}
+
+function addColor()
+{
+    let newColor = document.getElementById("colorText").value;
+    document.getElementById("colorAddResult").innerHTML = "";
+
+    let tmp = {color:newColor,userId,userId};
+    let jsonPayload = JSON.stringify( tmp );
+
+    let url = urlBase + '/AddColor.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                document.getElementById("colorAddResult").innerHTML = "Color has been added";
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err)
+    {
+        document.getElementById("colorAddResult").innerHTML = err.message;
+    }
+
+}
+
+function searchColor()
+{
+    let srch = document.getElementById("searchText").value;
+    document.getElementById("colorSearchResult").innerHTML = "";
+
+    let colorList = "";
+
+    let tmp = {search:srch,userId:userId};
+    let jsonPayload = JSON.stringify( tmp );
+
+    let url = urlBase + '/SearchColors.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
+                let jsonObject = JSON.parse( xhr.responseText );
+
+                for( let i=0; i<jsonObject.results.length; i++ )
+                {
+                    colorList += jsonObject.results[i];
+                    if( i < jsonObject.results.length - 1 )
+                    {
+                        colorList += "<br />\r\n";
+                    }
+                }
+
+                document.getElementsByTagName("p")[0].innerHTML = colorList;
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err)
+    {
+        document.getElementById("colorSearchResult").innerHTML = err.message;
+    }
+
 }
