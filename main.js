@@ -317,7 +317,7 @@ function doEditContact()
                     console.log(error);
                     return;
                 }
-                
+
                 resetContactTable();
                 doReadContacts();
             }
@@ -492,6 +492,8 @@ function doReadContacts()
 					    document.getElementById("newPhone").value = phone;
 					    document.getElementById("newEmail").value = email;
 					};
+
+					button1.style.marginRight = "5px";
 					data2.appendChild(button1);
 
 					let button2 = document.createElement("button");
@@ -518,7 +520,7 @@ function convertNumber(number)
     let dashPhoneNumber = "(";
     for (var i = 0; i < number.length; i++)
     {
-        if (i == 3) 
+        if (i == 3)
         {
             dashPhoneNumber += ")-";
         }
@@ -528,7 +530,7 @@ function convertNumber(number)
         }
         dashPhoneNumber += number[i];
     }
-    
+
     return dashPhoneNumber;
 }
 
