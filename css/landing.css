@@ -72,16 +72,16 @@ body{
 }
 
 #myTable tr.header {
-    /* Add a grey background color to the table header and on hover */
-    background-color: #91b0cb;
-    border-radius: 400px;
+    /* Add a grey background color to the table header */
+    background-color: #7c9ebd;
+    /*border-radius: 400px;*/
     color: #91b0cb;
 }
 
 #myTable tr.header:hover {
     /* Add a grey background color to the table header and on hover */
-    background-color: #91b0cb;
-    border-radius: 400px;
+    background-color: #7d9fbe;
+    /*border-radius: 400px;*/
     color: #f3dddd;
     cursor: default;
 }
