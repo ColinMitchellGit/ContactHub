@@ -318,9 +318,9 @@ function doEditContact()
                     return;
                 }
 
+                setTimeout(function(){document.location.href = "cover.html"},200);
                 resetContactTable();
                 doReadContacts();
-                setTimeout(function(){document.location.href = "cover.html"},200);
             }
         }
     }
