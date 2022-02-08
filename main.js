@@ -493,8 +493,8 @@ function doReadContacts()
 					    document.getElementById("newEmail").value = email;
 					};
 					data2.appendChild(button1);
-					
-					data2.innerHTML = "&nbsp;"
+
+					data2.innerHTML = "<p></p>"
 
 					let button2 = document.createElement("button");
 					button2.type = "button";
