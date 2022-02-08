@@ -442,6 +442,7 @@ function doReadContacts()
 					// Grabbing contact info
 					let contactFirstName = contactArray[i].firstName;
 					let contactLastName = contactArray[i].lastName;
+                    let phone = contactArray[i].phoneNumber;
 					let phoneNumber = convertNumber(contactArray[i].phoneNumber);
 					let email = contactArray[i].email;
 					let contactID = contactArray[i].contactID;
@@ -486,7 +487,7 @@ function doReadContacts()
 
 						document.getElementById("newFirst").value = contactFirstName;
 					    document.getElementById("newLast").value = contactLastName;
-					    document.getElementById("newPhone").value = contactArray[i].phoneNumber;
+					    document.getElementById("newPhone").value = phone;
 					    document.getElementById("newEmail").value = email;
 					};
 					data2.appendChild(button1);
