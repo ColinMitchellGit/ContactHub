@@ -266,7 +266,7 @@ function doAddContact()
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-    try 
+    try
     {
         xhr.send(jsonPayload);
 
@@ -323,7 +323,7 @@ function doEditContact()
             }
         }
     }
-    catch (err) 
+    catch (err)
     {
         console.log(err);
     }
@@ -489,7 +489,25 @@ function doReadContacts()
 					    document.getElementById("newPhone").value = phoneNumber;
 					    document.getElementById("newEmail").value = email;
 					};
+
+					var xmlns1 = "http://www.w3.org/2000/svg";
+					let svg1 = document.createElementNS(xmlns, "svg");
+					svg1.setAttributeNS(null, "viewBox", "0 0 " + 16 + " " + 16);
+    				svg1.setAttributeNS(null, "width", 16);
+    				svg1.setAttributeNS(null, "height", 16);
+					svg1.setAttributeNS(null, "fill", "currentColor");
+					svg1.className = "bi bi-pencil-fill";
+					svg1.style = "padding-bottom: 2px;";
+					let path1 = document.createElementNS(xmlns,"path");
+					path1.setAttributeNS(null, "d", "M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z");
+					svg1.appendChild(path1);
+					button1.appendChild(svg1);
 					data2.appendChild(button1);
+
+
+
+
+
 
 					let button2 = document.createElement("button");
 					button2.type = "button";
