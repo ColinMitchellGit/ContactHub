@@ -515,7 +515,7 @@ function convertNumber(number)
     {
         if (i == 3) 
         {
-            dashPhoneNumber += ") ";
+            dashPhoneNumber += ")-";
         }
         if (i == 6)
         {
