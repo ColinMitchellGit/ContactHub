@@ -33,7 +33,10 @@ body{
     margin-left: 120px;
     /* border: 1px solid #7991D9;  Add a grey border */
     background-color: #91b0cb;
-    border-radius: 15px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     font-size: 18px; /* Increase font-size */
 
 }
@@ -46,7 +49,10 @@ body{
     margin-left: 120px;
     /* order: 1px solid #7991D9; Add a grey border */
     background-color: #91b0cb;
-    border-radius: 15px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     font-size: 18px; /* Increase font-size */
 
 
