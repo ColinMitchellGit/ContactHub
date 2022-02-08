@@ -320,6 +320,7 @@ function doEditContact()
 
                 resetContactTable();
                 doReadContacts();
+                setTimeout(function(){document.location.href = "cover.html"},200);
             }
         }
     }
