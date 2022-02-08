@@ -442,7 +442,7 @@ function doReadContacts()
 					// Grabbing contact info
 					let contactFirstName = contactArray[i].firstName;
 					let contactLastName = contactArray[i].lastName;
-					let phoneNumber = contactArray[i].phoneNumber;
+					let phoneNumber = convertNumber(contactArray[i].phoneNumber);
 					let email = contactArray[i].email;
 					let contactID = contactArray[i].contactID;
 
