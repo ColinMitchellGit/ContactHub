@@ -508,7 +508,6 @@ function doReadContacts()
 
 }
 
-<<<<<<< HEAD
 function convertNumber(number)
 {
     let dashPhoneNumber = "(";
@@ -528,8 +527,6 @@ function convertNumber(number)
     return dashPhoneNumber;
 }
 
-=======
->>>>>>> dc10e7caa0ea82471401df5aeada0994624a3101
 function doWelcome()
 {
     document.getElementById("welcome").innerHTML = "Welcome, " + firstName + "!"
