@@ -51,7 +51,7 @@ function doForgot()
                 saveCookie();
 
                 // take to the place where you tupe new password
-                window.location.href = "resetPassword.html";
+                setTimeout(function(){document.location.href = "resetPassword.html"},200);
             }
 
         }
@@ -162,7 +162,7 @@ function doRegister()
                 console.log("Success!");
 
                 saveCookie();
-                setTimeout(function(){document.location.href = "index.html"},500);
+                setTimeout(function(){document.location.href = "index.html"},200);
             }
 
         }
