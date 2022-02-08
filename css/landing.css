@@ -80,7 +80,7 @@ body{
 
 #myTable tr.header:hover {
     /* Add a grey background color to the table header and on hover */
-    background-color: #7d9fbe;
+    background-color:  #87acce;
     /*border-radius: 400px;*/
     color: #f3dddd;
     cursor: default;
