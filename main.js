@@ -1,5 +1,5 @@
 // Setting up query link for ease of use in functions.
-const urlBase = 'https://colinmitchellgit.github.io/ContactManager/LAMPAPI';
+const urlBase = 'https://endearing-fox-212fa9.netlify.app/LAMPAPI';
 const extension = 'php';
 
 // Declaring variables to store user info once logged in.
