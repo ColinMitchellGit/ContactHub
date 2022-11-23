@@ -1,4 +1,4 @@
-# ContactManager
+# ContactHub
 Small project for COP4331 / Group 15
 
 Team members: 
