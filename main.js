@@ -1,5 +1,5 @@
 // Setting up query link for ease of use in functions.
-const urlBase = 'https://endearing-fox-212fa9.netlify.app/LAMPAPI';
+const urlBase = 'http://contactmanager15.xyz/LAMPAPI';
 const extension = 'php';
 
 // Declaring variables to store user info once logged in.
@@ -175,6 +175,9 @@ function doRegister()
 
 function doLogin()
 {
+    // Just going to the main page since php doesn't work on Github Pages.
+    window.location.href = "cover.html";
+    /*
 	// Grabbing the username and password from the input fields.
     let login = document.getElementById("usernameField").value;
     let password = document.getElementById("passwordField").value;
@@ -249,6 +252,7 @@ function doLogin()
 		// This is just catching any error that may have occurred while sending a query to the API.
         document.getElementById("loginResult").innerHTML = err.message;
     }
+    */
 }
 
 function doAddContact()
