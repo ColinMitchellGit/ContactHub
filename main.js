@@ -1,5 +1,5 @@
 // Setting up query link for ease of use in functions.
-const urlBase = 'https://contacthubproject.azurewebsites.net/LAMPAPI';
+const urlBase = 'https://rectangular-toothsome-stoat.glitch.me/LAMPAPI';
 const extension = 'php';
 
 // Declaring variables to store user info once logged in.
