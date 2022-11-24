@@ -1,5 +1,0 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine on
-    RewriteCond %{REQUEST_URI} ^(.*)
-    RewriteRule ^(.*)$ /wwwroot/LAMPAPI/$1 [NC,L,QSA]
-</IfModule>
