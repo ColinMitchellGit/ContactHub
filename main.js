@@ -1,5 +1,5 @@
 // Setting up query link for ease of use in functions.
-const urlBase = 'http://contactmanager15.xyz/LAMPAPI';
+const urlBase = 'https://colinmitchellgit.github.io/ContactHub/LAMPAPI';
 const extension = 'php';
 
 // Declaring variables to store user info once logged in.
