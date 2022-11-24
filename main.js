@@ -382,141 +382,234 @@ function doDeleteContact(contactID)
 
 function doReadContacts()
 {
-	// Reading cookie so we can get the User's ID
-	readCookie();
 
-	let searchTerm = document.getElementById("searchBar").value;
+    // Fixed data.
+    let contactArray = [
+        {
+            "firstName": "Gabi",
+            "lastName": "Gadd",
+            "phoneNumber": "757-676-5065",
+            "email": "ggadd0@arstechnica.com",
+            "contactID": 1
+        },
+        {
+            "firstName": "Kennett",
+            "lastName": "Vanichev",
+            "phoneNumber": "920-999-6491",
+            "email": "kvanichev1@domainmarket.com",
+            "contactID": 2
+        },
+        {
+            "firstName": "Whitaker",
+            "lastName": "Tidcomb",
+            "phoneNumber": "429-177-8565",
+            "email": "wtidcomb2@fda.gov",
+            "contactID": 3
+        },
+        {
+            "firstName": "Danica",
+            "lastName": "Teare",
+            "phoneNumber": "729-938-6771",
+            "email": "dteare3@thetimes.co.uk",
+            "contactID": 4
+        },
+        {
+            "firstName": "Thorndike",
+            "lastName": "Demongeot",
+            "phoneNumber": "361-979-7366",
+            "email": "tdemongeot4@ocn.ne.jp",
+            "contactID": 5
+        },
+        {
+            "firstName": "Tessie",
+            "lastName": "Davidescu",
+            "phoneNumber": "962-748-8699",
+            "email": "tdavidescu5@bloglovin.com",
+            "contactID": 6
+        },
+        {
+            "firstName": "Fletcher",
+            "lastName": "Gwyneth",
+            "phoneNumber": "575-989-9605",
+            "email": "fgwyneth6@netlog.com",
+            "contactID": 7
+        },
+        {
+            "firstName": "Falito",
+            "lastName": "Hamblett",
+            "phoneNumber": "343-134-8019",
+            "email": "fhamblett7@cafepress.com",
+            "contactID": 8
+        },
+        {
+            "firstName": "Kaleena",
+            "lastName": "Colam",
+            "phoneNumber": "585-496-5985",
+            "email": "kcolam8@acquirethisname.com",
+            "contactID": 9
+        },
+        {
+            "firstName": "Estevan",
+            "lastName": "Figgess",
+            "phoneNumber": "447-608-8540",
+            "email": "efiggess9@rambler.ru",
+            "contactID": 10
+        },
+        {
+            "firstName": "L;urette",
+            "lastName": "Muzzillo",
+            "phoneNumber": "133-370-8354",
+            "email": "lmuzzilloa@ed.gov",
+            "contactID": 11
+        },
+        {
+            "firstName": "Phelia",
+            "lastName": "Dongate",
+            "phoneNumber": "127-358-0345",
+            "email": "pdongateb@fotki.com",
+            "contactID": 12
+        },
+        {
+            "firstName": "Bail",
+            "lastName": "Ulyat",
+            "phoneNumber": "935-578-7631",
+            "email": "bulyatc@whitehouse.gov",
+            "contactID": 13
+        },
+        {
+            "firstName": "Waverley",
+            "lastName": "Chelam",
+            "phoneNumber": "313-224-6280",
+            "email": "wchelamd@com.com",
+            "contactID": 14
+        },
+        {
+            "firstName": "Lilly",
+            "lastName": "Tatersale",
+            "phoneNumber": "171-222-7416",
+            "email": "ltatersalee@un.org",
+            "contactID": 15
+        },
+        {
+            "firstName": "Bili",
+            "lastName": "Empson",
+            "phoneNumber": "203-906-1108",
+            "email": "bempsonf@ezinearticles.com",
+            "contactID": 16
+        },
+        {
+            "firstName": "Elisha",
+            "lastName": "Haton",
+            "phoneNumber": "300-361-8102",
+            "email": "ehatong@marketwatch.com",
+            "contactID": 17
+        },
+        {
+            "firstName": "Ermanno",
+            "lastName": "Saw",
+            "phoneNumber": "226-117-4852",
+            "email": "esawh@ebay.co.uk",
+            "contactID": 18
+        },
+        {
+            "firstName": "Darnell",
+            "lastName": "Vankin",
+            "phoneNumber": "693-823-1685",
+            "email": "dvankini@omniture.com",
+            "contactID": 19
+        },
+        {
+            "firstName": "Hazel",
+            "lastName": "Waterhowse",
+            "phoneNumber": "390-584-6934",
+            "email": "waterhowsej@ow.ly",
+            "contactID": 20
+        }
+        ]
 
-	console.log("UserID: " + userId);
-	console.log("Search term: " + searchTerm);
+    console.log(contactArray + "\n");
 
-	let tmp = {userID:userId,search:searchTerm};
-	let jsonPayload = JSON.stringify( tmp );
+    // Resetting the contact table to be empty so we don't have any repeating
+    // contacts in the list when we append new ones.
+    resetContactTable();
 
-	let url = urlBase + '/ReadContacts.' + extension;
+    // Grabbing the table to add/delete rows.
+    let table = document.getElementById("myTable");
 
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    for (var i = 0; i < contactArray.length; i++)
+    {
+        // Adding a max number of contacts that can be added to the table
+        if (i == 30)
+        {
+            break;
+        }
 
-	try
-	{
-		// We send the API query and wait for it to return.
-		// The API queries are "asynchronous", which means that other
-		// code can run in the background while the query is pending.
-		xhr.send(jsonPayload);
+        // Grabbing contact info
+        let contactFirstName = contactArray[i].firstName;
+        let contactLastName = contactArray[i].lastName;
+        let phone = contactArray[i].phoneNumber;
+        let phoneNumber = phone;
+        let email = contactArray[i].email;
+        let contactID = contactArray[i].contactID;
 
-		// Once the API query returns and is noted as ready, this function triggers.
-		xhr.onreadystatechange = function()
-		{
-			// This tells if the query has returned and everything is correct with it.
-			if (this.readyState === 4 && this.status === 200)
-			{
-				// Parsing the returned information from the query to a JSON object.
-				let jsonObject = JSON.parse( xhr.responseText );
+        // Inserting in the second row slot since we have a header row.
+        let row = table.insertRow(i + 1);
 
-				// If we encounter an error we know its because no contacts where found.
-				// So we just empty the table and return.
-				if (jsonObject.error != "")
-				{
-					console.log(jsonObject.error);
-					resetContactTable();
-					return;
-				}
+        row.onclick = function()
+        {
+            row.setAttribute("data-bs-toggle", "modal");
+            row.setAttribute("data-bs-target", "#myModal3");
+            globalContactID = contactID;
+            document.getElementById("contactFirst").value = contactFirstName;
+            document.getElementById("contactLast").value = contactLastName;
+            document.getElementById("contactPhone").value = phoneNumber;
+            document.getElementById("contactEmail").value = email;
+        }
 
-				// Storing just the contacts in their own array.
-				let contactArray = jsonObject.results;
-				console.log(contactArray + "\n");
+        // Adding the first cell which is just the contact's full name.
+        let data1 = row.insertCell(0);
+        data1.innerHTML = contactFirstName + " " + contactLastName;
 
-				// Resetting the contact table to be empty so we don't have any repeating
-				// contacts in the list when we append new ones.
-				resetContactTable();
+        let data3 = row.insertCell(1);
+        data3.innerHTML = email;
 
-				// Grabbing the table to add/delete rows.
-				let table = document.getElementById("myTable");
+        let data4 = row.insertCell(2);
+        data4.innerHTML = phoneNumber;
 
-				for (var i = 0; i < contactArray.length; i++)
-				{
-					// Adding a max number of contacts that can be added to the table
-					if (i == 30)
-					{
-						break;
-					}
+        // Adding the second cell which contains the edit and delete buttons.
+        let data2 = row.insertCell(3);
 
-					// Grabbing contact info
-					let contactFirstName = contactArray[i].firstName;
-					let contactLastName = contactArray[i].lastName;
-                    let phone = contactArray[i].phoneNumber;
-					let phoneNumber = convertNumber(contactArray[i].phoneNumber);
-					let email = contactArray[i].email;
-					let contactID = contactArray[i].contactID;
+        // Creating and applying attributes to buttons, then appending them.
+        let button1 = document.createElement("button");
+        button1.type = "button";
+        button1.className = "button1 mt-3 mb-5";
+        button1.setAttribute("data-bs-toggle", "modal");
+        button1.setAttribute("data-bs-target", "#myModal2");
+        button1.innerHTML = "Edit  <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-pencil-fill\" style=\"padding-bottom: 4px;\" viewBox=\"0 0 16 16\">\n" +
+            "                            <path d=\"M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z\"/>\n" +
+            "                        </svg>";
+        button1.onclick = function()
+        {
+            globalContactID = contactID;
 
-					// Inserting in the second row slot since we have a header row.
-					let row = table.insertRow(i + 1);
+            document.getElementById("newFirst").value = contactFirstName;
+            document.getElementById("newLast").value = contactLastName;
+            document.getElementById("newPhone").value = phone;
+            document.getElementById("newEmail").value = email;
+        };
 
-					row.onclick = function()
-					{
-						row.setAttribute("data-bs-toggle", "modal");
-						row.setAttribute("data-bs-target", "#myModal3");
-                        globalContactID = contactID;
-						document.getElementById("contactFirst").value = contactFirstName;
-					    document.getElementById("contactLast").value = contactLastName;
-					    document.getElementById("contactPhone").value = phoneNumber;
-					    document.getElementById("contactEmail").value = email;
-					}
+        button1.style.marginRight = "5px";
+        data2.appendChild(button1);
 
-					// Adding the first cell which is just the contact's full name.
-					let data1 = row.insertCell(0);
-					data1.innerHTML = contactFirstName + " " + contactLastName;
-
-                    let data3 = row.insertCell(1);
-					data3.innerHTML = email;
-
-                    let data4 = row.insertCell(2);
-					data4.innerHTML = phoneNumber;
-
-					// Adding the second cell which contains the edit and delete buttons.
-					let data2 = row.insertCell(3);
-
-					// Creating and applying attributes to buttons, then appending them.
-					let button1 = document.createElement("button");
-					button1.type = "button";
-					button1.className = "button1 mt-3 mb-5";
-					button1.setAttribute("data-bs-toggle", "modal");
-					button1.setAttribute("data-bs-target", "#myModal2");
-					button1.innerHTML = "Edit  <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-pencil-fill\" style=\"padding-bottom: 4px;\" viewBox=\"0 0 16 16\">\n" +
-                        "                            <path d=\"M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z\"/>\n" +
-                        "                        </svg>";
-                    button1.onclick = function()
-					{
-						globalContactID = contactID;
-
-						document.getElementById("newFirst").value = contactFirstName;
-					    document.getElementById("newLast").value = contactLastName;
-					    document.getElementById("newPhone").value = phone;
-					    document.getElementById("newEmail").value = email;
-					};
-
-					button1.style.marginRight = "5px";
-					data2.appendChild(button1);
-
-					let button2 = document.createElement("button");
-					button2.type = "button";
-					button2.className = "button1 mt-3 mb-5";
-					button2.onclick = function() {doDeleteContact(contactID);doReadContacts();};
-					button2.innerHTML = "Delete <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-trash3-fill\" style=\"padding-bottom: 4px;\" viewBox=\"0 0 16 16\">\n" +
-                        "                                <path fill-rule=\"evenodd\" d=\"M6 1.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v1H6v-1Zm5 0v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5ZM4.5 5.029a.5.5 0 1 1 .998-.06l.5 8.5a.5.5 0 0 1-.998.06l-.5-8.5Zm6.53-.528a.5.5 0 0 1 .47.528l-.5 8.5a.5.5 0 1 1-.998-.058l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z\"/>\n" +
-                        "                            </svg>";
-					data2.appendChild(button2);
-				}
-			}
-		};
-	}
-	catch(err)
-	{
-		console.log(err);
-	}
-
+        let button2 = document.createElement("button");
+        button2.type = "button";
+        button2.className = "button1 mt-3 mb-5";
+        button2.onclick = function() {doDeleteContact(contactID);doReadContacts();};
+        button2.innerHTML = "Delete <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-trash3-fill\" style=\"padding-bottom: 4px;\" viewBox=\"0 0 16 16\">\n" +
+            "                                <path fill-rule=\"evenodd\" d=\"M6 1.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v1H6v-1Zm5 0v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5ZM4.5 5.029a.5.5 0 1 1 .998-.06l.5 8.5a.5.5 0 0 1-.998.06l-.5-8.5Zm6.53-.528a.5.5 0 0 1 .47.528l-.5 8.5a.5.5 0 1 1-.998-.058l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z\"/>\n" +
+            "                            </svg>";
+        data2.appendChild(button2);
+    }
 }
 
 function convertNumber(number)
@@ -540,7 +633,7 @@ function convertNumber(number)
 
 function doWelcome()
 {
-    document.getElementById("welcome").innerHTML = "Welcome, " + firstName + "!"
+    document.getElementById("welcome").innerHTML = "Welcome!"
 }
 
 function resetContactTable()
